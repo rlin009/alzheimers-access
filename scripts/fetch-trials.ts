@@ -11,7 +11,24 @@ async function main(): Promise<void> {
     }
 
     const data = await response.json();
-    console.log(JSON.stringify(data, null, 2));
+    const studies = data.studies ?? [];
+
+    for (const study of studies) {
+      const identification = study.protocolSection?.identificationModule ?? {};
+      const status = study.protocolSection?.statusModule ?? {};
+      const eligibility = study.protocolSection?.eligibilityModule ?? {};
+
+      const nctId = identification.nctId ?? "N/A";
+      const briefTitle = identification.briefTitle ?? "N/A";
+      const overallStatus = status.overallStatus ?? "N/A";
+      const eligibilityCriteriaLength = (eligibility.eligibilityCriteria ?? "").length;
+
+      console.log(`NCT ID: ${nctId}`);
+      console.log(`Brief Title: ${briefTitle}`);
+      console.log(`Overall Status: ${overallStatus}`);
+      console.log(`Eligibility Criteria Length: ${eligibilityCriteriaLength}`);
+      console.log("---");
+    }
   } catch (error) {
     console.error("Error fetching clinical trials data:", error);
     process.exit(1);
