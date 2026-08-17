@@ -37,12 +37,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 Query
 
-Query String: sql
+Query String: sql (snippet)
 
 select  
- count(*) as total,  
- count(eligibility_text) as with_criteria,  
- count(*) filter (where status = 'RECRUITING') as recruiting  
+ count(*) as total,*  
+ *count(eligibility_text) as with_criteria,*  
+ *count(*) filter (where status = 'RECRUITING') as recruiting  
 from trials;
 
 Results:
