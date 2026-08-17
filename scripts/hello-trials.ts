@@ -1,5 +1,7 @@
 import "dotenv/config";
 
+
+
 const URL =
  "https://clinicaltrials.gov/api/v2/studies?query.cond=alzheimer&pageSize=5";
 
@@ -22,7 +24,8 @@ async function main() {
    console.log(id + " " + title);
    console.log("Eligibility text length:", elig.length);
  }
-}
+} 
+
 
 main().catch((e) => {
  console.error(e);

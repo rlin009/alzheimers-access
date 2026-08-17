@@ -9,7 +9,6 @@ const supabase = createClient(
 const BASE = "https://clinicaltrials.gov/api/v2/studies";
 const CONDITION = "Alzheimer Disease OR Dementia";
 
-// "50 Years" -> 50
 function ageToYears(a?: string): number | null {
   if (!a) return null;
   const m = a.match(/^(\d+)\s*(Year|Month|Week|Day)/i);
@@ -22,9 +21,6 @@ function ageToYears(a?: string): number | null {
   return Math.floor(n / 365);
 }
 
-// Parses eligibilityModule.minimumAge / maximumAge strings (e.g. "50 Years",
-// "50 Year", "6 Months") into a whole number of years. Returns null when
-// there's no usable value (undefined, empty, "N/A", unparseable, etc).
 function ageStringToYears(age?: string): number | null {
   if (!age) return null;
 
