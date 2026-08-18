@@ -1,6 +1,7 @@
 1) requires_study_partner 
 
 - Type: tri boolean
+- States: true, false, not states
 - Recognition: "ongoing caregiver", "study partner", "care partner." Do not count a legally authorized representative. They may only be mentioned for consent. 
 - Count: 3
 - Real Phrasings: 
@@ -10,6 +11,7 @@
 2) cognitive_scale
 
 - Type: text
+- States: found, absent, cannot tell
 - Recognition: Cognitive scales, such as MMSE, MoCA, CDR, or multifactorial Memory Questionnaire Satisfaction Scale
 - Count: 3
 - Real Phrasings:
@@ -19,6 +21,7 @@
 3) min_cognitive_score:
 
 - Type: number
+- States: found, absent, cannot tell
 - Recogniton: Lower numeric boundary attached to a named cognitive scale
 - Count: 2
 - Real Phrasings:
@@ -28,6 +31,7 @@
 4) max_cognitive_score:
 
 - Type: number
+- States: found, absent, cannot tell
 - Recognition: Upper numeric boundary attached to a named cognitive scale
 - Count: 3
 - Real Phrasings:
@@ -37,6 +41,7 @@
 5) excluded_conditions:
 
 - Type: list
+- States: found, absent, cannot tell
 - Recogniton: Conditions, diseases, impairments, contraindications, or medical histories explicitly listed as exclusion criteria.
 - Count: 16
 - Real Phrasings: 
@@ -46,6 +51,7 @@
 6) excluded_medications:
 
 - Type: list 
+- States: found, absent, cannot tell
 - Recognition: Named medications, medication classes, substances, or medication-use restrictions that exclude participation.
 - Count: 9
 - Real Phrasings: 
@@ -55,6 +61,7 @@
 7) requires_imaging:
 
 - Type: tri boolean
+- States: found, absent, cannot tell
 - Recognition: MRI, fMRI, PET, or another named imaging procedure counts.
 - Count: 6
 - Real Phrasings:
@@ -64,6 +71,7 @@
 8) requires_lumbar_puncture:
 
 - Type: tri boolean
+- States: found, absent, cannot tell
 - Recognition: Lumbar puncture is explicitly required for enrollment or a study-specific procedure. 
 - Count: 1
 - Real Phrasings:
@@ -73,6 +81,7 @@
 9) care_setting:
 
 - Type: text
+- States: found, absent, cannot tell
 - Recognition: The document identifies where the participant lives, receives care, is recruited, or completes the study, such as hospital, home, memory clinic, community, or remote setting.
 - Count: 8
 - Real Phrasings:
@@ -82,6 +91,7 @@
 10) age_requirement:
 
 - Type: text
+- States: found, absent, cannot tell
 - Recognition: Minimum age, maximum age, age range
 - Count: 20
 - Real Phrasings:
