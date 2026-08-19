@@ -9,18 +9,6 @@ const supabase = createClient(
 const BASE = "https://clinicaltrials.gov/api/v2/studies";
 const CONDITION = "Alzheimer Disease OR Dementia";
 
-function ageToYears(a?: string): number | null {
-  if (!a) return null;
-  const m = a.match(/^(\d+)\s*(Year|Month|Week|Day)/i);
-  if (!m) return null;
-  const n = parseInt(m[1], 10);
-  const unit = m[2].toLowerCase();
-  if (unit === "year") return n;
-  if (unit === "month") return Math.floor(n / 12);
-  if (unit === "week") return Math.floor(n / 52);
-  return Math.floor(n / 365);
-}
-
 function ageStringToYears(age?: string): number | null {
   if (!age) return null;
 
@@ -45,7 +33,9 @@ function ageStringToYears(age?: string): number | null {
 }
 
 // "2019-03" has no day, so store the 1st and record that the day is not real
-function startDate(d?: { date?: string }) {
+function startDate(
+  d?: { date?: string }
+): { start_date: string | null; start_date_precision: string | null } {
   if (!d?.date) return { start_date: null, start_date_precision: null };
   if (d.date.length === 7)
     return { start_date: d.date + "-01", start_date_precision: "month" };
@@ -69,8 +59,8 @@ function flatten(s: any) {
     status: st.overallStatus ?? null,
     phases: de.phases ?? [],
     conditions: co.conditions ?? [],
-    min_age_years: ageToYears(el.minimumAge),
-    max_age_years: ageToYears(el.maximumAge),
+    min_age_years: ageStringToYears(el.minimumAge),
+    max_age_years: ageStringToYears(el.maximumAge),
     sex: el.sex ?? null,
     eligibility_text: el.eligibilityCriteria ?? null,
     locations: lo.locations ?? [],
@@ -149,7 +139,8 @@ async function main() {
   console.log("Counts match.");
 }
 
-// Fetches just the first page and saves only the first study — for testing
+// Kept deliberately as a manual test entry point. Not called by main().
+// Fetches just the first page and saves only the first study, for testing
 // flatten()/saveFirstStudy() in isolation before running the full crawl.
 async function testFirstStudyOnly() {
   const params = new URLSearchParams({

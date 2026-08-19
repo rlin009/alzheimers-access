@@ -52,3 +52,10 @@ Total: 6842
 with_criteria: 6842
 
 recruiting: 977  
+## Dataset definition
+
+Registry: ClinicalTrials.gov API v2.
+
+Query: `query.cond = "Alzheimer Disease OR Dementia"`, no status filter, so every recruitment status is included.
+
+Counts as of 17 August 2026: 6,842 total, 6,842 with eligibility text, 977 recruiting. Re-run `scripts/fetch-trials.ts` to refresh; it upserts on `nct_id`, so running it again is safe.
