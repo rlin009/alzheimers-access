@@ -1,69 +1,302 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+import { useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+const supabase =
+  supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
+
+type FormState = {
+  location: string;
+  relationship: string;
+  diagnosisStage: string;
+  ageBand: string;
+  studyPartner: string;
+  willingToTravel: string;
+};
+
+const initialState: FormState = {
+  location: '',
+  relationship: '',
+  diagnosisStage: '',
+  ageBand: '',
+  studyPartner: '',
+  willingToTravel: '',
+};
+
+export default function StartPage() {
+  const [form, setForm] = useState<FormState>(initialState);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  function update<K extends keyof FormState>(key: K, value: FormState[K]) {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (!supabase) {
+      console.error('Supabase is not configured — check your .env.local file.');
+      setStatus('error');
+      return;
+    }
+
+    setStatus('submitting');
+
+    const { error } = await supabase.from('profiles').insert([
+      {
+        location: form.location || null,
+        relationship: form.relationship || null,
+        diagnosis_stage: form.diagnosisStage || null,
+        age_band: form.ageBand || null,
+        study_partner: form.studyPartner || null,
+        willing_to_travel: form.willingToTravel || null,
+      },
+    ]);
+
+    if (error) {
+      console.error(error);
+      setStatus('error');
+    } else {
+      setStatus('success');
+      setForm(initialState);
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <main style={styles.main}>
+        <div style={styles.container}>
+          <h1 style={styles.heading}>Thank you.</h1>
+          <p style={styles.help}>
+            Your information has been saved. Nothing has been matched yet — that comes later.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
       </main>
-    </div>
+    );
+  }
+
+  return (
+    <main style={styles.main}>
+      <div style={styles.container}>
+        <h1 style={styles.heading}>Tell us about your situation</h1>
+        <p style={styles.intro}>
+          Every question below is optional. Answer only what feels safe to share right now.
+        </p>
+
+        <form onSubmit={handleSubmit}>
+          {/* Location */}
+          <fieldset style={styles.fieldset}>
+            <label htmlFor="location" style={styles.label}>
+              Approximate location
+            </label>
+            <p style={styles.why}>
+              Why we ask: to find things close enough to be realistic. A city or postcode area is
+              enough — never your street address.
+            </p>
+            <input
+              id="location"
+              name="location"
+              type="text"
+              placeholder="e.g. Charlotte, NC or 28202"
+              value={form.location}
+              onChange={(e) => update('location', e.target.value)}
+              style={styles.input}
+            />
+          </fieldset>
+
+          {/* Relationship */}
+          <fieldset style={styles.fieldset}>
+            <label htmlFor="relationship" style={styles.label}>
+              Your relationship to the person with the diagnosis
+            </label>
+            <p style={styles.why}>
+              Why we ask: some resources are aimed at spouses, some at adult children, some at the
+              person themselves. This helps point you the right way.
+            </p>
+            <input
+              id="relationship"
+              name="relationship"
+              type="text"
+              placeholder="e.g. daughter, spouse, myself"
+              value={form.relationship}
+              onChange={(e) => update('relationship', e.target.value)}
+              style={styles.input}
+            />
+          </fieldset>
+
+          {/* Diagnosis stage */}
+          <fieldset style={styles.fieldset}>
+            <label htmlFor="diagnosisStage" style={styles.label}>
+              Diagnosis stage, if known
+            </label>
+            <p style={styles.why}>
+              Why we ask: some resources only apply at certain stages. If you don&apos;t know, or
+              don&apos;t want to say, leave this blank.
+            </p>
+            <input
+              id="diagnosisStage"
+              name="diagnosisStage"
+              type="text"
+              placeholder="e.g. early, moderate, unsure"
+              value={form.diagnosisStage}
+              onChange={(e) => update('diagnosisStage', e.target.value)}
+              style={styles.input}
+            />
+          </fieldset>
+
+          {/* Age band */}
+          <fieldset style={styles.fieldset}>
+            <label htmlFor="ageBand" style={styles.label}>
+              Broad age band of the person with the diagnosis
+            </label>
+            <p style={styles.why}>
+              Why we ask: age range affects which studies and resources are relevant. A rough
+              range is all we need.
+            </p>
+            <select
+              id="ageBand"
+              name="ageBand"
+              value={form.ageBand}
+              onChange={(e) => update('ageBand', e.target.value)}
+              style={styles.input}
+            >
+              <option value="">Prefer not to say</option>
+              <option value="under-50">Under 50</option>
+              <option value="50-64">50–64</option>
+              <option value="65-74">65–74</option>
+              <option value="75-84">75–84</option>
+              <option value="85-plus">85 and older</option>
+            </select>
+          </fieldset>
+
+          {/* Study partner */}
+          <fieldset style={styles.fieldset}>
+            <label htmlFor="studyPartner" style={styles.label}>
+              Is a study partner available?
+            </label>
+            <p style={styles.why}>
+              Why we ask: many clinical studies require a family member or caregiver to
+              participate alongside the person diagnosed.
+            </p>
+            <select
+              id="studyPartner"
+              name="studyPartner"
+              value={form.studyPartner}
+              onChange={(e) => update('studyPartner', e.target.value)}
+              style={styles.input}
+            >
+              <option value="">Prefer not to say</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="not-sure">Not sure yet</option>
+            </select>
+          </fieldset>
+
+          {/* Willingness to travel */}
+          <fieldset style={styles.fieldset}>
+            <label htmlFor="willingToTravel" style={styles.label}>
+              Willingness to travel
+            </label>
+            <p style={styles.why}>
+              Why we ask: some studies and resources are only available at specific sites. This
+              helps us gauge distance you&apos;d consider.
+            </p>
+            <select
+              id="willingToTravel"
+              name="willingToTravel"
+              value={form.willingToTravel}
+              onChange={(e) => update('willingToTravel', e.target.value)}
+              style={styles.input}
+            >
+              <option value="">Prefer not to say</option>
+              <option value="local-only">Local only</option>
+              <option value="short-drive">Willing to drive up to an hour</option>
+              <option value="long-distance">Willing to travel further</option>
+            </select>
+          </fieldset>
+
+          <button type="submit" disabled={status === 'submitting'} style={styles.button}>
+            {status === 'submitting' ? 'Saving…' : 'Submit'}
+          </button>
+
+          {status === 'error' && (
+            <p role="alert" style={styles.error}>
+              Something went wrong saving this. Please try again.
+            </p>
+          )}
+        </form>
+      </div>
+    </main>
   );
 }
+
+const styles: Record<string, React.CSSProperties> = {
+  main: {
+    minHeight: '100vh',
+    backgroundColor: '#000000',
+    color: '#ffffff',
+    padding: '24px 16px',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+  },
+  container: {
+    maxWidth: '640px',
+    margin: '0 auto',
+  },
+  heading: {
+    fontSize: '28px',
+    marginBottom: '12px',
+  },
+  intro: {
+    fontSize: '18px',
+    marginBottom: '32px',
+    lineHeight: 1.5,
+  },
+  fieldset: {
+    border: 'none',
+    padding: 0,
+    margin: '0 0 28px 0',
+  },
+  label: {
+    display: 'block',
+    fontSize: '20px',
+    fontWeight: 700,
+    marginBottom: '6px',
+  },
+  why: {
+    fontSize: '16px',
+    color: '#cccccc',
+    marginBottom: '10px',
+    lineHeight: 1.4,
+  },
+  input: {
+    width: '100%',
+    fontSize: '18px',
+    padding: '14px',
+    borderRadius: '8px',
+    border: '2px solid #666666',
+    backgroundColor: '#111111',
+    color: '#ffffff',
+    boxSizing: 'border-box',
+  },
+  button: {
+    width: '100%',
+    fontSize: '20px',
+    fontWeight: 700,
+    padding: '16px',
+    borderRadius: '8px',
+    border: 'none',
+    backgroundColor: '#4da6ff',
+    color: '#000000',
+    cursor: 'pointer',
+    marginTop: '8px',
+  },
+  error: {
+    color: '#ff8080',
+    fontSize: '16px',
+    marginTop: '12px',
+  },
+};
