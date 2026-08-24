@@ -201,6 +201,10 @@ async function extractCriteria(
           'Return "not mentioned" when the document says nothing about this topic at all. ' +
           'Return "cannot tell" only when the document says something about it that you cannot ' +
           "interpret clearly. These are different and must never be swapped.\n\n" +
+          "requires_study_partner, cognitive_scale, requires_imaging, and requires_lumbar_puncture " +
+          'must ALWAYS be one of the four strings above — never null and never omitted. If the text ' +
+          'says nothing about a topic, the correct value is the string "not mentioned", not null. ' +
+          "Only min_cognitive_score, max_cognitive_score, care_setting, and age_requirement may be null.\n\n" +
           "A legally authorized representative appearing in a consent clause is NOT a study partner " +
           "requirement — do not mark requires_study_partner as required on that basis alone.\n\n" +
           "Only use the eligibility text provided below. Do not infer anything from the trial title " +
@@ -223,6 +227,23 @@ async function extractCriteria(
   }
 
   const parsed = JSON.parse(textBlock.text) as ParsedCriteria;
+
+  const stateFields: (keyof ParsedCriteria)[] = [
+    "requires_study_partner",
+    "cognitive_scale",
+    "requires_imaging",
+    "requires_lumbar_puncture",
+  ];
+
+  for (const field of stateFields) {
+    if (parsed[field] === null || parsed[field] === undefined) {
+      console.warn(
+        `Model returned null for "${field}" — coercing to "not mentioned".`
+      );
+      (parsed[field] as TrialState) = "not mentioned";
+    }
+  }
+
   return { parsed, raw: response };
 }
 
