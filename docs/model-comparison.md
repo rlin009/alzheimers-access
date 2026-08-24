@@ -27,4 +27,5 @@ Sonnet Class Model:
     * care_setting: 100%
     * age_requirement: 100%
  
-    Which I chose: The Haiku model because the only issues were that in some of the states the model returned NULL instead of not mentioned. However, in the Sonnet Class Model, the model returned NULL for many of the states instead of not mentioned. Also, It mixed up some wording and didn't write the full form of each cognitive scale. 
+    Which I chose: The Haiku model because the only issues were that in some of the states the model returned NULL instead of not mentioned. However, in the Sonnet Class Model, the model returned NULL for many of the states instead of not mentioned. Also, It mixed up some wording and didn't write the full form of each cognitive scale.
+    What I found: The Haiku model is doing pretty well. I just don't know if there was something with the code because instead of not mentioned, the model keeps returning null  for min_cognitive_score and max_cognitive_score instead of not mentioned. Not sure if that is the correct way. 
