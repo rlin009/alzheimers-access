@@ -240,7 +240,7 @@ async function extractCriteria(
       console.warn(
         `Model returned null for "${field}" — coercing to "not mentioned".`
       );
-      (parsed[field] as TrialState) = "not mentioned";
+      (parsed as unknown as Record<string, unknown>)[field] = "not mentioned";
     }
   }
 
