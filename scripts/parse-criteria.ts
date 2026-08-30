@@ -43,7 +43,7 @@ function hasFlag(name: string): boolean {
 
 function usageAndExit(): never {
   console.error(
-    "Usage: tsx scripts/parse-criteria.ts --limit <count> --model <model> [--refresh]"
+    "Usage: tsx scripts/parse-criteria.ts --limit <count> --model <model> [--refresh] [--sample]"
   );
   console.error(
     "   or: tsx scripts/parse-criteria.ts --only <nct_id[,nct_id...]> --model <model> [--refresh]"
@@ -59,6 +59,9 @@ function usageAndExit(): never {
     "Example: tsx scripts/parse-criteria.ts --only-file ids.csv --model claude-sonnet-4-6"
   );
   console.error(
+    "Example: tsx scripts/parse-criteria.ts --sample --limit 700 --model claude-sonnet-4-6"
+  );
+  console.error(
     "  --refresh    Re-parse trials that already have a criteria row, upserting over it."
   );
   console.error(
@@ -68,6 +71,11 @@ function usageAndExit(): never {
     "  --only-file  Path to a file of nct_ids to parse. Ignores --limit. Accepts either a plain " +
       "text file with one nct_id per line, or a CSV with a header row containing an \"nct_id\" " +
       "column (any other columns are ignored)."
+  );
+  console.error(
+    "  --sample     Pull trials from the sample_bands table instead of filtering on " +
+      "status = RECRUITING. Still skips nct_ids that already have a criteria row " +
+      "(unless --refresh is also passed). Cannot be combined with --only / --only-file."
   );
   process.exit(1);
 }
@@ -114,6 +122,7 @@ const modelArg = getFlag("model");
 const onlyArg = getFlag("only");
 const onlyFileArg = getFlag("only-file");
 const REFRESH = hasFlag("refresh");
+const SAMPLE = hasFlag("sample");
 
 const onlyIdsFromFlag = onlyArg
   ? onlyArg
@@ -127,6 +136,10 @@ const ONLY_NCT_IDS = Array.from(new Set([...onlyIdsFromFlag, ...onlyIdsFromFile]
 const USING_ONLY = onlyArg !== undefined || onlyFileArg !== undefined;
 
 if (!modelArg) usageAndExit();
+if (USING_ONLY && SAMPLE) {
+  console.error("--sample cannot be combined with --only / --only-file.");
+  usageAndExit();
+}
 if (!USING_ONLY && !countArg) usageAndExit();
 if (USING_ONLY && ONLY_NCT_IDS.length === 0) {
   console.error("--only / --only-file was passed but no nct_ids were found.");
@@ -272,6 +285,77 @@ async function getTrialsToProcess(
   return result;
 }
 
+// Pull nct_ids from sample_bands (paged, since it can hold up to ~600 rows
+// but we don't want to assume a hard cap), then fetch the matching trials,
+// skipping anything already parsed (unless --refresh).
+async function getSampleBandNctIds(): Promise<string[]> {
+  const ids: string[] = [];
+  const pageSize = 1000;
+  let from = 0;
+
+  while (true) {
+    const { data, error } = await supabase
+      .from("sample_bands")
+      .select("nct_id")
+      .range(from, from + pageSize - 1);
+
+    if (error) throw error;
+    if (!data || data.length === 0) break;
+
+    for (const row of data) ids.push(row.nct_id as string);
+
+    if (data.length < pageSize) break;
+    from += pageSize;
+  }
+
+  return ids;
+}
+
+async function getTrialsFromSample(
+  alreadyParsed: Set<string>,
+  limit: number
+): Promise<Trial[]> {
+  const sampleIds = await getSampleBandNctIds();
+  console.log(`sample_bands has ${sampleIds.length} nct_id(s).`);
+
+  const idsToFetch = REFRESH
+    ? sampleIds
+    : sampleIds.filter((id) => !alreadyParsed.has(id));
+
+  const skippedCount = sampleIds.length - idsToFetch.length;
+  if (skippedCount > 0) {
+    console.log(
+      `Skipping ${skippedCount} sample nct_id(s) already in criteria table (pass --refresh to re-parse).`
+    );
+  }
+
+  const result: Trial[] = [];
+  const chunkSize = 500;
+
+  for (let i = 0; i < idsToFetch.length && result.length < limit; i += chunkSize) {
+    const chunk = idsToFetch.slice(i, i + chunkSize);
+
+    const { data, error } = await supabase
+      .from("trials")
+      .select("nct_id, eligibility_text")
+      .in("nct_id", chunk)
+      .not("eligibility_text", "is", null);
+
+    if (error) throw error;
+    if (!data) continue;
+
+    for (const row of data) {
+      if (result.length >= limit) break;
+      result.push({
+        nct_id: row.nct_id as string,
+        eligibility_text: row.eligibility_text as string,
+      });
+    }
+  }
+
+  return result;
+}
+
 async function getTrialsByNctIds(
   nctIds: string[],
   alreadyParsed: Set<string>
@@ -403,6 +487,9 @@ async function main() {
   if (USING_ONLY) {
     console.log(`--only/--only-file passed: fetching ${ONLY_NCT_IDS.length} specific nct_id(s), ignoring --limit.`);
     trials = await getTrialsByNctIds(ONLY_NCT_IDS, alreadyParsed);
+  } else if (SAMPLE) {
+    console.log(`--sample passed: fetching up to ${COUNT} unparsed trials from sample_bands...`);
+    trials = await getTrialsFromSample(alreadyParsed, COUNT);
   } else {
     console.log(`Fetching up to ${COUNT} unparsed RECRUITING trials...`);
     trials = await getTrialsToProcess(alreadyParsed, COUNT);
