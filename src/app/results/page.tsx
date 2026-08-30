@@ -201,9 +201,9 @@ function Section({
 export default async function ResultsPage({
   searchParams,
 }: {
-  searchParams: { id?: string };
+  searchParams: Promise<{ id?: string }>;
 }) {
-  const profileId = searchParams.id;
+  const { id: profileId } = await searchParams;
 
   if (!profileId) {
     notFound();
