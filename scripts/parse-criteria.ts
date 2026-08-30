@@ -36,19 +36,56 @@ function getFlag(name: string): string | undefined {
   return args[idx + 1];
 }
 
-const countArg = getFlag("limit");
-const modelArg = getFlag("model");
+function hasFlag(name: string): boolean {
+  return process.argv.slice(2).includes(`--${name}`);
+}
 
-if (!countArg || !modelArg) {
-  console.error("Usage: tsx scripts/parse-criteria.ts --limit <count> --model <model>");
+function usageAndExit(): never {
+  console.error(
+    "Usage: tsx scripts/parse-criteria.ts --limit <count> --model <model> [--refresh]"
+  );
+  console.error(
+    "   or: tsx scripts/parse-criteria.ts --only <nct_id[,nct_id...]> --model <model> [--refresh]"
+  );
   console.error("Example: tsx scripts/parse-criteria.ts --limit 50 --model claude-sonnet-4-6");
+  console.error(
+    "Example: tsx scripts/parse-criteria.ts --only NCT01234567,NCT07654321 --model claude-sonnet-4-6"
+  );
+  console.error(
+    "  --refresh   Re-parse trials that already have a criteria row, upserting over it."
+  );
+  console.error(
+    "  --only      Comma separated list of nct_ids to parse. Ignores --limit."
+  );
   process.exit(1);
 }
 
-const COUNT = Number(countArg);
-if (!Number.isInteger(COUNT) || COUNT <= 0) {
-  console.error(`--limit must be a positive integer, got: ${countArg}`);
-  process.exit(1);
+const countArg = getFlag("limit");
+const modelArg = getFlag("model");
+const onlyArg = getFlag("only");
+const REFRESH = hasFlag("refresh");
+
+const ONLY_NCT_IDS = onlyArg
+  ? onlyArg
+      .split(",")
+      .map((id) => id.trim())
+      .filter((id) => id.length > 0)
+  : [];
+
+if (!modelArg) usageAndExit();
+if (!onlyArg && !countArg) usageAndExit();
+if (onlyArg && ONLY_NCT_IDS.length === 0) {
+  console.error("--only was passed but no nct_ids were parsed from it.");
+  usageAndExit();
+}
+
+let COUNT = 0;
+if (!onlyArg) {
+  COUNT = Number(countArg);
+  if (!Number.isInteger(COUNT) || COUNT <= 0) {
+    console.error(`--limit must be a positive integer, got: ${countArg}`);
+    process.exit(1);
+  }
 }
 
 const MODEL = modelArg;
@@ -69,7 +106,7 @@ interface Trial {
 
 interface ParsedCriteria {
   requires_study_partner: TrialState;
-  cognitive_scale: TrialState;
+  cognitive_scale: string | null;
   min_cognitive_score: number | null;
   max_cognitive_score: number | null;
   excluded_conditions: string[];
@@ -91,7 +128,7 @@ const CRITERIA_SCHEMA = {
   type: "object",
   properties: {
     requires_study_partner: { type: "string", enum: STATE_ENUM },
-    cognitive_scale: { type: "string", enum: STATE_ENUM },
+    cognitive_scale: { type: ["string", "null"] },
     min_cognitive_score: { type: ["number", "null"] },
     max_cognitive_score: { type: ["number", "null"] },
     excluded_conditions: { type: "array", items: { type: "string" } },
@@ -181,6 +218,46 @@ async function getTrialsToProcess(
   return result;
 }
 
+async function getTrialsByNctIds(
+  nctIds: string[],
+  alreadyParsed: Set<string>
+): Promise<Trial[]> {
+  const idsToFetch = REFRESH
+    ? nctIds
+    : nctIds.filter((id) => !alreadyParsed.has(id));
+
+  const skipped = nctIds.filter((id) => !idsToFetch.includes(id));
+  if (skipped.length > 0) {
+    console.log(
+      `Skipping ${skipped.length} nct_id(s) already in criteria table (pass --refresh to re-parse): ${skipped.join(", ")}`
+    );
+  }
+
+  if (idsToFetch.length === 0) return [];
+
+  const { data, error } = await supabase
+    .from("trials")
+    .select("nct_id, eligibility_text")
+    .in("nct_id", idsToFetch)
+    .not("eligibility_text", "is", null);
+
+  if (error) throw error;
+  if (!data) return [];
+
+  const found = new Set(data.map((row) => row.nct_id as string));
+  const missing = idsToFetch.filter((id) => !found.has(id));
+  if (missing.length > 0) {
+    console.warn(
+      `Could not find a trial with eligibility_text for nct_id(s): ${missing.join(", ")}`
+    );
+  }
+
+  return data.map((row) => ({
+    nct_id: row.nct_id as string,
+    eligibility_text: row.eligibility_text as string,
+  }));
+}
+
 // ---------------------------------------------------------------------------
 // Claude extraction
 // ---------------------------------------------------------------------------
@@ -196,15 +273,20 @@ async function extractCriteria(
         role: "user",
         content:
           "Extract structured eligibility criteria from the following clinical trial eligibility text. " +
-          "For requires_study_partner, cognitive_scale, requires_imaging, and requires_lumbar_puncture, " +
+          "For requires_study_partner, requires_imaging, and requires_lumbar_puncture, " +
           'return exactly one of: "required", "not required", "not mentioned", "cannot tell".\n\n' +
           'Return "not mentioned" when the document says nothing about this topic at all. ' +
           'Return "cannot tell" only when the document says something about it that you cannot ' +
           "interpret clearly. These are different and must never be swapped.\n\n" +
-          "requires_study_partner, cognitive_scale, requires_imaging, and requires_lumbar_puncture " +
+          "requires_study_partner, requires_imaging, and requires_lumbar_puncture " +
           'must ALWAYS be one of the four strings above — never null and never omitted. If the text ' +
-          'says nothing about a topic, the correct value is the string "not mentioned", not null. ' +
-          "Only min_cognitive_score, max_cognitive_score, care_setting, and age_requirement may be null.\n\n" +
+          'says nothing about a topic, the correct value is the string "not mentioned", not null.\n\n' +
+          "For cognitive_scale, return the name of the cognitive test or scale the trial uses for " +
+          'eligibility screening, exactly as named in the text (for example "MMSE", "MoCA", "CDR", ' +
+          'or "ADAS-Cog"). Return null if the eligibility text does not name a specific cognitive ' +
+          "scale or test.\n\n" +
+          "Only min_cognitive_score, max_cognitive_score, cognitive_scale, care_setting, and " +
+          "age_requirement may be null.\n\n" +
           "A legally authorized representative appearing in a consent clause is NOT a study partner " +
           "requirement — do not mark requires_study_partner as required on that basis alone.\n\n" +
           "Only use the eligibility text provided below. Do not infer anything from the trial title " +
@@ -230,7 +312,6 @@ async function extractCriteria(
 
   const stateFields: (keyof ParsedCriteria)[] = [
     "requires_study_partner",
-    "cognitive_scale",
     "requires_imaging",
     "requires_lumbar_puncture",
   ];
@@ -252,12 +333,27 @@ async function extractCriteria(
 // ---------------------------------------------------------------------------
 
 async function main() {
-  console.log(`Loading already-parsed nct_ids...`);
-  const alreadyParsed = await getAlreadyParsedNctIds();
-  console.log(`Found ${alreadyParsed.size} trials already in criteria table.`);
+  let alreadyParsed: Set<string>;
 
-  console.log(`Fetching up to ${COUNT} unparsed RECRUITING trials...`);
-  const trials = await getTrialsToProcess(alreadyParsed, COUNT);
+  if (REFRESH) {
+    console.log(`--refresh passed: not skipping trials that already have a criteria row.`);
+    alreadyParsed = new Set();
+  } else {
+    console.log(`Loading already-parsed nct_ids...`);
+    alreadyParsed = await getAlreadyParsedNctIds();
+    console.log(`Found ${alreadyParsed.size} trials already in criteria table.`);
+  }
+
+  let trials: Trial[];
+
+  if (ONLY_NCT_IDS.length > 0) {
+    console.log(`--only passed: fetching ${ONLY_NCT_IDS.length} specific nct_id(s), ignoring --limit.`);
+    trials = await getTrialsByNctIds(ONLY_NCT_IDS, alreadyParsed);
+  } else {
+    console.log(`Fetching up to ${COUNT} unparsed RECRUITING trials...`);
+    trials = await getTrialsToProcess(alreadyParsed, COUNT);
+  }
+
   console.log(`Got ${trials.length} trials to process with model "${MODEL}".`);
 
   let succeeded = 0;
@@ -270,7 +366,7 @@ async function main() {
     try {
       const { parsed, raw } = await extractCriteria(trial.eligibility_text);
 
-      const { error } = await supabase.from("criteria").insert({
+      const row = {
         nct_id: trial.nct_id,
         requires_study_partner: parsed.requires_study_partner,
         cognitive_scale: parsed.cognitive_scale,
@@ -285,7 +381,11 @@ async function main() {
         parse_confidence: parsed.parse_confidence,
         raw_response: raw,
         model: MODEL,
-      });
+      };
+
+      const { error } = REFRESH
+        ? await supabase.from("criteria").upsert(row, { onConflict: "nct_id" })
+        : await supabase.from("criteria").insert(row);
 
       if (error) throw error;
 
@@ -294,7 +394,7 @@ async function main() {
     } catch (err) {
       failed++;
       console.error(`[${i + 1}/${trials.length}] ${trial.nct_id} - FAILED:`, err);
-      // Not inserted, so this trial will be retried on the next run.
+      // Not inserted/upserted, so this trial will be retried on the next run.
     }
   }
 
