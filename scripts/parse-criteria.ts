@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 import { fileURLToPath } from "url";
 import path from "path";
+import fs from "fs";
 
 // Resolve .env relative to the project root (one level up from this
 // file, since this file lives in scripts/), so it loads correctly no
@@ -47,40 +48,93 @@ function usageAndExit(): never {
   console.error(
     "   or: tsx scripts/parse-criteria.ts --only <nct_id[,nct_id...]> --model <model> [--refresh]"
   );
+  console.error(
+    "   or: tsx scripts/parse-criteria.ts --only-file <path> --model <model> [--refresh]"
+  );
   console.error("Example: tsx scripts/parse-criteria.ts --limit 50 --model claude-sonnet-4-6");
   console.error(
     "Example: tsx scripts/parse-criteria.ts --only NCT01234567,NCT07654321 --model claude-sonnet-4-6"
   );
   console.error(
-    "  --refresh   Re-parse trials that already have a criteria row, upserting over it."
+    "Example: tsx scripts/parse-criteria.ts --only-file ids.csv --model claude-sonnet-4-6"
   );
   console.error(
-    "  --only      Comma separated list of nct_ids to parse. Ignores --limit."
+    "  --refresh    Re-parse trials that already have a criteria row, upserting over it."
+  );
+  console.error(
+    "  --only       Comma separated list of nct_ids to parse. Ignores --limit."
+  );
+  console.error(
+    "  --only-file  Path to a file of nct_ids to parse. Ignores --limit. Accepts either a plain " +
+      "text file with one nct_id per line, or a CSV with a header row containing an \"nct_id\" " +
+      "column (any other columns are ignored)."
   );
   process.exit(1);
+}
+
+function loadNctIdsFromFile(filePath: string): string[] {
+  let content: string;
+  try {
+    content = fs.readFileSync(filePath, "utf-8");
+  } catch (err) {
+    console.error(`Could not read --only-file "${filePath}": ${err}`);
+    process.exit(1);
+  }
+
+  const stripQuotes = (s: string) => s.trim().replace(/^"(.*)"$/, "$1").trim();
+
+  const lines = content
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+
+  if (lines.length === 0) return [];
+
+  // If the first line looks like a CSV header containing an "nct_id" column,
+  // pull values from that column and ignore the rest. Otherwise treat every
+  // line as a bare nct_id (plain list format).
+  const headerCols = lines[0].split(",").map((c) => stripQuotes(c).toLowerCase());
+  const nctColIdx = headerCols.findIndex((c) => c === "nct_id");
+
+  if (nctColIdx !== -1) {
+    return lines
+      .slice(1)
+      .map((line) => {
+        const cols = line.split(",");
+        return cols[nctColIdx] ? stripQuotes(cols[nctColIdx]) : "";
+      })
+      .filter((id) => id.length > 0);
+  }
+
+  return lines.map(stripQuotes).filter((id) => id.length > 0);
 }
 
 const countArg = getFlag("limit");
 const modelArg = getFlag("model");
 const onlyArg = getFlag("only");
+const onlyFileArg = getFlag("only-file");
 const REFRESH = hasFlag("refresh");
 
-const ONLY_NCT_IDS = onlyArg
+const onlyIdsFromFlag = onlyArg
   ? onlyArg
       .split(",")
       .map((id) => id.trim())
       .filter((id) => id.length > 0)
   : [];
+const onlyIdsFromFile = onlyFileArg ? loadNctIdsFromFile(onlyFileArg) : [];
+
+const ONLY_NCT_IDS = Array.from(new Set([...onlyIdsFromFlag, ...onlyIdsFromFile]));
+const USING_ONLY = onlyArg !== undefined || onlyFileArg !== undefined;
 
 if (!modelArg) usageAndExit();
-if (!onlyArg && !countArg) usageAndExit();
-if (onlyArg && ONLY_NCT_IDS.length === 0) {
-  console.error("--only was passed but no nct_ids were parsed from it.");
+if (!USING_ONLY && !countArg) usageAndExit();
+if (USING_ONLY && ONLY_NCT_IDS.length === 0) {
+  console.error("--only / --only-file was passed but no nct_ids were found.");
   usageAndExit();
 }
 
 let COUNT = 0;
-if (!onlyArg) {
+if (!USING_ONLY) {
   COUNT = Number(countArg);
   if (!Number.isInteger(COUNT) || COUNT <= 0) {
     console.error(`--limit must be a positive integer, got: ${countArg}`);
@@ -346,8 +400,8 @@ async function main() {
 
   let trials: Trial[];
 
-  if (ONLY_NCT_IDS.length > 0) {
-    console.log(`--only passed: fetching ${ONLY_NCT_IDS.length} specific nct_id(s), ignoring --limit.`);
+  if (USING_ONLY) {
+    console.log(`--only/--only-file passed: fetching ${ONLY_NCT_IDS.length} specific nct_id(s), ignoring --limit.`);
     trials = await getTrialsByNctIds(ONLY_NCT_IDS, alreadyParsed);
   } else {
     console.log(`Fetching up to ${COUNT} unparsed RECRUITING trials...`);
