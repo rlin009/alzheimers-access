@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -28,8 +29,9 @@ const initialState: FormState = {
 };
 
 export default function StartPage() {
+  const router = useRouter();
   const [form, setForm] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'error'>('idle');
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -46,37 +48,30 @@ export default function StartPage() {
 
     setStatus('submitting');
 
-    const { error } = await supabase.from('profiles').insert([
-      {
-        location: form.location || null,
-        relationship: form.relationship || null,
-        diagnosis_stage: form.diagnosisStage || null,
-        age_band: form.ageBand || null,
-        study_partner: form.studyPartner || null,
-        willing_to_travel: form.willingToTravel || null,
-      },
-    ]);
+    // .select('id').single() so we get the new row's id back and can
+    // redirect straight to its results page.
+    const { data, error } = await supabase
+      .from('profiles')
+      .insert([
+        {
+          location: form.location || null,
+          relationship: form.relationship || null,
+          diagnosis_stage: form.diagnosisStage || null,
+          age_band: form.ageBand || null,
+          study_partner: form.studyPartner || null,
+          willing_to_travel: form.willingToTravel || null,
+        },
+      ])
+      .select('id')
+      .single();
 
-    if (error) {
+    if (error || !data) {
       console.error(error);
       setStatus('error');
-    } else {
-      setStatus('success');
-      setForm(initialState);
+      return;
     }
-  }
 
-  if (status === 'success') {
-    return (
-      <main style={styles.main}>
-        <div style={styles.container}>
-          <h1 style={styles.heading}>Thank you.</h1>
-          <p style={styles.help}>
-            Your information has been saved. Nothing has been matched yet — that comes later.
-          </p>
-        </div>
-      </main>
-    );
+    router.push(`/results?id=${data.id}`);
   }
 
   return (

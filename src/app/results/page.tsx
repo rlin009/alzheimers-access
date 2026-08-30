@@ -1,22 +1,21 @@
 // src/app/results/page.tsx
 //
-// REMAINING ASSUMPTIONS — verify these two before trusting the page fully:
+// ASSUMPTIONS — read before trusting this fully:
 //
 // 1. Supabase server client import. Assumed:
 //      import { createClient } from '@/lib/supabase/server'
 //    Change the path if yours lives elsewhere.
 //
-// 2. ClinicalTrials.gov link. Trial.id has no dedicated "nct id" field in
-//    triage.ts, so this assumes trial.id itself IS the NCT number (e.g.
-//    "NCT01234567") and builds the link as:
-//      https://clinicaltrials.gov/study/{id}
-//    If `id` is actually an internal Supabase UUID, swap in your real
-//    NCT column name inside `ctgovUrl()` below.
+// 2. ClinicalTrials.gov link: assumes trial.id IS the NCT number
+//    (e.g. "NCT01234567"). If your `trials.id` is an internal UUID
+//    instead, change ctgovUrl() below to use the real NCT column.
 //
-// Also assumed: your `profiles` table's columns match FamilyProfile's
-// shape (location, relationship, diagnosisStage, ageBand, studyPartner,
-// willingToTravel) closely enough to cast directly. If your columns are
-// snake_case or named differently, map them before calling triage.
+// 3. mapProfileToFamilyProfile() below converts your actual saved columns
+//    (free-text `location`, string `age_band`, etc.) into the structured
+//    shape triage.ts expects. See the comments on that function — the
+//    state-extraction and "prefer not to say -> travel" defaults are
+//    judgment calls, not certainties, because the form only collects
+//    free text / bucketed strings.
 
 import { createClient } from '@/lib/supabase/server';
 import {
@@ -31,10 +30,82 @@ import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
+// --- Raw Supabase row shape (matches src/app/start/page.tsx's insert) ---
+
+interface ProfileRow {
+  id: string;
+  location: string | null;
+  relationship: string | null;
+  diagnosis_stage: string | null;
+  age_band: string | null;
+  study_partner: string | null;
+  willing_to_travel: string | null;
+}
+
+// US state abbreviations, used to pull a state out of free-text location
+// like "Charlotte, NC". Not exhaustive of every valid input a person could
+// type (a bare zip code won't match), but covers the common case.
+const US_STATE_CODES = new Set([
+  'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA',
+  'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ',
+  'NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT',
+  'VA','WA','WV','WI','WY','DC',
+]);
+
+function parseLocation(raw: string | null): FamilyProfile['location'] {
+  if (!raw) return { country: 'United States' };
+  const match = raw.toUpperCase().match(/\b([A-Z]{2})\b/);
+  const state = match && US_STATE_CODES.has(match[1]) ? match[1] : undefined;
+  return { country: 'United States', state };
+}
+
+function parseAgeBand(raw: string | null): FamilyProfile['ageBand'] {
+  switch (raw) {
+    case 'under-50':
+      return { minAge: 0, maxAge: 49 };
+    case '50-64':
+      return { minAge: 50, maxAge: 64 };
+    case '65-74':
+      return { minAge: 65, maxAge: 74 };
+    case '75-84':
+      return { minAge: 75, maxAge: 84 };
+    case '85-plus':
+      return { minAge: 85, maxAge: 120 };
+    default:
+      // No age given -> triage.ts skips the age rule entirely, which is
+      // the correct behavior for "prefer not to say."
+      return null;
+  }
+}
+
+function parseStudyPartner(raw: string | null): FamilyProfile['studyPartner'] {
+  if (raw === 'yes') return 'yes';
+  if (raw === 'no') return 'no';
+  return 'unknown'; // covers 'not-sure' and blank
+}
+
+function parseWillingToTravel(raw: string | null): boolean {
+  if (raw === 'local-only') return false;
+  // 'short-drive', 'long-distance', and blank/"prefer not to say" all
+  // default to true (permissive) rather than excluding people who didn't
+  // answer. Flip this default if you'd rather treat "blank" as local-only.
+  return true;
+}
+
+function mapProfileToFamilyProfile(row: ProfileRow): FamilyProfile {
+  return {
+    location: parseLocation(row.location),
+    relationship: row.relationship ?? '',
+    diagnosisStage: row.diagnosis_stage ?? '',
+    ageBand: parseAgeBand(row.age_band),
+    studyPartner: parseStudyPartner(row.study_partner),
+    willingToTravel: parseWillingToTravel(row.willing_to_travel),
+  };
+}
+
 // --- Display helpers ---------------------------------------------------
 
 function ctgovUrl(trial: Trial): string {
-  // See assumption #2 above.
   return `https://clinicaltrials.gov/study/${trial.id}`;
 }
 
@@ -44,9 +115,6 @@ function nearestSiteText(trial: Trial, profile: FamilyProfile): string {
 
   if (open.length === 0) return 'No open site listed';
 
-  // Prefer a site in the family's own state, then country, then just the
-  // first open site. (Locations here only carry country/state, not a
-  // facility name — that's all the schema currently gives us.)
   const inState = profile.location.state
     ? open.find((loc) => (loc.state ?? '').toLowerCase() === profile.location.state!.toLowerCase())
     : undefined;
@@ -87,7 +155,7 @@ export default async function ResultsPage({
     return <ErrorState message="We couldn't find that profile. Please go back and submit the form again." />;
   }
 
-  const profile = profileRow as unknown as FamilyProfile;
+  const profile = mapProfileToFamilyProfile(profileRow as ProfileRow);
 
   let results;
   try {
