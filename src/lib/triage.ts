@@ -1,146 +1,90 @@
-/**
- * src/lib/triage.ts
- *
- * Sorts recruiting clinical trials into three buckets for a family:
- *   - worthAsking:  still a candidate, maybe with caveats to raise with the site
- *   - probablyNot:  a concrete rule excluded it, explained in plain English
- *   - cannotTell:   we don't have enough extracted eligibility info to say either way
- *
- * SCHEMA ASSUMPTIONS
- * -------------------
- * This assumes two Supabase tables:
- *
- *   trials
- *     id                text/uuid   primary key
- *     nct_id            text        e.g. "NCT01234567"
- *     title             text
- *     status            text        e.g. "RECRUITING", "COMPLETED", ...
- *     locations         jsonb       array of TrialLocationSite (see below)
- *     eligibility_text  text        raw/summarized eligibility text, if any
- *
- *   trial_criteria  (one row per trial, foreign key trial_id -> trials.id)
- *     trial_id                        text/uuid
- *     min_age_years                   numeric | null   (null = no lower limit)
- *     max_age_years                   numeric | null   (null = no upper limit)
- *     age_criteria_quote              text | null      (optional verbatim snippet)
- *     requires_study_partner          text | null      'required' | 'not_required' | 'not_mentioned' | 'cannot_tell'
- *     requires_study_partner_quote    text | null
- *     requires_imaging                text | null      same 4-value scheme as above
- *     requires_imaging_quote          text | null
- *     requires_lumbar_puncture        text | null      same 4-value scheme as above
- *     requires_lumbar_puncture_quote  text | null
- *
- * If your actual column/table names differ, adjust the constants and the
- * `select()` string below — the rule logic itself doesn't need to change.
- */
-
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-// ---------------------------------------------------------------------------
-// Table names (adjust to match your schema)
-// ---------------------------------------------------------------------------
+/* -------------------------------------------------------------------------
+ * Types
+ *
+ * These reflect the assumed shape of the `trials` and `criteria` tables.
+ * `trials` has a `locations` jsonb column (array of per-site records, each
+ * with its own status) and a one-to-one related `criteria` row reachable
+ * via a Supabase nested select (`criteria(*)`), which is where the
+ * eligibility fields and the raw eligibility text live.
+ *
+ * Adjust these to match your actual generated Supabase types if they
+ * differ — the triage logic below only depends on the field names, not on
+ * where the types come from.
+ * ---------------------------------------------------------------------- */
 
-const TRIALS_TABLE = 'trials';
-const CRITERIA_RELATION = 'trial_criteria';
+/** How a yes/no eligibility criterion was extracted from the trial text. */
+export type CriterionValue = 'required' | 'not_required' | 'not_mentioned' | 'cannot_tell';
 
-// ---------------------------------------------------------------------------
-// Public input types
-// ---------------------------------------------------------------------------
-
-/** Coarse age buckets a family can pick from in the intake form. */
-export type AgeBand = 'under_50' | '50_59' | '60_64' | '65_74' | '75_84' | '85_plus';
-
-export interface FamilyLocation {
+export interface TrialLocation {
   country: string;
-  /** State/province, if known. Only required for the "local only" check. */
   state?: string | null;
+  /** Status of this specific site — a trial can be RECRUITING overall while
+   * an individual site is closed, so this is checked separately from
+   * `Trial.status`. */
+  status?: string | null;
 }
 
+export interface TrialCriteria {
+  id: string;
+  trial_id: string;
+  /** No lower limit if null/undefined — not "unknown". */
+  min_age_years: number | null;
+  /** No upper limit if null/undefined — not "unknown". */
+  max_age_years: number | null;
+  requires_study_partner: CriterionValue | null;
+  requires_imaging: CriterionValue | null;
+  requires_lumbar_puncture: CriterionValue | null;
+  eligibility_text: string | null;
+}
+
+export interface Trial {
+  id: string;
+  title?: string | null;
+  status: string;
+  locations: TrialLocation[] | null;
+  /** Supabase returns an array for a nested select unless the relationship
+   * is declared as one-to-one; we accept either shape defensively. */
+  criteria: TrialCriteria[] | TrialCriteria | null;
+}
+
+export interface AgeBand {
+  minAge: number;
+  maxAge: number;
+}
+
+export type StudyPartnerAvailability = 'yes' | 'no' | 'unknown';
+
 export interface FamilyProfile {
-  location: FamilyLocation;
-  /** Relationship of the person filling out the form to the patient (not used by any rule yet). */
+  location: {
+    country: string;
+    state?: string | null;
+  };
   relationship: string;
-  /** Stage of diagnosis (not used by any rule yet, carried through for future rules/display). */
   diagnosisStage: string;
-  /** Age band of the person the trial would be for. Omit/null if unknown — the age rule is skipped. */
+  /** Omit/null if the family did not give an age — the age rule is skipped
+   * entirely in that case. */
   ageBand?: AgeBand | null;
-  /**
-   * Whether a study partner is available.
-   *   true  -> a study partner is available
-   *   false -> the family told us no study partner is available
-   *   null/undefined -> not asked / not answered, the rule is skipped
-   */
-  studyPartner?: boolean | null;
-  /**
-   * true  -> family is willing to travel beyond their home state/province
-   * false -> family wants a site local to their state/province ("local only")
-   */
+  studyPartner: StudyPartnerAvailability;
+  /** false === "local only". */
   willingToTravel: boolean;
 }
 
-// ---------------------------------------------------------------------------
-// Supabase row shapes
-// ---------------------------------------------------------------------------
-
-type CriteriaFlag = 'required' | 'not_required' | 'not_mentioned' | 'cannot_tell' | null;
-
-interface TrialCriteriaRow {
-  min_age_years: number | null;
-  max_age_years: number | null;
-  age_criteria_quote?: string | null;
-  requires_study_partner: CriteriaFlag;
-  requires_study_partner_quote?: string | null;
-  requires_imaging: CriteriaFlag;
-  requires_imaging_quote?: string | null;
-  requires_lumbar_puncture: CriteriaFlag;
-  requires_lumbar_puncture_quote?: string | null;
-}
-
-export interface TrialLocationSite {
-  country: string;
-  state?: string | null;
-  city?: string | null;
-  facility?: string | null;
-  /** Per-site recruitment status — a trial can be RECRUITING overall while a site is closed. */
-  status: string;
-}
-
-interface TrialRow {
-  id: string;
-  nct_id: string | null;
-  title: string | null;
-  status: string;
-  locations: TrialLocationSite[] | null;
-  eligibility_text: string | null;
-  // Supabase returns the joined relation as an array unless the FK is configured
-  // as a strict one-to-one; we defensively handle both shapes.
-  trial_criteria: TrialCriteriaRow[] | TrialCriteriaRow | null;
-}
-
-// ---------------------------------------------------------------------------
-// Public output types
-// ---------------------------------------------------------------------------
-
-export interface TrialSummary {
-  id: string;
-  nctId: string | null;
-  title: string | null;
-}
-
 export interface WorthAskingTrial {
-  trial: TrialSummary;
-  /** Things worth flagging to the family before they ask the site coordinator. May be empty. */
+  trial: Trial;
+  /** Plain-English notes about extra participation burden. Empty if none. */
   caveats: string[];
 }
 
 export interface ProbablyNotTrial {
-  trial: TrialSummary;
-  /** Plain-English reason naming the rule that excluded this trial. */
+  trial: Trial;
+  /** Plain-English sentence naming the rule that excluded this trial. */
   reason: string;
 }
 
 export interface CannotTellTrial {
-  trial: TrialSummary;
+  trial: Trial;
 }
 
 export interface TriageResult {
@@ -149,276 +93,266 @@ export interface TriageResult {
   cannotTell: CannotTellTrial[];
 }
 
-// ---------------------------------------------------------------------------
-// Age band lookup
-// ---------------------------------------------------------------------------
+/* -------------------------------------------------------------------------
+ * Small helpers
+ * ---------------------------------------------------------------------- */
 
-/** [min, max] in years for each band. max === null means no upper bound. */
-const AGE_BAND_RANGES: Record<AgeBand, [number, number | null]> = {
-  under_50: [0, 49],
-  '50_59': [50, 59],
-  '60_64': [60, 64],
-  '65_74': [65, 74],
-  '75_84': [75, 84],
-  '85_plus': [85, null],
-};
+function normalizeStatus(status: string | null | undefined): string {
+  return (status ?? '').trim().toUpperCase();
+}
 
-// ---------------------------------------------------------------------------
-// Small helpers
-// ---------------------------------------------------------------------------
+function isSiteOpen(status: string | null | undefined): boolean {
+  return normalizeStatus(status) === 'RECRUITING';
+}
 
-function normalize(value: string | null | undefined): string {
+function normalizeText(value: string | null | undefined): string {
   return (value ?? '').trim().toLowerCase();
 }
 
-function isUnknownFlag(value: CriteriaFlag): boolean {
+function isUnknownCriterion(value: CriterionValue | null | undefined): boolean {
   return value == null || value === 'not_mentioned' || value === 'cannot_tell';
 }
 
-function normalizeCriteria(raw: TrialRow['trial_criteria']): TrialCriteriaRow | null {
-  if (!raw) return null;
-  if (Array.isArray(raw)) return raw.length > 0 ? raw[0] : null;
-  return raw;
+/** Pull the first sentence from the eligibility text that mentions one of
+ * the given keywords, so exclusion reasons can quote the trial's own
+ * wording where possible. */
+function findEligibilityPhrase(
+  eligibilityText: string | null | undefined,
+  keywords: string[],
+): string | null {
+  if (!eligibilityText) return null;
+  const sentences = eligibilityText.split(/(?<=[.!?])\s+/);
+  const lowerKeywords = keywords.map((k) => k.toLowerCase());
+  for (const sentence of sentences) {
+    const lower = sentence.toLowerCase();
+    if (lowerKeywords.some((k) => lower.includes(k))) {
+      const trimmed = sentence.trim();
+      if (trimmed.length > 0) return trimmed;
+    }
+  }
+  return null;
 }
 
-function toSummary(row: TrialRow): TrialSummary {
-  return {
-    id: row.id,
-    nctId: row.nct_id ?? null,
-    title: row.title ?? null,
-  };
+function withQuote(reason: string, phrase: string | null): string {
+  return phrase ? `${reason} The trial's eligibility criteria say: "${phrase}"` : reason;
 }
 
-// ---------------------------------------------------------------------------
-// Rule: age
-// ---------------------------------------------------------------------------
+/** Supabase returns either an array or a single object for a nested
+ * select depending on how the relationship is declared — normalize it. */
+function getCriteria(trial: Trial): TrialCriteria | null {
+  if (!trial.criteria) return null;
+  if (Array.isArray(trial.criteria)) return trial.criteria[0] ?? null;
+  return trial.criteria;
+}
 
-function ageReason(criteria: TrialCriteriaRow, band: AgeBand): string {
-  const trialMin = criteria.min_age_years;
-  const trialMax = criteria.max_age_years;
+/* -------------------------------------------------------------------------
+ * Individual rules
+ *
+ * Each rule returns a plain-English reason string when it excludes the
+ * trial, or null when it doesn't apply / doesn't exclude.
+ * ---------------------------------------------------------------------- */
 
-  let range: string;
-  if (trialMin != null && trialMax != null) {
-    range = `people between ${trialMin} and ${trialMax} years old`;
-  } else if (trialMin != null) {
-    range = `people who are at least ${trialMin} years old`;
-  } else {
-    // trialMax must be non-null to reach here, since a trial with no limits
-    // at all never triggers an age exclusion.
-    range = `people who are no older than ${trialMax} years old`;
+/** Rule: the person's age band falls outside the trial's allowed range.
+ * Skipped entirely if the family didn't give an age. */
+function checkAgeBand(profile: FamilyProfile, criteria: TrialCriteria | null): string | null {
+  if (!profile.ageBand) return null;
+  if (!criteria) return null;
+
+  const { minAge, maxAge } = profile.ageBand;
+  const trialMin = criteria.min_age_years; // null = no lower limit
+  const trialMax = criteria.max_age_years; // null = no upper limit
+
+  const phrase = findEligibilityPhrase(criteria.eligibility_text, ['age', 'years old', 'aged']);
+
+  if (trialMin != null && maxAge < trialMin) {
+    const upper = trialMax != null ? `${trialMin}–${trialMax}` : `${trialMin} or older`;
+    return withQuote(
+      `This trial only accepts participants age ${upper}, which is younger than the age range you gave.`,
+      phrase,
+    );
   }
 
-  let sentence = `This trial is only enrolling ${range}, which is outside the age range you gave us.`;
-  if (criteria.age_criteria_quote) {
-    sentence += ` The trial's own wording says: "${criteria.age_criteria_quote}"`;
+  if (trialMax != null && minAge > trialMax) {
+    const lower = trialMin != null ? `${trialMin}–${trialMax}` : `up to age ${trialMax}`;
+    return withQuote(
+      `This trial only accepts participants ${lower}, which is older than the age range you gave.`,
+      phrase,
+    );
   }
-  return sentence;
+
+  return null;
 }
 
-function checkAgeExclusion(band: AgeBand, criteria: TrialCriteriaRow | null): string | null {
-  if (!criteria) return null; // nothing to check against
-  const trialMin = criteria.min_age_years;
-  const trialMax = criteria.max_age_years;
+/** Rule: no recruiting site in the person's country, or — if they're local
+ * only — no recruiting site in their state. Looks at each location's own
+ * status, since a trial can be RECRUITING overall while a given site is
+ * closed. */
+function checkLocation(profile: FamilyProfile, trial: Trial): string | null {
+  const locations = trial.locations ?? [];
+  const openLocations = locations.filter((loc) => isSiteOpen(loc.status));
 
-  // Empty means "no limit," not "unknown" — a trial with no age fields set
-  // at all simply has no age restriction and can't be excluded on age.
-  if (trialMin == null && trialMax == null) return null;
-
-  const [bandMin, bandMaxRaw] = AGE_BAND_RANGES[band];
-  const bandMax = bandMaxRaw ?? Infinity;
-  const effectiveTrialMin = trialMin ?? -Infinity;
-  const effectiveTrialMax = trialMax ?? Infinity;
-
-  const overlaps = bandMin <= effectiveTrialMax && bandMax >= effectiveTrialMin;
-  if (overlaps) return null;
-
-  return ageReason(criteria, band);
-}
-
-// ---------------------------------------------------------------------------
-// Rule: location
-// ---------------------------------------------------------------------------
-
-function checkLocationExclusion(profile: FamilyProfile, locations: TrialLocationSite[]): string | null {
-  const recruitingSites = locations.filter((site) => normalize(site.status) === 'recruiting');
-
-  const inCountry = recruitingSites.filter(
-    (site) => normalize(site.country) === normalize(profile.location.country),
+  const openInCountry = openLocations.filter(
+    (loc) => normalizeText(loc.country) === normalizeText(profile.location.country),
   );
 
-  if (inCountry.length === 0) {
-    return `There's no recruiting site for this trial in ${profile.location.country}.`;
+  if (openInCountry.length === 0) {
+    return `This trial doesn't currently have an open, recruiting site in ${profile.location.country}.`;
   }
 
-  if (!profile.willingToTravel) {
-    // Can't apply the stricter "local only" check without a state on file —
-    // fall back to the country-level result rather than guessing.
-    if (!profile.location.state) return null;
-
-    const inState = inCountry.filter(
-      (site) => site.state && normalize(site.state) === normalize(profile.location.state),
+  if (!profile.willingToTravel && profile.location.state) {
+    const openInState = openInCountry.filter(
+      (loc) => normalizeText(loc.state) === normalizeText(profile.location.state),
     );
-
-    if (inState.length === 0) {
-      return `This trial is recruiting in ${profile.location.country}, but not in ${profile.location.state}, and you said you'd only consider a trial close to home.`;
+    if (openInState.length === 0) {
+      return `This trial doesn't have an open, recruiting site in ${profile.location.state}, and you said you'd only consider trials close to home.`;
     }
   }
 
   return null;
 }
 
-// ---------------------------------------------------------------------------
-// Rule: study partner
-// ---------------------------------------------------------------------------
-
-function studyPartnerReason(criteria: TrialCriteriaRow): string {
-  let sentence = `This trial needs a study partner who can come to appointments with you, and you told us one isn't available.`;
-  if (criteria.requires_study_partner_quote) {
-    sentence += ` The trial states: "${criteria.requires_study_partner_quote}"`;
+/** Rule: the trial requires a study partner and the family said none is
+ * available. */
+function checkStudyPartner(profile: FamilyProfile, criteria: TrialCriteria | null): string | null {
+  if (!criteria) return null;
+  if (criteria.requires_study_partner === 'required' && profile.studyPartner === 'no') {
+    const phrase = findEligibilityPhrase(criteria.eligibility_text, [
+      'study partner',
+      'care partner',
+      'caregiver',
+      'informant',
+    ]);
+    return withQuote(
+      'This trial needs a study partner who can come to appointments with you.',
+      phrase,
+    );
   }
-  return sentence;
+  return null;
 }
 
-function checkStudyPartnerExclusion(profile: FamilyProfile, criteria: TrialCriteriaRow | null): string | null {
-  if (profile.studyPartner !== false) return null; // rule only runs if family said "no"
-  if (!criteria || criteria.requires_study_partner !== 'required') return null;
-  return studyPartnerReason(criteria);
+/** Caveats: the trial stays in "worth asking about" but requires imaging
+ * and/or a lumbar puncture, which are worth flagging up front. */
+function collectCaveats(criteria: TrialCriteria | null): string[] {
+  if (!criteria) return [];
+  const caveats: string[] = [];
+
+  if (criteria.requires_imaging === 'required') {
+    const phrase = findEligibilityPhrase(criteria.eligibility_text, ['imaging', 'pet scan', 'mri']);
+    caveats.push(
+      withQuote('This trial requires imaging (such as a PET or MRI scan) as part of taking part.', phrase),
+    );
+  }
+
+  if (criteria.requires_lumbar_puncture === 'required') {
+    const phrase = findEligibilityPhrase(criteria.eligibility_text, ['lumbar puncture', 'spinal tap']);
+    caveats.push(
+      withQuote('This trial requires a lumbar puncture (spinal tap) as part of taking part.', phrase),
+    );
+  }
+
+  return caveats;
 }
 
-// ---------------------------------------------------------------------------
-// "Worth asking" caveats
-// ---------------------------------------------------------------------------
-
-function imagingCaveat(criteria: TrialCriteriaRow): string {
-  let sentence = `This trial requires brain imaging (such as a PET scan or MRI) as part of screening or participation.`;
-  if (criteria.requires_imaging_quote) sentence += ` ("${criteria.requires_imaging_quote}")`;
-  return sentence;
-}
-
-function lumbarPunctureCaveat(criteria: TrialCriteriaRow): string {
-  let sentence = `This trial requires a lumbar puncture (spinal tap), usually to test spinal fluid.`;
-  if (criteria.requires_lumbar_puncture_quote) sentence += ` ("${criteria.requires_lumbar_puncture_quote}")`;
-  return sentence;
-}
-
-// ---------------------------------------------------------------------------
-// "Cannot tell" rule
-// ---------------------------------------------------------------------------
-
-function isCannotTell(eligibilityText: string | null, criteria: TrialCriteriaRow | null): boolean {
-  if (!eligibilityText || !eligibilityText.trim()) return true;
+/** "Cannot tell": there's no eligibility text at all, or every field the
+ * rules actually depend on (study partner / imaging / lumbar puncture —
+ * age is never "unknown", since an empty age field means "no limit", not
+ * "not mentioned") came back not_mentioned or cannot_tell. */
+function isCannotTell(criteria: TrialCriteria | null): boolean {
   if (!criteria) return true;
+  if (!criteria.eligibility_text || criteria.eligibility_text.trim().length === 0) return true;
 
-  const ageUnknown = criteria.min_age_years == null && criteria.max_age_years == null;
+  const relevantFields: (CriterionValue | null | undefined)[] = [
+    criteria.requires_study_partner,
+    criteria.requires_imaging,
+    criteria.requires_lumbar_puncture,
+  ];
 
-  return (
-    ageUnknown &&
-    isUnknownFlag(criteria.requires_study_partner) &&
-    isUnknownFlag(criteria.requires_imaging) &&
-    isUnknownFlag(criteria.requires_lumbar_puncture)
-  );
+  return relevantFields.every(isUnknownCriterion);
 }
 
-// ---------------------------------------------------------------------------
-// Main entry point
-// ---------------------------------------------------------------------------
+/* -------------------------------------------------------------------------
+ * Per-trial triage
+ * ---------------------------------------------------------------------- */
+
+type TriageOutcome =
+  | { bucket: 'probablyNot'; reason: string }
+  | { bucket: 'cannotTell' }
+  | { bucket: 'worthAsking'; caveats: string[] };
+
+function triageOneTrial(trial: Trial, profile: FamilyProfile): TriageOutcome {
+  const criteria = getCriteria(trial);
+
+  // Every trial starts in "worth asking about"; each rule below can only
+  // move it to "probably not" (in this order), or — if nothing excludes
+  // it but the data is too thin to say anything — to "cannot tell".
+
+  const ageReason = checkAgeBand(profile, criteria);
+  if (ageReason) return { bucket: 'probablyNot', reason: ageReason };
+
+  const locationReason = checkLocation(profile, trial);
+  if (locationReason) return { bucket: 'probablyNot', reason: locationReason };
+
+  const partnerReason = checkStudyPartner(profile, criteria);
+  if (partnerReason) return { bucket: 'probablyNot', reason: partnerReason };
+
+  if (isCannotTell(criteria)) {
+    return { bucket: 'cannotTell' };
+  }
+
+  return { bucket: 'worthAsking', caveats: collectCaveats(criteria) };
+}
+
+/* -------------------------------------------------------------------------
+ * Public entry point
+ * ---------------------------------------------------------------------- */
 
 /**
- * Fetches recruiting trials (joined to their extracted eligibility criteria)
- * and sorts them into worthAsking / probablyNot / cannotTell for the given
- * family profile.
+ * Fetches currently recruiting trials (joined to their criteria row) and
+ * sorts them into three buckets for a family based on their profile:
  *
- * @param supabase  An initialized Supabase client.
- * @param profile   The family's intake answers.
+ *  - worthAsking: nothing rules it out; may carry caveats (e.g. imaging,
+ *    lumbar puncture) worth flagging before they ask.
+ *  - probablyNot: excluded by a specific rule; carries a plain-English
+ *    reason naming that rule.
+ *  - cannotTell: too little eligibility data to say either way.
+ *
+ * Trials whose overall status is no longer RECRUITING are not returned at
+ * all — they're filtered out at the query level.
  */
-export async function triageTrials(
-  supabase: SupabaseClient,
+export async function triageTrialsForFamily(
   profile: FamilyProfile,
+  supabase: SupabaseClient,
 ): Promise<TriageResult> {
   const { data, error } = await supabase
-    .from(TRIALS_TABLE)
-    .select(
-      `
-      id,
-      nct_id,
-      title,
-      status,
-      locations,
-      eligibility_text,
-      ${CRITERIA_RELATION} (
-        min_age_years,
-        max_age_years,
-        age_criteria_quote,
-        requires_study_partner,
-        requires_study_partner_quote,
-        requires_imaging,
-        requires_imaging_quote,
-        requires_lumbar_puncture,
-        requires_lumbar_puncture_quote
-      )
-    `,
-    )
-    // "Not shown at all" — trials that are no longer recruiting are dropped
-    // at the query level and never enter any of the three buckets.
+    .from('trials')
+    .select('*, criteria(*)')
     .eq('status', 'RECRUITING');
 
   if (error) {
-    throw new Error(`Failed to load trials for triage: ${error.message}`);
+    throw new Error(`Failed to load recruiting trials: ${error.message}`);
   }
 
-  const rows = (data ?? []) as unknown as TrialRow[];
+  const trials = (data ?? []) as Trial[];
 
   const worthAsking: WorthAskingTrial[] = [];
   const probablyNot: ProbablyNotTrial[] = [];
   const cannotTell: CannotTellTrial[] = [];
 
-  for (const row of rows) {
-    // Defensive re-check in case the query filter is ever loosened.
-    if (normalize(row.status) !== 'recruiting') continue;
+  for (const trial of trials) {
+    // Defensive re-check in case the query ever returns a stale row —
+    // trials that are no longer RECRUITING are excluded entirely, not
+    // placed in any bucket.
+    if (normalizeStatus(trial.status) !== 'RECRUITING') continue;
 
-    const criteria = normalizeCriteria(row.trial_criteria);
-    const summary = toSummary(row);
-    const locations = row.locations ?? [];
+    const outcome = triageOneTrial(trial, profile);
 
-    // Rule: age band outside trial's range.
-    if (profile.ageBand) {
-      const ageExclusion = checkAgeExclusion(profile.ageBand, criteria);
-      if (ageExclusion) {
-        probablyNot.push({ trial: summary, reason: ageExclusion });
-        continue;
-      }
+    if (outcome.bucket === 'probablyNot') {
+      probablyNot.push({ trial, reason: outcome.reason });
+    } else if (outcome.bucket === 'cannotTell') {
+      cannotTell.push({ trial });
+    } else {
+      worthAsking.push({ trial, caveats: outcome.caveats });
     }
-
-    // Rule: no recruiting site in country (or state, if local only).
-    const locationExclusion = checkLocationExclusion(profile, locations);
-    if (locationExclusion) {
-      probablyNot.push({ trial: summary, reason: locationExclusion });
-      continue;
-    }
-
-    // Rule: study partner required but unavailable.
-    const studyPartnerExclusion = checkStudyPartnerExclusion(profile, criteria);
-    if (studyPartnerExclusion) {
-      probablyNot.push({ trial: summary, reason: studyPartnerExclusion });
-      continue;
-    }
-
-    // Rule: nothing usable was ever extracted about this trial's eligibility.
-    if (isCannotTell(row.eligibility_text, criteria)) {
-      cannotTell.push({ trial: summary });
-      continue;
-    }
-
-    // Otherwise: worth asking about, with any relevant caveats attached.
-    const caveats: string[] = [];
-    if (criteria?.requires_imaging === 'required') {
-      caveats.push(imagingCaveat(criteria));
-    }
-    if (criteria?.requires_lumbar_puncture === 'required')  {
-      caveats.push(lumbarPunctureCaveat(criteria));
-    }
-
-    worthAsking.push({ trial: summary, caveats });
   }
 
   return { worthAsking, probablyNot, cannotTell };
