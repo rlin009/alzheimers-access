@@ -3,17 +3,22 @@
  * validate-criteria.ts
  *
  * Compares docs/gold-standard.csv against the `criteria` table in Supabase,
- * matching rows on nct_id, and reports precision/recall PER POSSIBLE VALUE
- * (not a single overall accuracy number) for each compared field.
+ * matching rows on nct_id.
  *
- * Fields compared (CSV column -> DB column):
+ * study_partner, imaging_required, and lumbar_puncture_required are state
+ * fields, reported as precision/recall PER POSSIBLE VALUE (not a single
+ * overall accuracy number):
  *   study_partner            -> requires_study_partner
  *   imaging_required         -> requires_imaging
  *   lumbar_puncture_required -> requires_lumbar_puncture
- *   cognitive_scale          -> cognitive_scale
  *
- * Possible values (case-insensitive, whitespace-trimmed):
+ * Possible values for those three (case-insensitive, whitespace-trimmed):
  *   required | not required | not mentioned | cannot tell
+ *
+ * cognitive_scale -> cognitive_scale is free text (a scale name, e.g. MMSE,
+ * MoCA, CDR, ADAS-Cog, or empty if none is named) and is scored separately
+ * as a case-insensitive exact string match, not against the four values
+ * above.
  *
  * Output: docs/validation-report.md
  *
@@ -88,7 +93,15 @@ const FIELD_MAP = {
 } as const;
 
 type CsvField = keyof typeof FIELD_MAP;
-const CSV_FIELDS = Object.keys(FIELD_MAP) as CsvField[];
+
+// cognitive_scale is free text (a scale name like "MMSE" or "MoCA"), not one
+// of the four state words below — it gets its own comparison logic instead
+// of the per-value precision/recall table.
+const STATE_FIELDS = [
+  "study_partner",
+  "imaging_required",
+  "lumbar_puncture_required",
+] as const satisfies readonly CsvField[];
 
 const POSSIBLE_VALUES = [
   "required",
@@ -119,6 +132,17 @@ interface Counts {
   tp: number;
   fp: number;
   fn: number;
+}
+
+// Outcome buckets for a free-text field like cognitive_scale, compared by
+// case-insensitive exact string match rather than against a fixed value set.
+interface ScaleCounts {
+  total: number;
+  bothEmpty: number; // neither gold nor db named a scale
+  exactMatch: number; // both named a scale, and it's the same one
+  mismatch: number; // both named a scale, but a different one
+  goldOnly: number; // gold named a scale, db returned none
+  dbOnly: number; // db named a scale, gold expected none
 }
 
 // ---------------------------------------------------------------------------
@@ -239,6 +263,33 @@ function computeCounts(
   return counts;
 }
 
+/**
+ * Compare a free-text field (cognitive_scale) by case-insensitive exact
+ * string match. This is not a yes/no field, so it doesn't get scored
+ * against POSSIBLE_VALUES — it just asks "did the db name the same scale
+ * the gold standard did?"
+ */
+function computeScaleCounts(pairs: Array<{ gold: string; db: string }>): ScaleCounts {
+  const counts: ScaleCounts = {
+    total: pairs.length,
+    bothEmpty: 0,
+    exactMatch: 0,
+    mismatch: 0,
+    goldOnly: 0,
+    dbOnly: 0,
+  };
+
+  for (const { gold, db } of pairs) {
+    if (!gold && !db) counts.bothEmpty++;
+    else if (gold && db && gold === db) counts.exactMatch++;
+    else if (gold && db && gold !== db) counts.mismatch++;
+    else if (gold && !db) counts.goldOnly++;
+    else if (!gold && db) counts.dbOnly++;
+  }
+
+  return counts;
+}
+
 function precisionOf(c: Counts): number | null {
   const denom = c.tp + c.fp;
   return denom === 0 ? null : c.tp / denom;
@@ -308,7 +359,7 @@ async function main() {
   );
   lines.push("");
 
-  for (const csvField of CSV_FIELDS) {
+  for (const csvField of STATE_FIELDS) {
     const dbField = FIELD_MAP[csvField];
 
     const pairs = matched.map(({ gold, db }) => ({
@@ -330,6 +381,44 @@ async function main() {
       );
     }
 
+    lines.push("");
+  }
+
+  // cognitive_scale is free text (a scale name), not one of the four state
+  // words — scored separately as a case-insensitive exact-match comparison.
+  {
+    const csvField: CsvField = "cognitive_scale";
+    const dbField = FIELD_MAP[csvField];
+
+    const pairs = matched.map(({ gold, db }) => ({
+      gold: normalize(gold[csvField]),
+      db: normalize(db[dbField]),
+    }));
+
+    const c = computeScaleCounts(pairs);
+    const expected = c.exactMatch + c.mismatch + c.goldOnly;
+    const matchRateOfExpected = expected === 0 ? null : c.exactMatch / expected;
+    const overallAgreement = c.total === 0 ? null : (c.exactMatch + c.bothEmpty) / c.total;
+
+    lines.push(`## \`${csvField}\` → \`${dbField}\` (free text, exact match)`);
+    lines.push("");
+    lines.push(
+      `This field holds a scale name (e.g. MMSE, MoCA, CDR, ADAS-Cog) rather than one of the four state words, so it's compared here by case-insensitive exact string match instead of per-value precision/recall.`
+    );
+    lines.push("");
+    lines.push(`| Metric | Count |`);
+    lines.push(`|---|---|`);
+    lines.push(`| Total compared | ${c.total} |`);
+    lines.push(`| Both empty (no scale expected, none returned) | ${c.bothEmpty} |`);
+    lines.push(`| Exact match | ${c.exactMatch} |`);
+    lines.push(`| Mismatch (both named a scale, but a different one) | ${c.mismatch} |`);
+    lines.push(`| Gold named a scale, db returned none | ${c.goldOnly} |`);
+    lines.push(`| Db named a scale, gold expected none | ${c.dbOnly} |`);
+    lines.push("");
+    lines.push(
+      `- Match rate where a scale was expected: ${formatPct(matchRateOfExpected)} (${c.exactMatch} / ${expected})`
+    );
+    lines.push(`- Overall agreement (including both-empty rows): ${formatPct(overallAgreement)}`);
     lines.push("");
   }
 
