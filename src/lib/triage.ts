@@ -40,7 +40,9 @@ export interface TrialCriteria {
 }
 
 export interface Trial {
-  id: string;
+  /** This IS the trial's primary key — the `trials` table has no separate
+   * `id` column, only `nct_id` (e.g. "NCT01234567"). */
+  nct_id: string;
   title?: string | null;
   status: string;
   locations: TrialLocation[] | null;

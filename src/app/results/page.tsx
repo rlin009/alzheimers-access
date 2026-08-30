@@ -258,7 +258,7 @@ export default async function ResultsPage({
       <Section heading="Worth asking about" count={results.worthAsking.length} defaultOpen={true}>
         {results.worthAsking.map(({ trial, caveats }) => (
           <TrialCard
-            key={trial.id}
+            key={trial.nct_id}
             trial={trial}
             nearestSite={findNearestSite(trial, familyProfile)}
             notes={caveats}
@@ -269,7 +269,7 @@ export default async function ResultsPage({
       <Section heading="Can't tell — ask your doctor" count={results.cannotTell.length} defaultOpen={true}>
         {results.cannotTell.map(({ trial }) => (
           <TrialCard
-            key={trial.id}
+            key={trial.nct_id}
             trial={trial}
             nearestSite={findNearestSite(trial, familyProfile)}
             notes={[]}
@@ -280,7 +280,7 @@ export default async function ResultsPage({
       <Section heading="Probably not" count={results.probablyNot.length} defaultOpen={false}>
         {results.probablyNot.map(({ trial, reason }) => (
           <TrialCard
-            key={trial.id}
+            key={trial.nct_id}
             trial={trial}
             nearestSite={findNearestSite(trial, familyProfile)}
             notes={[reason]}
