@@ -19,13 +19,14 @@
  *
  * ---------------------------------------------------------------------------
  * Setup:
- *   npm install @supabase/supabase-js
+ *   npm install @supabase/supabase-js dotenv
  *   npm install -D typescript ts-node @types/node
  *
  * (CSV parsing is hand-rolled below, no csv-parse dependency needed.)
  *
- * Environment variables required (already present in your shell env, not
- * .env.local):
+ * Environment variables required. This script loads them itself from a
+ * `.env` file at the project root (one level up from scripts/) via dotenv,
+ * so you don't need to export them into your shell manually:
  *   NEXT_PUBLIC_SUPABASE_URL
  *   SUPABASE_SERVICE_ROLE_KEY        (falls back to NEXT_PUBLIC_SUPABASE_ANON_KEY)
  *
@@ -33,13 +34,21 @@
  *   SUPABASE_CRITERIA_TABLE     (defaults to "criteria")
  *
  * Run:
- *   npx ts-node validate-criteria.ts
+ *   npx tsx scripts/validate-criteria.ts
  * ---------------------------------------------------------------------------
  */
 
+import { config } from "dotenv";
+import { fileURLToPath } from "node:url";
 import fs from "node:fs";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
+
+// Resolve .env relative to the project root (one level up from this
+// file, since this file lives in scripts/), so it loads correctly no
+// matter what directory you run the command from.
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+config({ path: path.resolve(__dirname, "..", ".env") });
 
 // ---------------------------------------------------------------------------
 // Config
@@ -59,7 +68,11 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
   if (!SUPABASE_KEY) missing.push("SUPABASE_SERVICE_ROLE_KEY (or NEXT_PUBLIC_SUPABASE_ANON_KEY)");
   console.error(`Missing env var(s): ${missing.join(", ")}`);
   console.error(
-    "These must be set in the shell/process that runs this script (not just in .env.local — nothing here loads that file)."
+    `These were looked up in the shell/process environment after loading ${path.resolve(
+      __dirname,
+      "..",
+      ".env"
+    )} — check that file has the right names and no typos.`
   );
   process.exit(1);
 }

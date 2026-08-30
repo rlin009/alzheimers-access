@@ -1,6 +1,6 @@
 # Validation Report
 
-Generated: 2026-08-25T22:57:49.112Z
+Generated: 2026-08-30T14:23:04.591Z
 
 - Gold-standard rows: 40
 - Database rows (table `criteria`): 977
@@ -13,17 +13,17 @@ For each field, **precision** treats the database value as the prediction and th
 
 | Value | Precision | Recall | TP | FP | FN |
 |---|---|---|---|---|---|
-| required | 100.0% | 83.3% | 10 | 0 | 2 |
-| not required | 0.0% | n/a | 0 | 1 | 0 |
-| not mentioned | 96.6% | 100.0% | 28 | 1 | 0 |
+| required | 100.0% | 66.7% | 8 | 0 | 4 |
+| not required | 0.0% | n/a | 0 | 2 | 0 |
+| not mentioned | 90.0% | 96.4% | 27 | 3 | 1 |
 | cannot tell | n/a | n/a | 0 | 0 | 0 |
 
 ## `imaging_required` → `requires_imaging`
 
 | Value | Precision | Recall | TP | FP | FN |
 |---|---|---|---|---|---|
-| required | 90.0% | 100.0% | 9 | 1 | 0 |
-| not required | n/a | n/a | 0 | 0 | 0 |
+| required | 100.0% | 100.0% | 9 | 0 | 0 |
+| not required | 0.0% | n/a | 0 | 1 | 0 |
 | not mentioned | 93.3% | 100.0% | 28 | 2 | 0 |
 | cannot tell | n/a | 0.0% | 0 | 0 | 3 |
 
@@ -40,7 +40,7 @@ For each field, **precision** treats the database value as the prediction and th
 
 | Value | Precision | Recall | TP | FP | FN |
 |---|---|---|---|---|---|
-| required | 0.0% | n/a | 0 | 14 | 0 |
+| required | n/a | n/a | 0 | 0 | 0 |
 | not required | n/a | n/a | 0 | 0 | 0 |
-| not mentioned | 80.8% | 95.5% | 21 | 5 | 1 |
+| not mentioned | n/a | 0.0% | 0 | 0 | 22 |
 | cannot tell | n/a | n/a | 0 | 0 | 0 |
