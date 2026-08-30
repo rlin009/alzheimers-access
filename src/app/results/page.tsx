@@ -1,361 +1,274 @@
 // src/app/results/page.tsx
 //
-// ASSUMPTIONS TO VERIFY:
-// 1. `@/lib/supabase/server` exports `createClient()` → server-side Supabase client.
-// 2. There's a `profiles` table whose row needs to be mapped into the
-//    `FamilyProfile` shape that `triageTrialsForFamily` expects. Since I don't
-//    have your `profiles` schema, `dbRowToFamilyProfile` below guesses at
-//    snake_case column names (location_country, location_state, relationship,
-//    diagnosis_stage, age_band_min, age_band_max, study_partner,
-//    willing_to_travel). Adjust that one function to match your real columns
-//    — nothing else in the file depends on it.
-// 3. `trials.nct_id` exists as a column (per your note) even though it isn't
-//    on the shared `Trial` type in triage.ts — typed locally below via
-//    `TrialRow` rather than editing triage.ts.
-// 4. `TrialLocation` (country/state/status only, no facility name) means
-//    "nearest site" can only be rendered as a region, not a named site. If
-//    your `locations` jsonb actually carries a facility name/city, tell me
-//    and I'll wire it in.
+// REMAINING ASSUMPTIONS — verify these two before trusting the page fully:
+//
+// 1. Supabase server client import. Assumed:
+//      import { createClient } from '@/lib/supabase/server'
+//    Change the path if yours lives elsewhere.
+//
+// 2. ClinicalTrials.gov link. Trial.id has no dedicated "nct id" field in
+//    triage.ts, so this assumes trial.id itself IS the NCT number (e.g.
+//    "NCT01234567") and builds the link as:
+//      https://clinicaltrials.gov/study/{id}
+//    If `id` is actually an internal Supabase UUID, swap in your real
+//    NCT column name inside `ctgovUrl()` below.
+//
+// Also assumed: your `profiles` table's columns match FamilyProfile's
+// shape (location, relationship, diagnosisStage, ageBand, studyPartner,
+// willingToTravel) closely enough to cast directly. If your columns are
+// snake_case or named differently, map them before calling triage.
 
-import { notFound } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from '@/lib/supabase/server';
 import {
   triageTrialsForFamily,
   type FamilyProfile,
   type Trial,
-  type TrialLocation,
   type WorthAskingTrial,
   type ProbablyNotTrial,
   type CannotTellTrial,
-} from "@/lib/triage";
+} from '@/lib/triage';
+import Link from 'next/link';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
-// `trials.nct_id` isn't on the shared `Trial` type — widen it locally.
-type TrialRow = Trial & { nct_id: string };
+// --- Display helpers ---------------------------------------------------
 
-interface PageProps {
-  searchParams: { id?: string };
+function ctgovUrl(trial: Trial): string {
+  // See assumption #2 above.
+  return `https://clinicaltrials.gov/study/${trial.id}`;
 }
 
-// ---- Page ------------------------------------------------------------
+function nearestSiteText(trial: Trial, profile: FamilyProfile): string {
+  const locations = trial.locations ?? [];
+  const open = locations.filter((loc) => (loc.status ?? '').trim().toUpperCase() === 'RECRUITING');
 
-export default async function ResultsPage({ searchParams }: PageProps) {
-  const profileId = searchParams.id;
+  if (open.length === 0) return 'No open site listed';
 
-  if (!profileId) {
-    return (
-      <Shell>
-        <ErrorNotice>
-          No profile was specified. Check that the link includes{" "}
-          <code className="font-mono">?id=</code> followed by a profile id.
-        </ErrorNotice>
-      </Shell>
-    );
+  // Prefer a site in the family's own state, then country, then just the
+  // first open site. (Locations here only carry country/state, not a
+  // facility name — that's all the schema currently gives us.)
+  const inState = profile.location.state
+    ? open.find((loc) => (loc.state ?? '').toLowerCase() === profile.location.state!.toLowerCase())
+    : undefined;
+  const inCountry = open.find(
+    (loc) => loc.country.toLowerCase() === profile.location.country.toLowerCase(),
+  );
+  const site = inState ?? inCountry ?? open[0];
+
+  return site.state ? `${site.state}, ${site.country}` : site.country;
+}
+
+function trialTitle(trial: Trial): string {
+  return trial.title?.trim() || 'Untitled trial';
+}
+
+// --- Page ----------------------------------------------------------------
+
+export default async function ResultsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ id?: string }>;
+}) {
+  const { id } = await searchParams;
+
+  if (!id) {
+    return <ErrorState message="No profile was specified. Please go back and submit the form again." />;
   }
 
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: profileRow, error: profileError } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", profileId)
+    .from('profiles')
+    .select('*')
+    .eq('id', id)
     .single();
 
   if (profileError || !profileRow) {
-    notFound();
+    return <ErrorState message="We couldn't find that profile. Please go back and submit the form again." />;
   }
 
-  let familyProfile: FamilyProfile;
-  try {
-    familyProfile = dbRowToFamilyProfile(profileRow);
-  } catch {
-    return (
-      <Shell>
-        <ErrorNotice>
-          This profile is missing information needed to search for trials.
-        </ErrorNotice>
-      </Shell>
-    );
-  }
+  const profile = profileRow as unknown as FamilyProfile;
 
   let results;
   try {
-    results = await triageTrialsForFamily(familyProfile, supabase);
-  } catch {
+    results = await triageTrialsForFamily(profile, supabase);
+  } catch (e) {
+    console.error('Triage failed:', e);
     return (
-      <Shell>
-        <ErrorNotice>
-          Something went wrong while matching trials. Please try again in a
-          moment.
-        </ErrorNotice>
-      </Shell>
+      <ErrorState message="Something went wrong while matching trials. Please try again, or call a trial coordinator directly." />
     );
   }
 
-  const totalCount =
-    results.worthAsking.length +
-    results.cannotTell.length +
-    results.probablyNot.length;
-
-  return (
-    <Shell>
-      <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-gray-900">
-        Your Trial Matches
-      </h1>
-      <p className="text-lg text-gray-700 mb-8">
-        {totalCount === 0
-          ? "No recruiting trials were found to review."
-          : `${totalCount} trial${totalCount === 1 ? "" : "s"} reviewed.`}
-      </p>
-
-      <Section
-        title="Worth asking about"
-        description="Nothing rules these out — bring them up with your doctor."
-        count={results.worthAsking.length}
-        open
-        accentClass="border-green-600"
-        badgeClass="bg-green-100 text-green-900"
-      >
-        {results.worthAsking.map((item) => (
-          <TrialCard
-            key={item.trial.id}
-            trial={item.trial as TrialRow}
-            familyProfile={familyProfile}
-            extraLines={item.caveats}
-            extraLinesLabel="Caveats"
-          />
-        ))}
-      </Section>
-
-      <Section
-        title="Cannot tell"
-        description="Too little eligibility information to say either way — worth a closer look."
-        count={results.cannotTell.length}
-        open
-        accentClass="border-amber-500"
-        badgeClass="bg-amber-100 text-amber-900"
-      >
-        {results.cannotTell.map((item) => (
-          <TrialCard
-            key={item.trial.id}
-            trial={item.trial as TrialRow}
-            familyProfile={familyProfile}
-          />
-        ))}
-      </Section>
-
-      <Section
-        title="Probably not"
-        description="Likely excluded, based on what we know."
-        count={results.probablyNot.length}
-        open={false}
-        accentClass="border-gray-400"
-        badgeClass="bg-gray-100 text-gray-800"
-      >
-        {results.probablyNot.map((item) => (
-          <TrialCard
-            key={item.trial.id}
-            trial={item.trial as TrialRow}
-            familyProfile={familyProfile}
-            extraLines={[item.reason]}
-            extraLinesLabel="Why"
-          />
-        ))}
-      </Section>
-    </Shell>
-  );
-}
-
-// ---- Profile row → FamilyProfile mapping ------------------------------
-//
-// ADJUST THIS to your real `profiles` table columns — everything else in
-// the file only depends on the `FamilyProfile` shape coming out of here.
-
-function dbRowToFamilyProfile(row: Record<string, unknown>): FamilyProfile {
-  const hasAgeBand =
-    typeof row.age_band_min === "number" && typeof row.age_band_max === "number";
-
-  return {
-    location: {
-      country: String(row.location_country ?? ""),
-      state: row.location_state ? String(row.location_state) : null,
-    },
-    relationship: String(row.relationship ?? ""),
-    diagnosisStage: String(row.diagnosis_stage ?? ""),
-    ageBand: hasAgeBand
-      ? {
-          minAge: row.age_band_min as number,
-          maxAge: row.age_band_max as number,
-        }
-      : null,
-    studyPartner: (row.study_partner as FamilyProfile["studyPartner"]) ?? "unknown",
-    willingToTravel: Boolean(row.willing_to_travel),
-  };
-}
-
-// ---- Layout shell -------------------------------------------------------
-
-function Shell({ children }: { children: React.ReactNode }) {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      <div className="max-w-3xl mx-auto px-4 py-6 sm:px-8 sm:py-10 text-lg leading-relaxed">
-        {children}
+      <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
+        <Disclaimer />
+
+        <Section
+          heading="Worth asking about"
+          emptyText="No trials matched well enough to put in this section."
+        >
+          {results.worthAsking.map((item: WorthAskingTrial) => (
+            <TrialCard
+              key={item.trial.id}
+              title={trialTitle(item.trial)}
+              nearestSite={nearestSiteText(item.trial, profile)}
+              caveats={item.caveats}
+              url={ctgovUrl(item.trial)}
+            />
+          ))}
+        </Section>
+
+        <Section
+          heading="Can't tell from what's on file"
+          emptyText="No trials landed here — the form couldn't tell either way."
+        >
+          {results.cannotTell.map((item: CannotTellTrial) => (
+            <TrialCard
+              key={item.trial.id}
+              title={trialTitle(item.trial)}
+              nearestSite={nearestSiteText(item.trial, profile)}
+              caveats={["There isn't enough written down about this trial's criteria to say either way."]}
+              url={ctgovUrl(item.trial)}
+            />
+          ))}
+        </Section>
+
+        <Section
+          heading="Probably not a match"
+          emptyText="No trials were ruled out."
+          collapsible
+          collapsedByDefault
+          subtext="These are shown so nothing disappears silently — but they're the least likely to be useful."
+        >
+          {results.probablyNot.map((item: ProbablyNotTrial) => (
+            <TrialCard
+              key={item.trial.id}
+              title={trialTitle(item.trial)}
+              nearestSite={nearestSiteText(item.trial, profile)}
+              caveats={[item.reason]}
+              url={ctgovUrl(item.trial)}
+            />
+          ))}
+        </Section>
       </div>
     </main>
   );
 }
 
-function ErrorNotice({ children }: { children: React.ReactNode }) {
+// --- Disclaimer ----------------------------------------------------------
+
+function Disclaimer() {
   return (
-    <div
-      role="alert"
-      className="rounded-lg border-2 border-red-600 bg-red-50 text-red-900 p-5 text-lg"
-    >
-      {children}
-    </div>
+    <p className="mb-8 rounded-lg bg-yellow-50 border border-yellow-300 px-4 py-4 text-lg leading-relaxed text-gray-900">
+      This is an automatic sort based on what each trial has written down —
+      it gets things wrong, and calling a trial coordinator is always worth
+      doing.
+    </p>
   );
 }
 
-// ---- Section (collapsible via native <details>) --------------------------
+// --- Section ---------------------------------------------------------------
 
 function Section({
-  title,
-  description,
-  count,
-  open,
-  accentClass,
-  badgeClass,
+  heading,
+  emptyText,
+  subtext,
+  collapsible = false,
+  collapsedByDefault = false,
   children,
 }: {
-  title: string;
-  description: string;
-  count: number;
-  open: boolean;
-  accentClass: string;
-  badgeClass: string;
+  heading: string;
+  emptyText: string;
+  subtext?: string;
+  collapsible?: boolean;
+  collapsedByDefault?: boolean;
   children: React.ReactNode;
 }) {
+  const items = Array.isArray(children) ? children : [children];
+  const count = items.filter(Boolean).length;
+
+  const body = (
+    <>
+      {subtext && <p className="mb-4 text-base text-gray-700">{subtext}</p>}
+      {count === 0 ? (
+        <p className="text-base text-gray-600 italic">{emptyText}</p>
+      ) : (
+        <ul className="space-y-4">{children}</ul>
+      )}
+    </>
+  );
+
+  if (collapsible) {
+    return (
+      <details className="mb-8 rounded-lg border border-gray-300" open={!collapsedByDefault}>
+        <summary className="cursor-pointer select-none px-4 py-4 text-2xl font-bold text-gray-900">
+          {heading} ({count})
+        </summary>
+        <div className="px-4 pb-4">{body}</div>
+      </details>
+    );
+  }
+
   return (
-    <details
-      open={open}
-      className={`mb-6 rounded-xl border-2 ${accentClass} bg-white overflow-hidden`}
-    >
-      <summary className="cursor-pointer select-none list-none px-5 py-4 flex items-center justify-between gap-4 text-xl sm:text-2xl font-bold text-gray-900 hover:bg-gray-50 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400">
-        <span className="flex items-center gap-3">
-          {title}
-          <span
-            className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-base font-semibold ${badgeClass}`}
-          >
-            {count}
-          </span>
-        </span>
-        <span
-          aria-hidden="true"
-          className="text-2xl transition-transform duration-150 [details[open]_&]:rotate-180"
-        >
-          ▾
-        </span>
-      </summary>
-
-      <div className="px-5 pb-5 pt-1 border-t border-gray-200">
-        <p className="text-base sm:text-lg text-gray-700 mb-4">{description}</p>
-        {count === 0 ? (
-          <p className="text-base text-gray-500 italic">
-            Nothing in this category.
-          </p>
-        ) : (
-          <ul className="space-y-4">
-            {Array.isArray(children)
-              ? children.map((child, i) => <li key={i}>{child}</li>)
-              : <li>{children}</li>}
-          </ul>
-        )}
-      </div>
-    </details>
+    <section className="mb-8" aria-label={heading}>
+      <h2 className="mb-3 text-2xl font-bold text-gray-900">
+        {heading} ({count})
+      </h2>
+      {body}
+    </section>
   );
 }
 
-// ---- Site formatting -----------------------------------------------------
-
-function describeNearestSite(
-  locations: TrialLocation[] | null | undefined,
-  profile: FamilyProfile,
-): string {
-  const open = (locations ?? []).filter(
-    (loc) => (loc.status ?? "").trim().toUpperCase() === "RECRUITING",
-  );
-
-  if (open.length === 0) return "No open recruiting site listed";
-
-  const sameCountry = open.filter(
-    (loc) =>
-      loc.country.trim().toLowerCase() ===
-      profile.location.country.trim().toLowerCase(),
-  );
-
-  const pool = sameCountry.length > 0 ? sameCountry : open;
-
-  const sameState = profile.location.state
-    ? pool.find(
-        (loc) =>
-          (loc.state ?? "").trim().toLowerCase() ===
-          profile.location.state!.trim().toLowerCase(),
-      )
-    : undefined;
-
-  const site = sameState ?? pool[0];
-  return [site.state, site.country].filter(Boolean).join(", ");
-}
-
-// ---- Individual trial card ------------------------------------------------
+// --- Trial card --------------------------------------------------------
 
 function TrialCard({
-  trial,
-  familyProfile,
-  extraLines,
-  extraLinesLabel,
+  title,
+  nearestSite,
+  caveats,
+  url,
 }: {
-  trial: TrialRow;
-  familyProfile: FamilyProfile;
-  extraLines?: string[];
-  extraLinesLabel?: string;
+  title: string;
+  nearestSite: string;
+  caveats: string[];
+  url: string;
 }) {
-  const studyUrl = `https://clinicaltrials.gov/study/${trial.nct_id}`;
-  const site = describeNearestSite(trial.locations, familyProfile);
-
   return (
-    <div className="rounded-lg border border-gray-300 p-4 sm:p-5 bg-gray-50">
-      <h3 className="text-xl font-semibold text-gray-900 mb-2 leading-snug">
-        {trial.title || trial.nct_id}
-      </h3>
+    <li className="rounded-lg border border-gray-300 px-4 py-4">
+      <h3 className="text-xl font-semibold text-gray-900 leading-snug">{title}</h3>
 
-      <p className="text-base sm:text-lg text-gray-800 mb-2">
-        <span className="font-semibold">Nearest site: </span>
-        {site}
+      <p className="mt-2 text-lg text-gray-800">
+        <span className="font-medium">Nearest site:</span> {nearestSite}
       </p>
 
-      {extraLines && extraLines.length > 0 && (
-        <div className="mb-2">
-          <p className="font-semibold text-base sm:text-lg text-gray-900 mb-1">
-            {extraLinesLabel ?? "Caveats"}:
-          </p>
-          <ul className="list-disc list-inside space-y-1 text-base sm:text-lg text-gray-800">
-            {extraLines.map((line, i) => (
-              <li key={i}>{line}</li>
-            ))}
-          </ul>
-        </div>
+      {caveats.length > 0 && (
+        <ul className="mt-2 list-disc pl-5 text-base text-gray-700">
+          {caveats.map((c, i) => (
+            <li key={i}>{c}</li>
+          ))}
+        </ul>
       )}
 
-      
-        href={studyUrl}
+      <Link
+        href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block mt-2 text-lg font-semibold text-blue-800 underline underline-offset-2 hover:text-blue-900 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 rounded"
+        className="mt-3 inline-block text-lg font-medium text-blue-700 underline underline-offset-2"
       >
-        View on ClinicalTrials.gov ↗
-      </a>
-    </div>
+        View on ClinicalTrials.gov →
+      </Link>
+    </li>
+  );
+}
+
+// --- Error state -----------------------------------------------------------
+
+function ErrorState({ message }: { message: string }) {
+  return (
+    <main className="min-h-screen bg-white text-gray-900">
+      <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
+        <p className="text-xl leading-relaxed">{message}</p>
+      </div>
+    </main>
   );
 }
