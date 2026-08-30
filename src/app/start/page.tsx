@@ -2,13 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-const supabase =
-  supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 type FormState = {
   location: string;
@@ -39,39 +32,35 @@ export default function StartPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
-    if (!supabase) {
-      console.error('Supabase is not configured — check your .env.local file.');
-      setStatus('error');
-      return;
-    }
-
     setStatus('submitting');
 
-    // .select('id').single() so we get the new row's id back and can
-    // redirect straight to its results page.
-    const { data, error } = await supabase
-      .from('profiles')
-      .insert([
-        {
-          location: form.location || null,
-          relationship: form.relationship || null,
-          diagnosis_stage: form.diagnosisStage || null,
-          age_band: form.ageBand || null,
-          study_partner: form.studyPartner || null,
-          willing_to_travel: form.willingToTravel || null,
-        },
-      ])
-      .select('id')
-      .single();
+    try {
+      const res = await fetch('/api/profiles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          location: form.location,
+          relationship: form.relationship,
+          diagnosisStage: form.diagnosisStage,
+          ageBand: form.ageBand,
+          studyPartner: form.studyPartner,
+          willingToTravel: form.willingToTravel,
+        }),
+      });
 
-    if (error || !data) {
-      console.error(error);
+      if (!res.ok) {
+        const { error } = await res.json().catch(() => ({}));
+        console.error(error);
+        setStatus('error');
+        return;
+      }
+
+      const { id } = await res.json();
+      router.push(`/results?id=${id}`);
+    } catch (err) {
+      console.error(err);
       setStatus('error');
-      return;
     }
-
-    router.push(`/results?id=${data.id}`);
   }
 
   return (
