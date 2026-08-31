@@ -18,4 +18,13 @@ Where that leaves us right now: requires_study_partner is at 100 percent precisi
 
 So only one field actually earns the right to exclude a trial this week. I don't think that's a bad result, honestly. A system that excludes on one field we've actually checked carefully is worth more than one that excludes on five fields nobody's verified. 
 
-Corrected Accuracy Floor: 
+Corrected Accuracy Floor: 0.97 --> Cognitive scale marked wrong
+
+Per field:
+
+- requires_study_partner: 100%
+- requires_imaging: 90%
+- requires_lumbar_puncture: 100%
+
+
+
