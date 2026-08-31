@@ -17,3 +17,5 @@ If a field's precision is somewhere between 0.80 and 0.95, or it just hasn't bee
 Where that leaves us right now: requires_study_partner is at 100 percent precision across 10 examples, so it's allowed to exclude. requires_imaging is at 90 percent across 10 examples, so caveat only. requires_lumbar_puncture technically hit 100 percent, but only on one single example, so it's caveat only too, it just doesn't have enough data behind it yet. cognitive_scale isn't shown at all right now, we're holding off until it's been properly validated in week 4.
 
 So only one field actually earns the right to exclude a trial this week. I don't think that's a bad result, honestly. A system that excludes on one field we've actually checked carefully is worth more than one that excludes on five fields nobody's verified. 
+
+Corrected Accuracy Floor: 
