@@ -139,8 +139,9 @@ interface Counts {
 interface ScaleCounts {
   total: number;
   bothEmpty: number; // neither gold nor db named a scale
-  exactMatch: number; // both named a scale, and it's the same one
-  mismatch: number; // both named a scale, but a different one
+  exactMatch: number; // both named the same set of scales
+  partialMatch: number; // both named scales and at least one is shared
+  mismatch: number; // both named scales and none are shared
   goldOnly: number; // gold named a scale, db returned none
   dbOnly: number; // db named a scale, gold expected none
 }
@@ -264,27 +265,47 @@ function computeCounts(
 }
 
 /**
- * Compare a free-text field (cognitive_scale) by case-insensitive exact
- * string match. This is not a yes/no field, so it doesn't get scored
- * against POSSIBLE_VALUES — it just asks "did the db name the same scale
- * the gold standard did?"
+ * Compare a free-text field (cognitive_scale). The gold standard writes
+ * "not mentioned" (or "not specified") when no scale is named, and lists
+ * several scales separated by ";" when there are several. So the comparison
+ * treats those placeholders as empty and compares the two sides as sets of
+ * scale names rather than as one exact string.
  */
+const EMPTY_SCALE_WORDS = new Set(["", "not mentioned", "not specified", "none", "n/a", "null"]);
+
+function scaleSet(value: string): Set<string> {
+  const v = value.trim().toLowerCase();
+  if (EMPTY_SCALE_WORDS.has(v)) return new Set();
+  return new Set(
+    v
+      .split(/[;,/]|\band\b/)
+      .map((t) => t.replace(/[^a-z0-9]+/g, ""))
+      .filter((t) => t.length > 0)
+  );
+}
+
 function computeScaleCounts(pairs: Array<{ gold: string; db: string }>): ScaleCounts {
   const counts: ScaleCounts = {
     total: pairs.length,
     bothEmpty: 0,
     exactMatch: 0,
+    partialMatch: 0,
     mismatch: 0,
     goldOnly: 0,
     dbOnly: 0,
   };
 
   for (const { gold, db } of pairs) {
-    if (!gold && !db) counts.bothEmpty++;
-    else if (gold && db && gold === db) counts.exactMatch++;
-    else if (gold && db && gold !== db) counts.mismatch++;
-    else if (gold && !db) counts.goldOnly++;
-    else if (!gold && db) counts.dbOnly++;
+    const g = scaleSet(gold);
+    const d = scaleSet(db);
+    const overlap = [...g].filter((t) => d.has(t)).length;
+
+    if (g.size === 0 && d.size === 0) counts.bothEmpty++;
+    else if (g.size === 0) counts.dbOnly++;
+    else if (d.size === 0) counts.goldOnly++;
+    else if (overlap === g.size && overlap === d.size) counts.exactMatch++;
+    else if (overlap > 0) counts.partialMatch++;
+    else counts.mismatch++;
   }
 
   return counts;
@@ -396,27 +417,29 @@ async function main() {
     }));
 
     const c = computeScaleCounts(pairs);
-    const expected = c.exactMatch + c.mismatch + c.goldOnly;
-    const matchRateOfExpected = expected === 0 ? null : c.exactMatch / expected;
-    const overallAgreement = c.total === 0 ? null : (c.exactMatch + c.bothEmpty) / c.total;
+    const expected = c.exactMatch + c.partialMatch + c.mismatch + c.goldOnly;
+    const matchRateOfExpected = expected === 0 ? null : (c.exactMatch + c.partialMatch) / expected;
+    const overallAgreement =
+      c.total === 0 ? null : (c.exactMatch + c.partialMatch + c.bothEmpty) / c.total;
 
-    lines.push(`## \`${csvField}\` → \`${dbField}\` (free text, exact match)`);
+    lines.push(`## \`${csvField}\` → \`${dbField}\` (free text, set match)`);
     lines.push("");
     lines.push(
-      `This field holds a scale name (e.g. MMSE, MoCA, CDR, ADAS-Cog) rather than one of the four state words, so it's compared here by case-insensitive exact string match instead of per-value precision/recall.`
+      `This field holds one or more scale names (e.g. MMSE, MoCA, CDR, ADAS-Cog) rather than one of the four state words. "not mentioned" in the gold standard counts as no scale. Each side is split into a set of scale names and the sets are compared, so "MMSE; CDR" against "CDR; MMSE" is an exact match and "MMSE; CDR" against "MMSE" is a partial match.`
     );
     lines.push("");
     lines.push(`| Metric | Count |`);
     lines.push(`|---|---|`);
     lines.push(`| Total compared | ${c.total} |`);
     lines.push(`| Both empty (no scale expected, none returned) | ${c.bothEmpty} |`);
-    lines.push(`| Exact match | ${c.exactMatch} |`);
-    lines.push(`| Mismatch (both named a scale, but a different one) | ${c.mismatch} |`);
+    lines.push(`| Exact match (same set of scales) | ${c.exactMatch} |`);
+    lines.push(`| Partial match (at least one scale in common) | ${c.partialMatch} |`);
+    lines.push(`| Mismatch (both named scales, none in common) | ${c.mismatch} |`);
     lines.push(`| Gold named a scale, db returned none | ${c.goldOnly} |`);
     lines.push(`| Db named a scale, gold expected none | ${c.dbOnly} |`);
     lines.push("");
     lines.push(
-      `- Match rate where a scale was expected: ${formatPct(matchRateOfExpected)} (${c.exactMatch} / ${expected})`
+      `- Match rate where a scale was expected (exact or partial): ${formatPct(matchRateOfExpected)} (${c.exactMatch + c.partialMatch} / ${expected})`
     );
     lines.push(`- Overall agreement (including both-empty rows): ${formatPct(overallAgreement)}`);
     lines.push("");

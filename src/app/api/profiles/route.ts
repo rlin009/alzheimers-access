@@ -1,15 +1,11 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createServerSupabaseClient } from '@/lib/supabase/server';
 
-// Service-role client: only ever used here, server-side.
+// Service-role client, created inside the handler so the build does not
+// need the environment variables just to compile this route.
 // Never import this key into a 'use client' file.
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { auth: { persistSession: false } }
-);
-
 export async function POST(request: Request) {
+  const supabase = createServerSupabaseClient();
   const body = await request.json();
 
   const {

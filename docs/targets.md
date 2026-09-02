@@ -10,4 +10,4 @@ How many verified services listings are live at launch: 50
 
 And how many organisations share or link the site: 10
 
-Accuracy floor: 0.87
+Accuracy floor: ~~0.87 recall~~ replaced in week 3 by the precision rule in docs/decisions.md (precision 0.95 or better on at least 10 gold examples before a field may exclude a trial).

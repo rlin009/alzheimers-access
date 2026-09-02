@@ -1,42 +1,41 @@
-# Outreach Tracker
-Name,Role,Organisation,Email,Category,Date Contacted,Reply           
-Sanne Franzen,  Researcher, The Netherlands Organisation for Health Research and Development,  [s.franzen@erasmusmc.nl](mailto:s.franzen@erasmusmc.nl), Researchers, Aug 12,  **Yes**
-Rema Raman,  PhD Researcher, Alzeihmer's Therapeutic Research Institute University of Southern California,    [remar@usc.edu](mailto:remar@usc.edu),   Researcher,  Aug 13,  Waiting
-Jonathon Jackson, PhD Researcher, CARE Research Center Massachusetts General Hospital,  [jjackson31@partners.org.](mailto:jjackson31@partners.org), Research, Aug 13, Waiting
-Yi Guo,   Researcher, Institute of Neurological and Psychiatric Disorders Shenzhen Bay Laboratory, [xuanyi_guo@163.com.](mailto:xuanyi_guo@163.com),  Research,  Aug 13, Waiting
-Eric Vidoni, Researcher, Department of Neurology University of Kansas Medical center, [evidoni@kumc.edu](mailto:evidoni@kumc.edu), Research, Aug 17, Yes
-Julie Zissimopoulos, Researcher, Leonard D. Schaeffer Center for Health Policy and Economics, julie.zissimopoulos@usc.edu, Research, Aug 17, Waiting
-Roger Wong, Researcher, Brown School Washington University in St. Louis, RogerWon@wustl.edu, Research, Aug 17, Waiting
-Andrea L. Gilmore-Bykovskyi, Researcher, Division of Geriatrics University of Wisconsin-Madison School of Medicine and Public Health, algilmore@wisc.edu, Research, Aug 17, Waiting
-Jeffrey Cummings, Researcher, Cleveland Clinic Lou Ruvo Center for Brain Health, cumminj@ccf.org, Research, Aug 17, Waiting
-Donis Patricia Molina-Henry, Researcher, Alzeihmer's Therapeutic Research Institute, molinahe@usc.edu, Research, Aug 17, Waiting
-Mary Elizabeth Sigmon, Researcher, Asheville VA-Charles George VA Medical Center, MaryElizabeth.Sigmon@va.gov, Medical Provider/Researcher, Aug 22, Waiting
-Alexandra Seemungal, Study Coordinator, University of NC at Chapel Hill, Alexandra_Seemungal@med.unc.edu, Research, Aug 22, Waiting
-Brianne R Tomaszewski PhD MPH, Researcher, University of North Carolina, Brianne_Tomaszewski@med.unc.edu, Research, Aug 22, Waiting
-Johanna Hickey, Assoiate Director of Program on Aging, jvtsilbersack@unc.edu, University of North Carolina at Chapel Hill, Study coordinator, Aug 22, Waiting
-Kara Hume, Associate Professor, kara.hume@unc.edu, University of North Carolina, Clinical trials, Aug 22, Waiting
-Kathryn Wessell, Palliative Care Research Specialist, kwessell@email.unc.edu, University of North Carolina, Clinical trials, Aug 22, Waiting
-Laura C. Hanson, Professor of geriatric medicine, laura_hanson@med.unc.edu, University of North Carolina, Clinical Trials, Aug 22, Waiting
-Mark Toles, Associate Professor, mtoles@email.unc.edu, University of North Carolina at Chapel Hill, Research, Aug 22, Waiting
-Molly Lynch, Research Associate, molly_lynch@unc.edu, University of North Carolina, Research, Aug 22, Waiting
-Kelsey Strout, Advocate, Kelsey.Strout@advocatehealth.org, Atrium Health, Advocacy, Aug 21, Waiting
-Bradley J Goldstein, Professor of Head and Neck Surgery & Communication Sciences, bradley.goldstein@duke.edu, Duke University Health Center, Research, Aug 21, Waiting
-Darina Petrovsky, Associate Professor & Nurse Scientist, PetrovskyResearch@duke.edu, Duke University School of Nursing, Research, Aug 21, Waiting
-Emily Finch, Clinical Research Coordinator, emily.finch@duke.edu, Duke University Hospital, Research, Aug 22, Waiting
-Hailey Zampa, Clinical Research Coordinator, hailey.zampa@duke.edu, Duke University, Research, Aug 22, Waiting
-Julienne Reynolds, Clinical Research Manager, Julienne.Reynolds@va.gov, Durham VA Medical Center, Research, Aug 22, Waiting
-Laura Porter, Professor in Pyschiatry and Behavioral Sciences, porte008@mc.duke.edu, Duke University Medical Center, Research, Aug 22, Waiting
-Lisa Gauger, Research Practice Manager, lisa.gauger@duke.edu, Duke University Health System, Research, Aug 22, Waiting
-Maria J Manson, Research Practice Manager, maria.manson@duke.edu, Duke University Health Center, Research, Aug 22, Waiting
-Michelle Moshkowitz, Clinical Research Coordinator, michelle.moshkowitz@duke.edu, Duke University, Research, Aug 22, Waiting
-Rachel Dewees, Operations Coordinator, adrc@duke.edu, Duke University, Research, Aug 22, Waiting
-Sharon Fekrat, Opthalmologist & Retinol Surgeon, imind@duke.edu, Duke University Medical Center, Healthcare Provider, Aug 28, Waiting
-Simon Davis, Adjunct Associate Professor, simon.davis@duke.edu, Duke Universit Hospital, Research, Aug 28, Waiting
-Amy Hughes, Project Specialist, aehughes@wakehealth.edu, Wake Forest Baptist Health, Research, Aug 28, Waiting
-Jesus Betancourt, Researcher, jbetanco@wakehealth.edu, Wake Forest Hospital - Geriatrics, Research, Aug 29, Waiting
-Kenzie Brown, Researcher, BBRP@wakehealth.edu, Wake Forest University Health Sciences, Research, Aug 29, Waiting
-Lauren Richmond, Associate Professor Cognitive Science, lauren.richmond@advocatehealth.org, Wake Forest University, Research, Aug 30, Waiting
-Sophia Dawson, Project Manager, sadawson@wakehealth.edu, Wake Forest Baptist Hopsital-Cardiology, Research, Aug 30, Waiting
-Summer Harris, Lab Research Analyst, sdharris@wakehealth.edu, Wake Forest School of Medicine, Research, Aug 30, Waiting
-Andrea Varrone, Medical Doctor, andrea.varrone@ki.se, Karolinska Institutet, Research, Aug 31, Waiting
-Anne Hege Aamodt, Researcher, a.h.aamodt@medisin.uio.no, Oslo University Hospital, Research, Aug 31, Waiting
+Name,Role,Organisation,Email,Category,Date Contacted,Reply
+Sanne Franzen,Researcher,The Netherlands Organisation for Health Research and Development,s.franzen@erasmusmc.nl,Researchers,Aug 12,Yes
+Rema Raman,PhD Researcher,Alzeihmer's Therapeutic Research Institute University of Southern California,remar@usc.edu,Researcher,Aug 13,Waiting
+Jonathon Jackson,PhD Researcher,CARE Research Center Massachusetts General Hospital,jjackson31@partners.org,Research,Aug 13,Waiting
+Yi Guo,Researcher,Institute of Neurological and Psychiatric Disorders Shenzhen Bay Laboratory,xuanyi_guo@163.com,Research,Aug 13,Waiting
+Eric Vidoni,Researcher,Department of Neurology University of Kansas Medical center,evidoni@kumc.edu,Research,Aug 17,Yes
+Julie Zissimopoulos,Researcher,Leonard D. Schaeffer Center for Health Policy and Economics,julie.zissimopoulos@usc.edu,Research,Aug 17,Waiting
+Roger Wong,Researcher,Brown School Washington University in St. Louis,RogerWon@wustl.edu,Research,Aug 17,Waiting
+Andrea L. Gilmore-Bykovskyi,Researcher,Division of Geriatrics University of Wisconsin-Madison School of Medicine and Public Health,algilmore@wisc.edu,Research,Aug 17,Waiting
+Jeffrey Cummings,Researcher,Cleveland Clinic Lou Ruvo Center for Brain Health,cumminj@ccf.org,Research,Aug 17,Waiting
+Donis Patricia Molina-Henry,Researcher,Alzeihmer's Therapeutic Research Institute,molinahe@usc.edu,Research,Aug 17,Waiting
+Mary Elizabeth Sigmon,Researcher,Asheville VA-Charles George VA Medical Center,MaryElizabeth.Sigmon@va.gov,Medical Provider/Researcher,Aug 22,Waiting
+Alexandra Seemungal,Study Coordinator,University of NC at Chapel Hill,Alexandra_Seemungal@med.unc.edu,Research,Aug 22,Waiting
+Brianne R Tomaszewski PhD MPH,Researcher,University of North Carolina,Brianne_Tomaszewski@med.unc.edu,Research,Aug 22,Waiting
+Johanna Hickey,Assoiate Director of Program on Aging,University of North Carolina at Chapel Hill,jvtsilbersack@unc.edu,Study coordinator,Aug 22,Waiting
+Kara Hume,Associate Professor,University of North Carolina,kara.hume@unc.edu,Clinical trials,Aug 22,Waiting
+Kathryn Wessell,Palliative Care Research Specialist,University of North Carolina,kwessell@email.unc.edu,Clinical trials,Aug 22,Waiting
+Laura C. Hanson,Professor of geriatric medicine,University of North Carolina,laura_hanson@med.unc.edu,Clinical Trials,Aug 22,Waiting
+Mark Toles,Associate Professor,University of North Carolina at Chapel Hill,mtoles@email.unc.edu,Research,Aug 22,Waiting
+Molly Lynch,Research Associate,University of North Carolina,molly_lynch@unc.edu,Research,Aug 22,Waiting
+Kelsey Strout,Advocate,Atrium Health,Kelsey.Strout@advocatehealth.org,Advocacy,Aug 21,Waiting
+Bradley J Goldstein,Professor of Head and Neck Surgery & Communication Sciences,Duke University Health Center,bradley.goldstein@duke.edu,Research,Aug 21,Waiting
+Darina Petrovsky,Associate Professor & Nurse Scientist,Duke University School of Nursing,PetrovskyResearch@duke.edu,Research,Aug 21,Waiting
+Emily Finch,Clinical Research Coordinator,Duke University Hospital,emily.finch@duke.edu,Research,Aug 22,Waiting
+Hailey Zampa,Clinical Research Coordinator,Duke University,hailey.zampa@duke.edu,Research,Aug 22,Waiting
+Julienne Reynolds,Clinical Research Manager,Durham VA Medical Center,Julienne.Reynolds@va.gov,Research,Aug 22,Waiting
+Laura Porter,Professor in Pyschiatry and Behavioral Sciences,Duke University Medical Center,porte008@mc.duke.edu,Research,Aug 22,Waiting
+Lisa Gauger,Research Practice Manager,Duke University Health System,lisa.gauger@duke.edu,Research,Aug 22,Waiting
+Maria J Manson,Research Practice Manager,Duke University Health Center,maria.manson@duke.edu,Research,Aug 22,Waiting
+Michelle Moshkowitz,Clinical Research Coordinator,Duke University,michelle.moshkowitz@duke.edu,Research,Aug 22,Waiting
+Rachel Dewees,Operations Coordinator,Duke University,adrc@duke.edu,Research,Aug 22,Waiting
+Sharon Fekrat,Opthalmologist & Retinol Surgeon,Duke University Medical Center,imind@duke.edu,Healthcare Provider,Aug 28,Waiting
+Simon Davis,Adjunct Associate Professor,Duke Universit Hospital,simon.davis@duke.edu,Research,Aug 28,Waiting
+Amy Hughes,Project Specialist,Wake Forest Baptist Health,aehughes@wakehealth.edu,Research,Aug 28,Waiting
+Jesus Betancourt,Researcher,Wake Forest Hospital - Geriatrics,jbetanco@wakehealth.edu,Research,Aug 29,Waiting
+Kenzie Brown,Researcher,Wake Forest University Health Sciences,BBRP@wakehealth.edu,Research,Aug 29,Waiting
+Lauren Richmond,Associate Professor Cognitive Science,Wake Forest University,lauren.richmond@advocatehealth.org,Research,Aug 30,Waiting
+Sophia Dawson,Project Manager,Wake Forest Baptist Hopsital-Cardiology,sadawson@wakehealth.edu,Research,Aug 30,Waiting
+Summer Harris,Lab Research Analyst,Wake Forest School of Medicine,sdharris@wakehealth.edu,Research,Aug 30,Waiting
+Andrea Varrone,Medical Doctor,Karolinska Institutet,andrea.varrone@ki.se,Research,Aug 31,Waiting
+Anne Hege Aamodt,Researcher,Oslo University Hospital,a.h.aamodt@medisin.uio.no,Research,Aug 31,Waiting

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 import {
   triageTrialsForFamily,
+  sameState,
   type FamilyProfile,
   type StudyPartnerAvailability,
   type Trial,
@@ -90,28 +91,30 @@ function ctgovUrl(nctId: string) {
   return `https://clinicaltrials.gov/study/${nctId}`;
 }
 
+// Same rule as triage.ts: a site with no status of its own is not treated
+// as closed, because ClinicalTrials.gov does not always fill it in.
 function isSiteOpen(status: string | null | undefined): boolean {
-  return (status ?? '').trim().toUpperCase() === 'RECRUITING';
+  const s = (status ?? '').trim().toUpperCase();
+  return s === '' || s === 'RECRUITING';
 }
 
 function normalize(value: string | null | undefined): string {
   return (value ?? '').trim().toLowerCase();
 }
 
-/** Picks the "closest" open location we can claim given the thin location
- * data available (country/state only — no facility name or city). Prefers
- * a same-state match, then same-country, then just the first open site. */
+/** Picks the "closest" open location we can claim from country and state.
+ * Prefers a same-state match, then same-country, then the first open site. */
 function findNearestSite(trial: Trial, profile: FamilyProfile): TrialLocation | null {
   const open = (trial.locations ?? []).filter((loc) => isSiteOpen(loc.status));
   if (open.length === 0) return null;
 
   if (profile.location.state) {
-    const sameState = open.find(
+    const inState = open.find(
       (loc) =>
-        normalize(loc.state) === normalize(profile.location.state) &&
+        sameState(loc.state, profile.location.state) &&
         normalize(loc.country) === normalize(profile.location.country),
     );
-    if (sameState) return sameState;
+    if (inState) return inState;
   }
 
   const sameCountry = open.find(
@@ -124,7 +127,8 @@ function findNearestSite(trial: Trial, profile: FamilyProfile): TrialLocation | 
 
 function describeSite(site: TrialLocation | null): string {
   if (!site) return 'No open recruiting site listed';
-  return [site.state, site.country].filter(Boolean).join(', ');
+  const s = site as TrialLocation & { city?: string | null; facility?: string | null };
+  return [s.facility, s.city, s.state, s.country].filter(Boolean).join(', ');
 }
 
 /* -------------------------------------------------------------------------
@@ -143,7 +147,7 @@ function TrialCard({
   return (
     <li className="rounded-2xl border-2 border-gray-800 bg-white p-5 mb-4">
       <h3 className="text-2xl font-bold text-gray-950 leading-snug mb-2">
-        {trial.title ?? 'Untitled trial'}
+        {trial.brief_title ?? trial.official_title ?? trial.nct_id}
       </h3>
 
       <p className="text-xl text-gray-900 mb-2">
@@ -245,9 +249,16 @@ export default async function ResultsPage({
 
   return (
     <main className="min-h-screen bg-white px-4 py-8 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-extrabold text-gray-950 mb-8 leading-tight">
+      <h1 className="text-4xl font-extrabold text-gray-950 mb-4 leading-tight">
         Your trial matches
       </h1>
+
+      <p className="text-xl text-gray-900 mb-8">
+        This is an automatic sort based on what each trial has written in its
+        public listing. It gets things wrong, and many listings do not say
+        whether a study partner is needed. Calling a trial coordinator is
+        always worth doing, whichever list a trial is in.
+      </p>
 
       {!hasAny && (
         <p className="text-xl text-gray-900 mb-8">

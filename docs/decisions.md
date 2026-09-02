@@ -18,13 +18,11 @@ Where that leaves us right now: requires_study_partner is at 100 percent precisi
 
 So only one field actually earns the right to exclude a trial this week. I don't think that's a bad result, honestly. A system that excludes on one field we've actually checked carefully is worth more than one that excludes on five fields nobody's verified. 
 
-Corrected Accuracy Floor: 0.97 --> Cognitive scale marked wrong
+Per field, from docs/validation-report.md after the 40 gold trials were re-parsed with the fixed schema (30 August):
 
-Per field:
+- requires_study_partner: precision 100% (8 flagged, 8 right), recall 67% (4 of 12 missed), 12 examples in the gold standard. Passes. Allowed to exclude.
+- requires_imaging: precision 100% (9 flagged, 9 right), recall 100%, but only 9 examples in the gold standard. Fails the 10-example minimum by one. Caveat only.
+- requires_lumbar_puncture: precision 100% on 1 example. Caveat only.
+- cognitive_scale: not a yes/no field, not used in triage until validated in week 4.
 
-- requires_study_partner: 100%
-- requires_imaging: 90%
-- requires_lumbar_puncture: 100%
-
-
-
+One thing the re-parse showed: recall on requires_study_partner dropped from 83% to 67% when the same 40 trials were run again with the same model. Precision stayed at 100%. So the field is stable in the direction that matters for exclusion, and less stable in the direction that only costs a phone call. Two of the four misses now come back as "not required" rather than "not mentioned", which is worth reading in week 4.

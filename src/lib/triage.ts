@@ -3,19 +3,20 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 /* -------------------------------------------------------------------------
  * Types
  *
- * These reflect the assumed shape of the `trials` and `criteria` tables.
- * `trials` has a `locations` jsonb column (array of per-site records, each
- * with its own status) and a one-to-one related `criteria` row reachable
- * via a Supabase nested select (`criteria(*)`), which is where the
- * eligibility fields and the raw eligibility text live.
+ * These match the real `trials` and `criteria` tables (see the week 1 and
+ * week 2 SQL). `trials` holds the title, status, age limits, eligibility
+ * text and a `locations` jsonb array of per-site records, each with its own
+ * status. `criteria` is one row per trial keyed by nct_id and holds only the
+ * parsed fields. It is reached through a nested select (`criteria(*)`).
  *
- * Adjust these to match your actual generated Supabase types if they
- * differ — the triage logic below only depends on the field names, not on
- * where the types come from.
+ * If a column is renamed in the database, rename it here too. Everything
+ * below depends on these field names.
  * ---------------------------------------------------------------------- */
 
-/** How a yes/no eligibility criterion was extracted from the trial text. */
-export type CriterionValue = 'required' | 'not_required' | 'not_mentioned' | 'cannot_tell';
+/** How a yes/no eligibility criterion was extracted from the trial text.
+ * These are the exact words the parser writes into the `criteria` table
+ * (see scripts/parse-criteria.ts STATE_ENUM): spaces, not underscores. */
+export type CriterionValue = 'required' | 'not required' | 'not mentioned' | 'cannot tell';
 
 export interface TrialLocation {
   country: string;
@@ -26,25 +27,30 @@ export interface TrialLocation {
   status?: string | null;
 }
 
+/** One row of the `criteria` table. Keyed by nct_id; the age limits and the
+ * eligibility text are NOT here, they are columns on `trials`. */
 export interface TrialCriteria {
-  id: string;
-  trial_id: string;
-  /** No lower limit if null/undefined — not "unknown". */
-  min_age_years: number | null;
-  /** No upper limit if null/undefined — not "unknown". */
-  max_age_years: number | null;
-  requires_study_partner: CriterionValue | null;
-  requires_imaging: CriterionValue | null;
-  requires_lumbar_puncture: CriterionValue | null;
-  eligibility_text: string | null;
+  nct_id: string;
+  requires_study_partner: CriterionValue | string | null;
+  requires_imaging: CriterionValue | string | null;
+  requires_lumbar_puncture: CriterionValue | string | null;
+  cognitive_scale?: string | null;
+  parse_confidence?: string | null;
 }
 
+/** One row of the `trials` table, with its criteria row nested in. */
 export interface Trial {
   /** This IS the trial's primary key — the `trials` table has no separate
    * `id` column, only `nct_id` (e.g. "NCT01234567"). */
   nct_id: string;
-  title?: string | null;
+  brief_title?: string | null;
+  official_title?: string | null;
   status: string;
+  /** No lower limit if null — not "unknown". */
+  min_age_years: number | null;
+  /** No upper limit if null — not "unknown". */
+  max_age_years: number | null;
+  eligibility_text: string | null;
   locations: TrialLocation[] | null;
   /** Supabase returns an array for a nested select unless the relationship
    * is declared as one-to-one; we accept either shape defensively. */
@@ -103,16 +109,67 @@ function normalizeStatus(status: string | null | undefined): string {
   return (status ?? '').trim().toUpperCase();
 }
 
+/** A site counts as open if its own status is RECRUITING, or if it has no
+ * status at all. ClinicalTrials.gov does not always fill in per-site status,
+ * and treating "unknown" as "closed" would silently hide trials, which is the
+ * harmful direction. The trial's overall status is already RECRUITING by the
+ * time we get here. */
 function isSiteOpen(status: string | null | undefined): boolean {
-  return normalizeStatus(status) === 'RECRUITING';
+  const s = normalizeStatus(status);
+  return s === '' || s === 'RECRUITING';
 }
 
 function normalizeText(value: string | null | undefined): string {
   return (value ?? '').trim().toLowerCase();
 }
 
-function isUnknownCriterion(value: CriterionValue | null | undefined): boolean {
-  return value == null || value === 'not_mentioned' || value === 'cannot_tell';
+/** Turn whatever is in the database into one of the four state words.
+ * Tolerates underscores and capitals so a future re-parse cannot silently
+ * break the rules. */
+function normalizeCriterion(value: string | null | undefined): CriterionValue | null {
+  if (value == null) return null;
+  const v = value.trim().toLowerCase().replace(/_/g, ' ');
+  if (v === 'required' || v === 'not required' || v === 'not mentioned' || v === 'cannot tell') {
+    return v;
+  }
+  return null;
+}
+
+function isRequired(value: string | null | undefined): boolean {
+  return normalizeCriterion(value) === 'required';
+}
+
+function isUnknownCriterion(value: string | null | undefined): boolean {
+  const v = normalizeCriterion(value);
+  return v == null || v === 'not mentioned' || v === 'cannot tell';
+}
+
+/** ClinicalTrials.gov stores US states by full name ("North Carolina"); the
+ * form may give a two-letter code ("NC"). Compare through the full name. */
+const US_STATE_NAMES: Record<string, string> = {
+  AL: 'alabama', AK: 'alaska', AZ: 'arizona', AR: 'arkansas', CA: 'california',
+  CO: 'colorado', CT: 'connecticut', DE: 'delaware', FL: 'florida', GA: 'georgia',
+  HI: 'hawaii', ID: 'idaho', IL: 'illinois', IN: 'indiana', IA: 'iowa',
+  KS: 'kansas', KY: 'kentucky', LA: 'louisiana', ME: 'maine', MD: 'maryland',
+  MA: 'massachusetts', MI: 'michigan', MN: 'minnesota', MS: 'mississippi', MO: 'missouri',
+  MT: 'montana', NE: 'nebraska', NV: 'nevada', NH: 'new hampshire', NJ: 'new jersey',
+  NM: 'new mexico', NY: 'new york', NC: 'north carolina', ND: 'north dakota', OH: 'ohio',
+  OK: 'oklahoma', OR: 'oregon', PA: 'pennsylvania', RI: 'rhode island', SC: 'south carolina',
+  SD: 'south dakota', TN: 'tennessee', TX: 'texas', UT: 'utah', VT: 'vermont',
+  VA: 'virginia', WA: 'washington', WV: 'west virginia', WI: 'wisconsin', WY: 'wyoming',
+  DC: 'district of columbia',
+};
+
+export function stateName(value: string | null | undefined): string {
+  const v = (value ?? '').trim();
+  if (v.length === 2 && US_STATE_NAMES[v.toUpperCase()]) return US_STATE_NAMES[v.toUpperCase()];
+  return v.toLowerCase();
+}
+
+export function sameState(a: string | null | undefined, b: string | null | undefined): boolean {
+  const x = stateName(a);
+  const y = stateName(b);
+  return x.length > 0 && x === y;
 }
 
 /** Pull the first sentence from the eligibility text that mentions one of
@@ -156,28 +213,27 @@ function getCriteria(trial: Trial): TrialCriteria | null {
 
 /** Rule: the person's age band falls outside the trial's allowed range.
  * Skipped entirely if the family didn't give an age. */
-function checkAgeBand(profile: FamilyProfile, criteria: TrialCriteria | null): string | null {
+function checkAgeBand(profile: FamilyProfile, trial: Trial): string | null {
   if (!profile.ageBand) return null;
-  if (!criteria) return null;
 
   const { minAge, maxAge } = profile.ageBand;
-  const trialMin = criteria.min_age_years; // null = no lower limit
-  const trialMax = criteria.max_age_years; // null = no upper limit
+  const trialMin = trial.min_age_years ?? null; // null = no lower limit
+  const trialMax = trial.max_age_years ?? null; // null = no upper limit
 
-  const phrase = findEligibilityPhrase(criteria.eligibility_text, ['age', 'years old', 'aged']);
+  const phrase = findEligibilityPhrase(trial.eligibility_text, ['age', 'years old', 'aged']);
 
   if (trialMin != null && maxAge < trialMin) {
-    const upper = trialMax != null ? `${trialMin}–${trialMax}` : `${trialMin} or older`;
+    const range = trialMax != null ? `aged ${trialMin} to ${trialMax}` : `aged ${trialMin} or older`;
     return withQuote(
-      `This trial only accepts participants age ${upper}, which is younger than the age range you gave.`,
+      `This trial only accepts participants ${range}, and the age range you gave is below that.`,
       phrase,
     );
   }
 
   if (trialMax != null && minAge > trialMax) {
-    const lower = trialMin != null ? `${trialMin}–${trialMax}` : `up to age ${trialMax}`;
+    const range = trialMin != null ? `aged ${trialMin} to ${trialMax}` : `aged ${trialMax} or younger`;
     return withQuote(
-      `This trial only accepts participants ${lower}, which is older than the age range you gave.`,
+      `This trial only accepts participants ${range}, and the age range you gave is above that.`,
       phrase,
     );
   }
@@ -202,9 +258,7 @@ function checkLocation(profile: FamilyProfile, trial: Trial): string | null {
   }
 
   if (!profile.willingToTravel && profile.location.state) {
-    const openInState = openInCountry.filter(
-      (loc) => normalizeText(loc.state) === normalizeText(profile.location.state),
-    );
+    const openInState = openInCountry.filter((loc) => sameState(loc.state, profile.location.state));
     if (openInState.length === 0) {
       return `This trial doesn't have an open, recruiting site in ${profile.location.state}, and you said you'd only consider trials close to home.`;
     }
@@ -215,10 +269,14 @@ function checkLocation(profile: FamilyProfile, trial: Trial): string | null {
 
 /** Rule: the trial requires a study partner and the family said none is
  * available. */
-function checkStudyPartner(profile: FamilyProfile, criteria: TrialCriteria | null): string | null {
+function checkStudyPartner(
+  profile: FamilyProfile,
+  trial: Trial,
+  criteria: TrialCriteria | null,
+): string | null {
   if (!criteria) return null;
-  if (criteria.requires_study_partner === 'required' && profile.studyPartner === 'no') {
-    const phrase = findEligibilityPhrase(criteria.eligibility_text, [
+  if (isRequired(criteria.requires_study_partner) && profile.studyPartner === 'no') {
+    const phrase = findEligibilityPhrase(trial.eligibility_text, [
       'study partner',
       'care partner',
       'caregiver',
@@ -234,19 +292,19 @@ function checkStudyPartner(profile: FamilyProfile, criteria: TrialCriteria | nul
 
 /** Caveats: the trial stays in "worth asking about" but requires imaging
  * and/or a lumbar puncture, which are worth flagging up front. */
-function collectCaveats(criteria: TrialCriteria | null): string[] {
+function collectCaveats(trial: Trial, criteria: TrialCriteria | null): string[] {
   if (!criteria) return [];
   const caveats: string[] = [];
 
-  if (criteria.requires_imaging === 'required') {
-    const phrase = findEligibilityPhrase(criteria.eligibility_text, ['imaging', 'pet scan', 'mri']);
+  if (isRequired(criteria.requires_imaging)) {
+    const phrase = findEligibilityPhrase(trial.eligibility_text, ['imaging', 'pet scan', 'mri']);
     caveats.push(
       withQuote('This trial requires imaging (such as a PET or MRI scan) as part of taking part.', phrase),
     );
   }
 
-  if (criteria.requires_lumbar_puncture === 'required') {
-    const phrase = findEligibilityPhrase(criteria.eligibility_text, ['lumbar puncture', 'spinal tap']);
+  if (isRequired(criteria.requires_lumbar_puncture)) {
+    const phrase = findEligibilityPhrase(trial.eligibility_text, ['lumbar puncture', 'spinal tap']);
     caveats.push(
       withQuote('This trial requires a lumbar puncture (spinal tap) as part of taking part.', phrase),
     );
@@ -259,11 +317,11 @@ function collectCaveats(criteria: TrialCriteria | null): string[] {
  * rules actually depend on (study partner / imaging / lumbar puncture —
  * age is never "unknown", since an empty age field means "no limit", not
  * "not mentioned") came back not_mentioned or cannot_tell. */
-function isCannotTell(criteria: TrialCriteria | null): boolean {
+function isCannotTell(trial: Trial, criteria: TrialCriteria | null): boolean {
   if (!criteria) return true;
-  if (!criteria.eligibility_text || criteria.eligibility_text.trim().length === 0) return true;
+  if (!trial.eligibility_text || trial.eligibility_text.trim().length === 0) return true;
 
-  const relevantFields: (CriterionValue | null | undefined)[] = [
+  const relevantFields: (string | null | undefined)[] = [
     criteria.requires_study_partner,
     criteria.requires_imaging,
     criteria.requires_lumbar_puncture,
@@ -288,20 +346,20 @@ function triageOneTrial(trial: Trial, profile: FamilyProfile): TriageOutcome {
   // move it to "probably not" (in this order), or — if nothing excludes
   // it but the data is too thin to say anything — to "cannot tell".
 
-  const ageReason = checkAgeBand(profile, criteria);
+  const ageReason = checkAgeBand(profile, trial);
   if (ageReason) return { bucket: 'probablyNot', reason: ageReason };
 
   const locationReason = checkLocation(profile, trial);
   if (locationReason) return { bucket: 'probablyNot', reason: locationReason };
 
-  const partnerReason = checkStudyPartner(profile, criteria);
+  const partnerReason = checkStudyPartner(profile, trial, criteria);
   if (partnerReason) return { bucket: 'probablyNot', reason: partnerReason };
 
-  if (isCannotTell(criteria)) {
+  if (isCannotTell(trial, criteria)) {
     return { bucket: 'cannotTell' };
   }
 
-  return { bucket: 'worthAsking', caveats: collectCaveats(criteria) };
+  return { bucket: 'worthAsking', caveats: collectCaveats(trial, criteria) };
 }
 
 /* -------------------------------------------------------------------------
