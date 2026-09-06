@@ -35,13 +35,13 @@ export default function Home() {
         >
           For families caring for a loved one with Alzheimer's or dementia,
           this site helps you find clinical trials they may qualify for and
-          resources near you — care support, respite services, and more.
+          resources near you, including care support and respite services.
         </p>
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
         <p style={{ fontSize: "1rem", color: "#555555" }}>
-          Built by families who've navigated this journey.
+          Built by a high schooler in memory of my grandfather.
         </p>
 
         <Link
