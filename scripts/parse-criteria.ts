@@ -522,6 +522,11 @@ async function main() {
         parse_confidence: parsed.parse_confidence,
         raw_response: raw,
         model: MODEL,
+        // Set explicitly. The column's `default now()` only fires on insert,
+        // so without this a re-parse would leave the old timestamp behind and
+        // the column would say when the row was created rather than when it
+        // was last parsed.
+        parsed_at: new Date().toISOString(),
       };
 
       const { error } = REFRESH
