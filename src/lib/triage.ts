@@ -172,28 +172,104 @@ export function sameState(a: string | null | undefined, b: string | null | undef
   return x.length > 0 && x === y;
 }
 
-/** Pull the first sentence from the eligibility text that mentions one of
- * the given keywords, so exclusion reasons can quote the trial's own
- * wording where possible. */
-function findEligibilityPhrase(
-  eligibilityText: string | null | undefined,
-  keywords: string[],
-): string | null {
-  if (!eligibilityText) return null;
-  const sentences = eligibilityText.split(/(?<=[.!?])\s+/);
-  const lowerKeywords = keywords.map((k) => k.toLowerCase());
+/** Which half of the eligibility text a quoted sentence came from. Used so
+ * a caveat pulled from the exclusion list can be labeled as such — an
+ * exclusion criterion reads very differently from an inclusion one. */
+export type EligibilitySection = 'inclusion' | 'exclusion';
+
+export interface EligibilityPhrase {
+  sentence: string;
+  section: EligibilitySection;
+}
+
+/** Splits the eligibility text into an inclusion part and an exclusion
+ * part using the "Inclusion Criteria" / "Exclusion Criteria" headings that
+ * ClinicalTrials.gov eligibility text conventionally uses. If no exclusion
+ * heading is found, the whole text is treated as the inclusion part so
+ * nothing is silently dropped. */
+function splitEligibilitySections(
+  eligibilityText: string,
+): { inclusion: string; exclusion: string } {
+  const exclusionHeadingRe = /exclusion\s*criteria\s*:?/i;
+  const inclusionHeadingRe = /inclusion\s*criteria\s*:?/i;
+
+  const exclusionMatch = exclusionHeadingRe.exec(eligibilityText);
+
+  if (!exclusionMatch) {
+    return { inclusion: eligibilityText, exclusion: '' };
+  }
+
+  const exclusionStart = exclusionMatch.index;
+  let inclusionPart = eligibilityText.slice(0, exclusionStart);
+  const exclusionPart = eligibilityText.slice(exclusionStart + exclusionMatch[0].length);
+
+  // If there's an explicit "Inclusion Criteria" heading before the
+  // exclusion heading, drop everything before it too so the heading text
+  // itself doesn't get treated as part of a sentence.
+  const inclusionMatch = inclusionHeadingRe.exec(inclusionPart);
+  if (inclusionMatch) {
+    inclusionPart = inclusionPart.slice(inclusionMatch.index + inclusionMatch[0].length);
+  }
+
+  return { inclusion: inclusionPart, exclusion: exclusionPart };
+}
+
+/** Removes a trailing list-numbering artifact (e.g. "1.", "2)", "- 3.",
+ * "a)") left over at the end of a sentence after naive splitting on
+ * sentence punctuation, without touching numbers that are part of the
+ * sentence's actual content. */
+function stripTrailingListNumbering(sentence: string): string {
+  return sentence
+    .replace(/\s*[-•*]?\s*\(?(?:[0-9]{1,2}|[a-zA-Z]|[ivxlcdm]{1,4})[.)]\s*$/i, '')
+    .trim();
+}
+
+/** Searches one half of the eligibility text (inclusion or exclusion) for
+ * the first sentence mentioning one of the given keywords. */
+function findPhraseInSection(text: string, lowerKeywords: string[]): string | null {
+  if (!text) return null;
+  const sentences = text.split(/(?<=[.!?])\s+/);
   for (const sentence of sentences) {
     const lower = sentence.toLowerCase();
     if (lowerKeywords.some((k) => lower.includes(k))) {
-      const trimmed = sentence.trim();
+      const trimmed = stripTrailingListNumbering(sentence.trim());
       if (trimmed.length > 0) return trimmed;
     }
   }
   return null;
 }
 
-function withQuote(reason: string, phrase: string | null): string {
-  return phrase ? `${reason} The trial's eligibility criteria say: "${phrase}"` : reason;
+/** Pull the first sentence from the eligibility text that mentions one of
+ * the given keywords, so exclusion reasons can quote the trial's own
+ * wording where possible. The eligibility text is first split into its
+ * inclusion and exclusion halves (using the "Inclusion Criteria" /
+ * "Exclusion Criteria" headings); the inclusion half is searched first,
+ * then the exclusion half, and the returned result says which half the
+ * quote came from. */
+function findEligibilityPhrase(
+  eligibilityText: string | null | undefined,
+  keywords: string[],
+): EligibilityPhrase | null {
+  if (!eligibilityText) return null;
+
+  const { inclusion, exclusion } = splitEligibilitySections(eligibilityText);
+  const lowerKeywords = keywords.map((k) => k.toLowerCase());
+
+  const inclusionPhrase = findPhraseInSection(inclusion, lowerKeywords);
+  if (inclusionPhrase) return { sentence: inclusionPhrase, section: 'inclusion' };
+
+  const exclusionPhrase = findPhraseInSection(exclusion, lowerKeywords);
+  if (exclusionPhrase) return { sentence: exclusionPhrase, section: 'exclusion' };
+
+  return null;
+}
+
+function withQuote(reason: string, phrase: EligibilityPhrase | null): string {
+  if (!phrase) return reason;
+  if (phrase.section === 'exclusion') {
+    return `${reason} From the trial's exclusion list: "${phrase.sentence}"`;
+  }
+  return `${reason} The trial's eligibility criteria say: "${phrase.sentence}"`;
 }
 
 /** Supabase returns either an array or a single object for a nested
