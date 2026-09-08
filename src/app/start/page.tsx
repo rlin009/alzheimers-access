@@ -221,8 +221,8 @@ export default function StartPage() {
 const styles: Record<string, React.CSSProperties> = {
   main: {
     minHeight: '100vh',
-    backgroundColor: '#000000',
-    color: '#ffffff',
+    backgroundColor: '#ffffff',
+    color: '#111111',
     padding: '24px 16px',
     fontFamily: 'system-ui, -apple-system, sans-serif',
   },
@@ -233,11 +233,14 @@ const styles: Record<string, React.CSSProperties> = {
   heading: {
     fontSize: '28px',
     marginBottom: '12px',
+    color: '#111111',
+    fontWeight: 800,
   },
   intro: {
     fontSize: '18px',
     marginBottom: '32px',
     lineHeight: 1.5,
+    color: '#333333',
   },
   fieldset: {
     border: 'none',
@@ -249,10 +252,11 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '20px',
     fontWeight: 700,
     marginBottom: '6px',
+    color: '#111111',
   },
   why: {
     fontSize: '16px',
-    color: '#cccccc',
+    color: '#555555',
     marginBottom: '10px',
     lineHeight: 1.4,
   },
@@ -261,9 +265,9 @@ const styles: Record<string, React.CSSProperties> = {
     fontSize: '18px',
     padding: '14px',
     borderRadius: '8px',
-    border: '2px solid #666666',
-    backgroundColor: '#111111',
-    color: '#ffffff',
+    border: '2px solid #999999',
+    backgroundColor: '#ffffff',
+    color: '#111111',
     boxSizing: 'border-box',
   },
   button: {
@@ -273,13 +277,13 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '16px',
     borderRadius: '8px',
     border: 'none',
-    backgroundColor: '#4da6ff',
-    color: '#000000',
+    backgroundColor: '#0B5FFF',
+    color: '#ffffff',
     cursor: 'pointer',
     marginTop: '8px',
   },
   error: {
-    color: '#ff8080',
+    color: '#cc0000',
     fontSize: '16px',
     marginTop: '12px',
   },
