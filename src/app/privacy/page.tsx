@@ -1,6 +1,11 @@
 // src/app/privacy/page.tsx
 import Link from "next/link";
 
+// Set this before the page goes live. The deletion section below tells
+// people to write to this address, so an empty value makes that section a
+// promise the site cannot keep.
+const CONTACT_EMAIL: string = "";
+
 const ACCENT = "#0B5FFF";
 const TEXT = "#111111";
 const SUBTEXT = "#333333";
@@ -58,8 +63,7 @@ export default function Privacy() {
         }}
       >
         You're trusting us with information about a family member's health at
-        a hard moment. Here is exactly what we store, why, and how to have it
-        removed.
+        a hard moment. Here is exactly what we store and why.
       </p>
 
       <section style={{ marginBottom: "2rem", maxWidth: "42rem" }}>
@@ -116,12 +120,25 @@ export default function Privacy() {
           Deleting your information
         </h2>
         <p style={{ fontSize: "1.125rem", lineHeight: 1.6, color: SUBTEXT }}>
-          Because we don't collect your name or contact details, we can't
-          reach out to you directly — so if you'd like your information
-          deleted, use the link on your results page, or contact us with the
-          web address shown after you complete the form. Deletion removes
-          your stored answers entirely; it does not affect anyone else.
+          Your answers are stored without a name attached, so there is nothing
+          in our records that identifies you. The only thing that points at
+          your answers is the web address of your results page, which contains
+          a random code.
         </p>
+        {CONTACT_EMAIL ? (
+          <p
+            style={{
+              fontSize: "1.125rem",
+              lineHeight: 1.6,
+              color: SUBTEXT,
+              marginTop: "1rem",
+            }}
+          >
+            If you want those answers deleted, save that web address and send
+            it to {CONTACT_EMAIL}. We will remove them. Deleting your answers
+            does not affect anyone else.
+          </p>
+        ) : null}
       </section>
 
       <section style={{ marginBottom: "2.5rem", maxWidth: "42rem" }}>

@@ -81,9 +81,11 @@ export default function HowItWorks() {
           itself and has no relationship with the trial sponsors.
         </p>
         <p>
-          The registry is re-checked on a schedule, so a trial that closes
-          enrollment or opens a new site near you should show up here within
-          a few days, not instantly.
+          The listings here are a copy of the registry taken on a particular
+          day, and that copy is refreshed by hand rather than automatically.
+          So a trial that has just closed enrollment, or a site that has just
+          opened near you, may not be reflected here yet. The date of the last
+          refresh is the date this analysis was run.
         </p>
       </Section>
 
@@ -93,8 +95,8 @@ export default function HowItWorks() {
           dense, clinical language — the kind meant for doctors, not
           families. This site uses an automated language model to read that
           text and pull out a few specific things: whether a study partner
-          is required, roughly how often visits happen, and a few other
-          common requirements.
+          is required, whether the trial involves brain imaging or a lumbar
+          puncture, and what age range it accepts.
         </p>
         <p>
           <strong>This automated reading sometimes gets it wrong.</strong> It
