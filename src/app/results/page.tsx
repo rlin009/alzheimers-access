@@ -1,25 +1,23 @@
-import { notFound } from 'next/navigation';
-import { createServerSupabaseClient } from '@/lib/supabase/server';
+import type { Metadata } from "next";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import {
   triageTrialsForFamily,
   sameState,
+  stateName,
   type FamilyProfile,
   type StudyPartnerAvailability,
   type Trial,
   type TrialLocation,
-} from '@/lib/triage';
-
-export const dynamic = 'force-dynamic';
-
-/* -------------------------------------------------------------------------
- * Raw profile row -> FamilyProfile
- *
- * The `profiles` table (filled in by src/app/start/page.tsx) stores loose,
- * form-friendly values. triageTrialsForFamily expects a stricter, more
- * structured shape. This section bridges the two — see the chat message
- * this file was delivered with for the assumptions baked in here.
- * ---------------------------------------------------------------------- */
-
+} from "@/lib/triage";
+import { validProfileId, rowToForm } from "@/lib/profile";
+import ResultsList, { type TrialView } from "./results-list";
+import PageHeading from "../components/page-heading";
+import Recovery from "../components/recovery";
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  title: "Your trial matches",
+  robots: { index: false, follow: false },
+};
 interface ProfileRow {
   id: string;
   location: string | null;
@@ -31,39 +29,94 @@ interface ProfileRow {
 }
 
 const AGE_BAND_RANGES: Record<string, { minAge: number; maxAge: number }> = {
-  'under-50': { minAge: 0, maxAge: 49 },
-  '50-64': { minAge: 50, maxAge: 64 },
-  '65-74': { minAge: 65, maxAge: 74 },
-  '75-84': { minAge: 75, maxAge: 84 },
-  '85-plus': { minAge: 85, maxAge: 150 },
+  "under-50": { minAge: 0, maxAge: 49 },
+  "50-64": { minAge: 50, maxAge: 64 },
+  "65-74": { minAge: 65, maxAge: 74 },
+  "75-84": { minAge: 75, maxAge: 84 },
+  "85-plus": { minAge: 85, maxAge: 150 },
 };
 
-// Best-effort match for a two-letter US state abbreviation inside a
-// free-text location string like "Charlotte, NC". Does not attempt to
-// parse full state names, zip codes, or non-US addresses.
+// Recognize a full state name at the end, or the final state abbreviation.
+// ZIP codes and driving distances are not inferred.
 const US_STATE_CODES = new Set([
-  'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA',
-  'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ',
-  'NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT',
-  'VA','WA','WV','WI','WY','DC',
+  "AL",
+  "AK",
+  "AZ",
+  "AR",
+  "CA",
+  "CO",
+  "CT",
+  "DE",
+  "FL",
+  "GA",
+  "HI",
+  "ID",
+  "IL",
+  "IN",
+  "IA",
+  "KS",
+  "KY",
+  "LA",
+  "ME",
+  "MD",
+  "MA",
+  "MI",
+  "MN",
+  "MS",
+  "MO",
+  "MT",
+  "NE",
+  "NV",
+  "NH",
+  "NJ",
+  "NM",
+  "NY",
+  "NC",
+  "ND",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VT",
+  "VA",
+  "WA",
+  "WV",
+  "WI",
+  "WY",
+  "DC",
 ]);
 
 function extractState(location: string | null): string | null {
   if (!location) return null;
-  const match = location.toUpperCase().match(/\b([A-Z]{2})\b/);
-  if (match && US_STATE_CODES.has(match[1])) return match[1];
-  return null;
+  const text = location.trim().toLowerCase();
+  for (const code of US_STATE_CODES) {
+    const name = stateName(code);
+    if (
+      text === name ||
+      text.endsWith(", " + name) ||
+      text.endsWith(" " + name)
+    )
+      return code;
+  }
+  const tokens = location.toUpperCase().match(/\b[A-Z]{2}\b/g) || [];
+  return tokens.reverse().find((token) => US_STATE_CODES.has(token)) || null;
 }
 
 function mapStudyPartner(value: string | null): StudyPartnerAvailability {
-  if (value === 'yes') return 'yes';
-  if (value === 'no') return 'no';
-  return 'unknown'; // covers 'not-sure' and blank/null
+  if (value === "yes") return "yes";
+  if (value === "no") return "no";
+  return "unknown"; // covers 'not-sure' and blank/null
 }
 
 function mapWillingToTravel(value: string | null): boolean {
-  if (value === 'local-only') return false;
-  if (value === 'short-drive' || value === 'long-distance') return true;
+  if (value === "local-only") return false;
+  if (value === "short-drive" || value === "long-distance") return true;
   // Not answered: default to true so we don't silently drop trials over
   // a skipped question. Flip this if you'd rather default conservatively.
   return true;
@@ -72,12 +125,12 @@ function mapWillingToTravel(value: string | null): boolean {
 function toFamilyProfile(row: ProfileRow): FamilyProfile {
   return {
     location: {
-      country: 'United States', // assumed — see chat notes
+      country: "United States", // assumed — see chat notes
       state: extractState(row.location),
     },
-    relationship: row.relationship ?? '',
-    diagnosisStage: row.diagnosis_stage ?? '',
-    ageBand: row.age_band ? AGE_BAND_RANGES[row.age_band] ?? null : null,
+    relationship: row.relationship ?? "",
+    diagnosisStage: row.diagnosis_stage ?? "",
+    ageBand: row.age_band ? (AGE_BAND_RANGES[row.age_band] ?? null) : null,
     studyPartner: mapStudyPartner(row.study_partner),
     willingToTravel: mapWillingToTravel(row.willing_to_travel),
   };
@@ -87,24 +140,23 @@ function toFamilyProfile(row: ProfileRow): FamilyProfile {
  * Display helpers
  * ---------------------------------------------------------------------- */
 
-function ctgovUrl(nctId: string) {
-  return `https://clinicaltrials.gov/study/${nctId}`;
-}
-
 // Same rule as triage.ts: a site with no status of its own is not treated
 // as closed, because ClinicalTrials.gov does not always fill it in.
 function isSiteOpen(status: string | null | undefined): boolean {
-  const s = (status ?? '').trim().toUpperCase();
-  return s === '' || s === 'RECRUITING';
+  const s = (status ?? "").trim().toUpperCase();
+  return s === "" || s === "RECRUITING";
 }
 
 function normalize(value: string | null | undefined): string {
-  return (value ?? '').trim().toLowerCase();
+  return (value ?? "").trim().toLowerCase();
 }
 
 /** Picks the "closest" open location we can claim from country and state.
  * Prefers a same-state match, then same-country, then the first open site. */
-function findNearestSite(trial: Trial, profile: FamilyProfile): TrialLocation | null {
+function findNearestSite(
+  trial: Trial,
+  profile: FamilyProfile,
+): TrialLocation | null {
   const open = (trial.locations ?? []).filter((loc) => isSiteOpen(loc.status));
   if (open.length === 0) return null;
 
@@ -126,178 +178,127 @@ function findNearestSite(trial: Trial, profile: FamilyProfile): TrialLocation | 
 }
 
 function describeSite(site: TrialLocation | null): string {
-  if (!site) return 'No open recruiting site listed';
-  const s = site as TrialLocation & { city?: string | null; facility?: string | null };
-  return [s.facility, s.city, s.state, s.country].filter(Boolean).join(', ');
+  if (!site) return "No open recruiting site listed";
+  const s = site as TrialLocation & {
+    city?: string | null;
+    facility?: string | null;
+  };
+  return [s.facility, s.city, s.state, s.country].filter(Boolean).join(", ");
 }
-
-/* -------------------------------------------------------------------------
- * UI pieces
- * ---------------------------------------------------------------------- */
-
-function TrialCard({
-  trial,
-  nearestSite,
-  notes,
-}: {
-  trial: Trial;
-  nearestSite: TrialLocation | null;
-  notes: string[];
-}) {
-  return (
-    <li className="rounded-2xl border-2 border-gray-800 bg-white p-5 mb-4">
-      <h3 className="text-2xl font-bold text-gray-950 leading-snug mb-2">
-        {trial.brief_title ?? trial.official_title ?? trial.nct_id}
-      </h3>
-
-      <p className="text-xl text-gray-900 mb-2">
-        <span className="font-semibold">Nearest recruiting site: </span>
-        {describeSite(nearestSite)}
-      </p>
-
-      {notes.length > 0 && (
-        <ul className="text-xl text-gray-900 mb-3 list-disc list-inside">
-          {notes.map((note, i) => (
-            <li key={i}>{note}</li>
-          ))}
-        </ul>
-      )}
-
-      <a
-        href={ctgovUrl(trial.nct_id)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block text-xl font-semibold underline text-blue-800 focus:outline focus:outline-4 focus:outline-blue-800"
-      >
-        View on ClinicalTrials.gov
-      </a>
-    </li>
-  );
-}
-
-function Section({
-  heading,
-  count,
-  defaultOpen,
-  children,
-}: {
-  heading: string;
-  count: number;
-  defaultOpen: boolean;
-  children: React.ReactNode;
-}) {
-  if (count === 0) return null;
-
-  return (
-    <details open={defaultOpen} className="mb-8">
-      <summary className="text-3xl font-extrabold text-gray-950 py-3 cursor-pointer select-none">
-        {heading} ({count})
-      </summary>
-      <ul className="mt-4">{children}</ul>
-    </details>
-  );
-}
-
-/* -------------------------------------------------------------------------
- * Page
- * ---------------------------------------------------------------------- */
 
 export default async function ResultsPage({
   searchParams,
 }: {
   searchParams: Promise<{ id?: string }>;
 }) {
-  const { id: profileId } = await searchParams;
-
-  if (!profileId) {
-    notFound();
-  }
-
-  const supabase = createServerSupabaseClient();
-
-  const { data: profileRow, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', profileId)
-    .single();
-
-  if (error || !profileRow) {
-    notFound();
-  }
-
-  const familyProfile = toFamilyProfile(profileRow as ProfileRow);
-
-  let results: Awaited<ReturnType<typeof triageTrialsForFamily>>;
-  try {
-    results = await triageTrialsForFamily(familyProfile, supabase);
-  } catch (e) {
-    console.error(e);
+  const { id } = await searchParams;
+  if (!validProfileId(id))
     return (
-      <main className="min-h-screen bg-white px-4 py-8 max-w-2xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-gray-950 mb-4">
-          Something went wrong
-        </h1>
-        <p className="text-xl text-gray-900">
-          We couldn&apos;t match trials right now. Please try again later.
-        </p>
-      </main>
+      <Recovery title="We couldn’t open these results">
+        This results link is missing or incomplete. You can start a new search,
+        and every question is optional.
+      </Recovery>
+    );
+  let profileRow: ProfileRow;
+  let results: Awaited<ReturnType<typeof triageTrialsForFamily>>;
+  let family: FamilyProfile;
+  try {
+    const supabase = createServerSupabaseClient();
+    const { data, error } = await supabase
+      .from("profiles")
+      .select(
+        "id,location,relationship,diagnosis_stage,age_band,study_partner,willing_to_travel",
+      )
+      .eq("id", id)
+      .single();
+    if (error?.code === "PGRST116" || (!error && !data))
+      throw new Error("Results link not found");
+    if (error || !data) throw new Error("Unable to load profile");
+    profileRow = data as ProfileRow;
+    family = toFamilyProfile(profileRow);
+    results = await triageTrialsForFamily(family, supabase);
+  } catch (error) {
+    if (error instanceof Error && error.message === "Results link not found") {
+      return (
+        <Recovery title="We couldn’t open these results">
+          We couldn’t find the answers connected to this link. You can start a
+          new search below.
+        </Recovery>
+      );
+    }
+    return (
+      <Recovery
+        title="Trial listings aren’t available right now"
+        retry={"/results?id=" + encodeURIComponent(id)}
+      >
+        Please try again. You can also check the official registry while the
+        listings are unavailable.
+      </Recovery>
     );
   }
-
-  const hasAny =
-    results.worthAsking.length + results.cannotTell.length + results.probablyNot.length > 0;
-
+  const view = (trial: Trial, notes: string[]): TrialView => {
+    const site = findNearestSite(trial, family);
+    const label =
+      site && !(site.status || "").trim()
+        ? "Listed site (recruitment not specified)"
+        : site &&
+            family.location.state &&
+            sameState(site.state, family.location.state)
+          ? "Recruiting site in your state"
+          : "Recruiting site";
+    return {
+      id: trial.nct_id,
+      title: trial.brief_title || trial.official_title || trial.nct_id,
+      site: describeSite(site),
+      siteLabel: label,
+      notes,
+    };
+  };
+  const groups = [
+    {
+      id: "worth-asking",
+      heading: "Worth asking about",
+      defaultOpen: true,
+      trials: results.worthAsking.map(({ trial, caveats }) =>
+        view(trial, caveats),
+      ),
+    },
+    {
+      id: "cannot-tell",
+      heading: "Can't tell — ask your doctor",
+      defaultOpen: true,
+      trials: results.cannotTell.map(({ trial, note }) => view(trial, note ? [note] : [])),
+    },
+    {
+      id: "probably-not",
+      heading: "Probably not",
+      defaultOpen: false,
+      trials: results.probablyNot.map(({ trial, reason }) =>
+        view(trial, [reason]),
+      ),
+    },
+  ];
   return (
-    <main className="min-h-screen bg-white px-4 py-8 max-w-2xl mx-auto">
-      <h1 className="text-4xl font-extrabold text-gray-950 mb-4 leading-tight">
-        Your trial matches
-      </h1>
-
-      <p className="text-xl text-gray-900 mb-8">
-        This is an automatic sort based on what each trial has written in its
-        public listing. It gets things wrong, and many listings do not say
-        whether a study partner is needed. Calling a trial coordinator is
-        always worth doing, whichever list a trial is in.
-      </p>
-
-      {!hasAny && (
-        <p className="text-xl text-gray-900 mb-8">
-          No matching trials were found. This may change as new trials open.
+    <main id="main-content" className="page-shell results-page">
+      <PageHeading title="Your trial matches" />
+      <div className="sorting-note">
+        <p>
+          This is an automatic sort based on what each trial has written in its
+          public listing. It gets things wrong, and many listings do not say
+          whether a study partner is needed.
         </p>
-      )}
-
-      <Section heading="Worth asking about" count={results.worthAsking.length} defaultOpen={true}>
-        {results.worthAsking.map(({ trial, caveats }) => (
-          <TrialCard
-            key={trial.nct_id}
-            trial={trial}
-            nearestSite={findNearestSite(trial, familyProfile)}
-            notes={caveats}
-          />
-        ))}
-      </Section>
-
-      <Section heading="Can't tell — ask your doctor" count={results.cannotTell.length} defaultOpen={true}>
-        {results.cannotTell.map(({ trial }) => (
-          <TrialCard
-            key={trial.nct_id}
-            trial={trial}
-            nearestSite={findNearestSite(trial, familyProfile)}
-            notes={[]}
-          />
-        ))}
-      </Section>
-
-      <Section heading="Probably not" count={results.probablyNot.length} defaultOpen={false}>
-        {results.probablyNot.map(({ trial, reason }) => (
-          <TrialCard
-            key={trial.nct_id}
-            trial={trial}
-            nearestSite={findNearestSite(trial, familyProfile)}
-            notes={[reason]}
-          />
-        ))}
-      </Section>
+        <p>
+          <strong>
+            Calling a trial coordinator is always worth doing, whichever list a
+            trial is in.
+          </strong>
+        </p>
+      </div>
+      <ResultsList
+        groups={groups}
+        form={rowToForm(profileRow as unknown as Record<string, unknown>)}
+        profileId={id}
+      />
     </main>
   );
 }

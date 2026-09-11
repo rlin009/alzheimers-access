@@ -1,11 +1,13 @@
-import { createClient } from '@supabase/supabase-js';
-
-// Server-only client. Uses the service role key, so this file must
-// NEVER be imported into a client component.
+import "server-only";
+import { createClient } from "@supabase/supabase-js";
 export function createServerSupabaseClient() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
-    { auth: { persistSession: false } }
-  );
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error("Supabase configuration is missing.");
+  return createClient(url, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+    },
+  });
 }

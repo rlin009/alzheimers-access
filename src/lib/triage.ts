@@ -1,4 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
+import catalog from '../data/trial-catalog.json';
+import { loadCatalogTrials, type TrialCatalog } from './trial-catalog';
 
 /* -------------------------------------------------------------------------
  * Types
@@ -93,6 +95,7 @@ export interface ProbablyNotTrial {
 
 export interface CannotTellTrial {
   trial: Trial;
+  note?: string;
 }
 
 export interface TriageResult {
@@ -459,16 +462,8 @@ export async function triageTrialsForFamily(
   profile: FamilyProfile,
   supabase: SupabaseClient,
 ): Promise<TriageResult> {
-  const { data, error } = await supabase
-    .from('trials')
-    .select('*, criteria(*)')
-    .eq('status', 'RECRUITING');
-
-  if (error) {
-    throw new Error(`Failed to load recruiting trials: ${error.message}`);
-  }
-
-  const trials = (data ?? []) as Trial[];
+  const reviewedCatalog: TrialCatalog = catalog;
+  const trials = await loadCatalogTrials(supabase, reviewedCatalog);
 
   const worthAsking: WorthAskingTrial[] = [];
   const probablyNot: ProbablyNotTrial[] = [];
@@ -479,6 +474,11 @@ export async function triageTrialsForFamily(
     // trials that are no longer RECRUITING are excluded entirely, not
     // placed in any bucket.
     if (normalizeStatus(trial.status) !== 'RECRUITING') continue;
+
+    if (reviewedCatalog.entries[trial.nct_id]?.decision === 'review') {
+      cannotTell.push({ trial, note: 'This listing mentions dementia or related research, but we could not confirm how directly the study relates to it. Ask the coordinator what the study is for.' });
+      continue;
+    }
 
     const outcome = triageOneTrial(trial, profile);
 

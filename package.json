@@ -6,10 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "tsx --test tests/*.test.ts",
+    "trials:audit": "tsx scripts/fetch-trials.ts",
+    "trials:refresh": "tsx scripts/fetch-trials.ts --apply"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.116.0",
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@phosphor-icons/react": "^2.1.10",
     "@supabase/supabase-js": "^2.112.2",
     "@vercel/analytics": "^2.0.1",
     "csv-parse": "^7.0.2",

@@ -1,0 +1,15 @@
+export {
+  ArrowRightIcon,
+  ArrowUpRightIcon,
+  CaretDownIcon,
+  ListIcon,
+  XIcon,
+  MapPinIcon,
+  MagnifyingGlassIcon,
+  NotePencilIcon,
+  ListBulletsIcon,
+  ChatCircleDotsIcon,
+  PhoneIcon,
+  GlobeIcon,
+  ArrowCounterClockwiseIcon,
+} from "@phosphor-icons/react/dist/ssr";

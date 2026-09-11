@@ -1,167 +1,112 @@
-import "dotenv/config";
+import { config } from "dotenv";
 import { createClient } from "@supabase/supabase-js";
+import { mkdir, readFile, writeFile, rename } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { assessTrialScope, flattenStudy, scopeHash, TRIAL_SEARCH, type RegistryStudy, type ScopeReview } from "../src/lib/trial-scope";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+config({ path: path.join(root, ".env.local"), quiet: true });
+config({ path: path.join(root, ".env"), quiet: true });
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!url || !key) throw new Error("Supabase environment variables are required.");
+const db = createClient(url, key);
+const apply = process.argv.includes("--apply");
 const BASE = "https://clinicaltrials.gov/api/v2/studies";
-const CONDITION = "Alzheimer Disease OR Dementia";
 
-function ageStringToYears(age?: string): number | null {
-  if (!age) return null;
-
-  const match = age.trim().match(/^(\d+)\s*(Year|Month|Week|Day)s?$/i);
-  if (!match) return null;
-
-  const amount = parseInt(match[1], 10);
-  const unit = match[2].toLowerCase();
-
-  switch (unit) {
-    case "year":
-      return amount;
-    case "month":
-      return Math.floor(amount / 12);
-    case "week":
-      return Math.floor(amount / 52);
-    case "day":
-      return Math.floor(amount / 365);
-    default:
-      return null;
-  }
-}
-
-// "2019-03" has no day, so store the 1st and record that the day is not real
-function startDate(
-  d?: { date?: string }
-): { start_date: string | null; start_date_precision: string | null } {
-  if (!d?.date) return { start_date: null, start_date_precision: null };
-  if (d.date.length === 7)
-    return { start_date: d.date + "-01", start_date_precision: "month" };
-  return { start_date: d.date, start_date_precision: "day" };
-}
-
-function flatten(s: any) {
-  const p = s.protocolSection ?? {};
-  const id = p.identificationModule ?? {};
-  const st = p.statusModule ?? {};
-  const el = p.eligibilityModule ?? {};
-  const de = p.designModule ?? {};
-  const co = p.conditionsModule ?? {};
-  const sp = p.sponsorCollaboratorsModule ?? {};
-  const lo = p.contactsLocationsModule ?? {};
-
-  return {
-    nct_id: id.nctId,
-    brief_title: id.briefTitle ?? null,
-    official_title: id.officialTitle ?? null,
-    status: st.overallStatus ?? null,
-    phases: de.phases ?? [],
-    conditions: co.conditions ?? [],
-    min_age_years: ageStringToYears(el.minimumAge),
-    max_age_years: ageStringToYears(el.maximumAge),
-    sex: el.sex ?? null,
-    eligibility_text: el.eligibilityCriteria ?? null,
-    locations: lo.locations ?? [],
-    sponsor: sp.leadSponsor?.name ?? null,
-    ...startDate(st.startDateStruct),
-    last_updated: st.lastUpdatePostDateStruct?.date ?? null,
-    fetched_at: new Date().toISOString(),
-  };
-}
-
-// Flattens a single study and upserts it into the `trials` table,
-// returning whatever Supabase hands back for that row.
-async function saveFirstStudy(study: any) {
-  const row = flatten(study);
-
-  const { data, error } = await supabase
-    .from("trials")
-    .upsert(row, { onConflict: "nct_id" })
-    .select();
-
-  if (error) throw new Error("Supabase error: " + error.message);
-
-  return data;
+async function fetchStudies(params: Record<string, string>) {
+  const studies: RegistryStudy[] = [];
+  let pageToken: string | undefined;
+  let expected: number | undefined;
+  const tokens = new Set<string>();
+  do {
+    const query = new URLSearchParams({ ...params, pageSize: "1000", countTotal: "true" });
+    if (pageToken) query.set("pageToken", pageToken);
+    const res = await fetch(`${BASE}?${query}`, { signal: AbortSignal.timeout(60000) });
+    if (!res.ok) throw new Error(`Registry request failed: ${res.status}`);
+    const data = await res.json() as { studies: RegistryStudy[]; totalCount?: number; nextPageToken?: string };
+    expected ??= data.totalCount;
+    if (!Array.isArray(data.studies)) throw new Error("Invalid registry response.");
+    studies.push(...data.studies);
+    pageToken = data.nextPageToken;
+    if (pageToken && tokens.has(pageToken)) throw new Error("Registry pagination loop.");
+    if (pageToken) tokens.add(pageToken);
+  } while (pageToken);
+  const ids = new Set(studies.map(s => s.protocolSection.identificationModule.nctId));
+  if (ids.size !== studies.length || (expected !== undefined && expected !== ids.size)) throw new Error("Registry count mismatch; catalog will not be published.");
+  return studies;
 }
 
 async function main() {
-  let pageToken: string | undefined = undefined;
-  let page = 0;
-  let expectedTotal: number | null = null;
-  const seen = new Set<string>();
-
-  while (true) {
-    const params = new URLSearchParams({
-      "query.cond": CONDITION,
-      pageSize: "200",
-      countTotal: "true",
-    });
-    if (pageToken) params.set("pageToken", pageToken);
-
-    const res = await fetch(`${BASE}?${params.toString()}`, {
-      headers: { "User-Agent": "AlzheimersAccessCapstone/0.1" },
-    });
-    if (!res.ok) throw new Error("Request failed: " + res.status);
-
-    const data = await res.json();
-    page++;
-
-    // totalCount is sent on the first page only
-    if (expectedTotal === null) {
-      expectedTotal = data.totalCount ?? null;
-      console.log("Registry reports total studies:", expectedTotal);
+  const now = new Date().toISOString();
+  const folder = path.join(root, ".trial-audit", now.replace(/[:.]/g, "-"));
+  await mkdir(folder, { recursive: true });
+  const reviews = JSON.parse(await readFile(path.join(root, "src/data/trial-scope-reviews.json"), "utf8")) as Record<string, ScopeReview>;
+  const oldRows: Record<string, unknown>[] = [];
+  // Read ALL pages. Supabase's default response cap must not truncate the audit.
+  for (let offset = 0; ; offset += 500) {
+    const { data, error } = await db.from("trials").select("*, criteria(*)").order("nct_id").range(offset, offset + 499);
+    if (error) throw new Error("Could not back up existing recruiting trials.");
+    oldRows.push(...data);
+    if (data.length < 500) break;
+  }
+  await writeFile(path.join(folder, "before.json"), JSON.stringify(oldRows, null, 2));
+  const studies = await fetchStudies({ "query.term": TRIAL_SEARCH, "filter.overallStatus": "RECRUITING" });
+  const found = new Set(studies.map(s => s.protocolSection.identificationModule.nctId));
+  const missing = oldRows.filter(r => r.status === "RECRUITING").map(r => String(r.nct_id)).filter(id => !found.has(id));
+  // Refresh legacy rows individually by ID so narrower discovery never silently
+  // loses a relevant old record, and closed studies receive their true status.
+  for (let i = 0; i < missing.length; i += 100) {
+    const batch = missing.slice(i, i + 100);
+    const legacy = await fetchStudies({ "filter.ids": batch.join(",") });
+    if (legacy.length !== batch.length) throw new Error("A legacy registry record was unavailable; no publication attempted.");
+    studies.push(...legacy);
+  }
+  await writeFile(path.join(folder, "registry.json"), JSON.stringify(studies));
+  const audit = studies.map(study => ({
+    id: study.protocolSection.identificationModule.nctId,
+    title: study.protocolSection.identificationModule.briefTitle,
+    ...assessTrialScope(study, reviews[study.protocolSection.identificationModule.nctId]),
+    sourceHash: scopeHash(study),
+  }));
+  const active = audit.filter(row => row.decision !== "exclude");
+  const entries = Object.fromEntries(active.map(row => [row.id, { decision: row.decision, reason: row.reason }]));
+  if (active.length === 0) throw new Error("Empty catalog refused.");
+  const catalog = { updatedAt: now, query: TRIAL_SEARCH, entries };
+  await writeFile(path.join(folder, "audit.json"), JSON.stringify(audit, null, 2));
+  await writeFile(path.join(folder, "catalog.json"), JSON.stringify(catalog, null, 2));
+  console.log(JSON.stringify({ mode: apply ? "apply" : "dry-run", backedUp: oldRows.length, checked: studies.length, included: audit.filter(r => r.decision === "include").length, uncertain: audit.filter(r => r.decision === "review").length, excluded: audit.filter(r => r.decision === "exclude").length, evidence: path.relative(root, folder) }, null, 2));
+  if (!apply) return;
+  const oldById = new Map(oldRows.map(row => [String(row.nct_id), row]));
+  let invalidated = 0;
+  for (const study of studies) {
+    const id = study.protocolSection.identificationModule.nctId;
+    const previous = oldById.get(id);
+    if (previous && previous.eligibility_text !== (study.protocolSection.eligibilityModule?.eligibilityCriteria ?? null)) {
+      // Parsed requirements must not survive a change in their source text.
+      // The full previous criteria row is recoverable in before.json.
+      const { error } = await db.from("criteria").update({ requires_study_partner: "cannot tell", requires_imaging: "cannot tell", requires_lumbar_puncture: "cannot tell" }).eq("nct_id", id);
+      if (error) throw new Error(`Could not invalidate stale criteria for ${id}.`);
+      invalidated++;
     }
-
-    const rows = (data.studies ?? []).map(flatten);
-    for (const r of rows) seen.add(r.nct_id);
-
-    const { error } = await supabase
-      .from("trials")
-      .upsert(rows, { onConflict: "nct_id" });
-    if (error) throw new Error("Supabase error: " + error.message);
-
-    console.log(`page ${page}: saved ${rows.length}, running total ${seen.size}`);
-
-    pageToken = data.nextPageToken;
-    if (!pageToken) break;
-
-    await new Promise((r) => setTimeout(r, 400)); // be polite to the API
   }
-
-  console.log("Finished. Unique trials:", seen.size, "Registry said:", expectedTotal);
-  if (seen.size !== expectedTotal) {
-    throw new Error(
-      `Count mismatch: collected ${seen.size}, registry reported ${expectedTotal}`
-    );
+  for (let i = 0; i < studies.length; i += 100) {
+    const { error } = await db.from("trials").upsert(studies.slice(i, i + 100).map(s => flattenStudy(s, now)), { onConflict: "nct_id" });
+    if (error) throw new Error(`Trial refresh failed in batch ${i / 100 + 1}; catalog not published.`);
   }
-  console.log("Counts match.");
+  // Verify every catalog entry exists after writes, even above the default cap.
+  const activeIds = active.map(row => row.id);
+  for (let i = 0; i < activeIds.length; i += 100) {
+    const ids = activeIds.slice(i, i + 100);
+    const { data, error } = await db.from("trials").select("nct_id").in("nct_id", ids).eq("status", "RECRUITING");
+    if (error || data.length !== ids.length) throw new Error("Post-refresh verification failed; catalog not published.");
+  }
+  const target = path.join(root, "src/data/trial-catalog.json");
+  try { await writeFile(path.join(folder, "previous-catalog.json"), await readFile(target)); } catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+  await writeFile(`${target}.tmp`, JSON.stringify(catalog, null, 2) + "\n");
+  await rename(`${target}.tmp`, target);
+  await writeFile(path.join(root, "docs/trial-scope-audit.json"), JSON.stringify({ updatedAt: now, query: TRIAL_SEARCH, studies: audit }, null, 2) + "\n");
+  console.log(`Catalog published; ${invalidated} changed eligibility texts had old parsed requirements invalidated. No trial rows deleted.`);
 }
-
-// Kept deliberately as a manual test entry point. Not called by main().
-// Fetches just the first page and saves only the first study, for testing
-// flatten()/saveFirstStudy() in isolation before running the full crawl.
-async function testFirstStudyOnly() {
-  const params = new URLSearchParams({
-    "query.cond": CONDITION,
-    pageSize: "1",
-  });
-
-  const res = await fetch(`${BASE}?${params.toString()}`, {
-    headers: { "User-Agent": "AlzheimersAccessCapstone/0.1" },
-  });
-  if (!res.ok) throw new Error("Request failed: " + res.status);
-
-  const data = await res.json();
-  const study = (data.studies ?? [])[0];
-  if (!study) throw new Error("No studies returned");
-
-  const result = await saveFirstStudy(study);
-  console.log("Upsert result:", JSON.stringify(result, null, 2));
-}
-
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main().catch(error => { console.error(error instanceof Error ? error.message : "Trial refresh failed."); process.exitCode = 1; });

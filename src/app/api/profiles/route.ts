@@ -1,41 +1,46 @@
-import { NextResponse } from 'next/server';
-import { createServerSupabaseClient } from '@/lib/supabase/server';
-
-// Service-role client, created inside the handler so the build does not
-// need the environment variables just to compile this route.
-// Never import this key into a 'use client' file.
+import { NextResponse } from "next/server";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
+import { validateForm } from "@/lib/profile";
 export async function POST(request: Request) {
-  const supabase = createServerSupabaseClient();
-  const body = await request.json();
-
-  const {
-    location,
-    relationship,
-    diagnosisStage,
-    ageBand,
-    studyPartner,
-    willingToTravel,
-  } = body ?? {};
-
-  const { data, error } = await supabase
-    .from('profiles')
-    .insert([
-      {
-        location: location || null,
-        relationship: relationship || null,
-        diagnosis_stage: diagnosisStage || null,
-        age_band: ageBand || null,
-        study_partner: studyPartner || null,
-        willing_to_travel: willingToTravel || null,
-      },
-    ])
-    .select('id')
-    .single();
-
-  if (error || !data) {
-    console.error(error);
-    return NextResponse.json({ error: 'Failed to save profile' }, { status: 500 });
+  let input: unknown;
+  try {
+    input = await request.json();
+  } catch {
+    return NextResponse.json(
+      { error: "Please check your answers and try again." },
+      { status: 400 },
+    );
   }
-
-  return NextResponse.json({ id: data.id });
+  const form = validateForm(input);
+  if (!form)
+    return NextResponse.json(
+      { error: "Please check your answers and try again." },
+      { status: 400 },
+    );
+  try {
+    const { data, error } = await createServerSupabaseClient()
+      .from("profiles")
+      .insert([
+        {
+          location: form.location || null,
+          relationship: form.relationship || null,
+          diagnosis_stage: form.diagnosisStage || null,
+          age_band: form.ageBand || null,
+          study_partner: form.studyPartner || null,
+          willing_to_travel: form.willingToTravel || null,
+        },
+      ])
+      .select("id")
+      .single();
+    if (error || !data) throw new Error("Profile unavailable");
+    return NextResponse.json(
+      { id: data.id },
+      { headers: { "Cache-Control": "no-store" } },
+    );
+  } catch {
+    return NextResponse.json(
+      { error: "We couldn’t save your answers. Please try again." },
+      { status: 503 },
+    );
+  }
 }

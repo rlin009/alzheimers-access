@@ -1,0 +1,698 @@
+{
+  "NCT06776705": {
+    "decision": "exclude",
+    "sourceHash": "633eebaf27060479418044c840058adc27b8c430efd3417f0d6923bc9be0fced",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The co-occurring tinnitus and sleep disturbances can significantly affect the cognitive functions and quality of life, and even be implicated as a key contributing factor in the development of prodromal dementia."
+  },
+  "NCT06889961": {
+    "decision": "exclude",
+    "sourceHash": "bb0027019dec6831c2a50d42496aaf615452b264235aa24e4e826fdf791d0c3d",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The proposed pilot study will include 50 adults (ages 50-80), exhibiting typical age-related mild cognitive decline, excluding dementia or major neurocognitive disorders."
+  },
+  "NCT06791837": {
+    "decision": "exclude",
+    "sourceHash": "6b3c346f9ff3985574eaa15048ee59f2b0eee9176397f5b3cc697ee1363ea390",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Impairments in CBF are associated with cognitive decline and neurodegenerative disease such as Alzheimer's and dementia."
+  },
+  "NCT05831709": {
+    "decision": "include",
+    "sourceHash": "0f469633d77b311474e5a51f09199c4d3f5962bc0e0aedd240e9943082b643a5",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This trial investigates whether supervised training in combination with hormonal substitution therapy has an impact on body composition, cardiovascular risk, risk for dementia, osteoporosis and insulin sensitivity in postmenopausal women."
+  },
+  "NCT05233605": {
+    "decision": "exclude",
+    "sourceHash": "235eb9b5f09b635bb33ca34bd2c263e4fd627b7128f1ee40284d4ca21fc84ffe",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The role of this chronic neuroinflammatory condition on cognitive abilities and reserve begins to emerge in the literature no matter the initial stress is (surgery, head trauma, or Alzheimer's type dementia) and is therefore able to influence quality of life."
+  },
+  "NCT06879821": {
+    "decision": "exclude",
+    "sourceHash": "f8ec2bb924ccd7ff3a4b0c164467fe54773b038d1fc34210b5e72275359b5199",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Parkinson's disease (PD) is a progressive and chronic neurodegenerative disease, which presents signs and symptoms both motor (impaired gait, posture, balance, etc.) and cognitive (memory loss, dementia, etc.), all of which are causing disability and assuming a high economic cost."
+  },
+  "NCT07302321": {
+    "decision": "include",
+    "sourceHash": "fe48d962118c45c5afd37deffe9af802e8362d945c4ec5514b953bdbe22d94ce",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Individuals with Amyotrophic Lateral Sclerosis (ALS) carrying the C9orf72 HRE mutation (C9Pos) often exhibit different phenotypic traits compared to other patients (C9Neg), presenting a more aggressive form of the disease, with also a higher frequency of comorbidity with frontotemporal dementia (ALS-FTD) and a greater prevalence of family history of ALS and/or other neurodegenerative diseases."
+  },
+  "NCT06053190": {
+    "decision": "exclude",
+    "sourceHash": "34f674062e275b90f2de5c8f9e2f3083cf61671290744947e5526031844e8261",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Sensorineural hearing loss (SNHL) is among the most prevalent chronic conditions in aging and has a profoundly negative effect on speech comprehension, leading to increased social isolation, reduced quality of life, and increased risk for the development of dementia in older adulthood."
+  },
+  "NCT05263804": {
+    "decision": "exclude",
+    "sourceHash": "191191c9af702de212d43fd9278ed50a0315e13224da28dfe69fd6c229dea35a",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Ischemic stroke is the first cause of acquired disability of the adult, the second cause of dementia and the third cause of death in the industrialized countries, what constitutes à major public health issue."
+  },
+  "NCT06151626": {
+    "decision": "include",
+    "sourceHash": "04c807a8a750d68e34e8cff9dd807f5aa56f3da9d8346ecb5da4959ecd1ad362",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "During training, rhythmic skill training can provide multi-component of sensory stimulation, strengthen motor planning and optimize motor execution, therefore, it will improve the motor performance for the elderly or patients with mild cognitive impairment. Therefore, this research project will focus on assessing and intervening motor adaptation of upper extremity for the healthy elderly and patients with mild cognitive impairment. The first purpose of the project will analyze the difference in efficiency of responsive and predictive grasping motor adaptation among the healthy young adults, healthy elderly and patients with mild cognitive impairment through a test of perturbation-based of pinch-holding-up-activity, and use artificial intelligence for more accurate classification for the grasp pattern of healthy young adults, elderly and patients with mild cognitive impairment. The second one is to verify the effects of virtual-reality based rhythmic skill training system on the motor adaptation capability of upper limb and cognition for the elderly and patients with mild cognitive impairment."
+  },
+  "NCT07128186": {
+    "decision": "include",
+    "sourceHash": "70ac8e292e939bfa95091b15a3233d1e92f5a4ddd25575f3fda5a7fe1e29efad",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The objective of this observational study is to evaluate the accuracy and feasibility of an artificial intelligence-based multimodal cognitive screening system in early identification of diabetes-related mild cognitive impairment (MCI) among type 2 diabetes mellitus (T2DM) patients through a 3-5 year follow-up."
+  },
+  "NCT07595094": {
+    "decision": "include",
+    "sourceHash": "a35db4b095f21a9e76f4ab62609a2929974228ac90d8711fbadb0e086e3fe524",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "* Does higher PhenoAgeAccel increase the risk of developing major chronic diseases (including diabetes, dementia, cancer, and chronic respiratory diseases) in Chinese adults?"
+  },
+  "NCT05106036": {
+    "decision": "include",
+    "sourceHash": "26862dbef47b9465a3d947001d484a7f68d68b0a44121d05de9894995de6824b",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The main goal of the study Preventing Cognitive Decline by Reducing BP Target Trial (PCOT) is to conduct a large pragmatic clinical trial (PCT) to test the hypothesis that patients who receive care with a combination of clinical decision support (CDS) and team-based care delivered in primary care practices will have better blood pressure control and a lower incidence of mild cognitive impairment and dementia than patients receiving usual medical care."
+  },
+  "NCT05844501": {
+    "decision": "exclude",
+    "sourceHash": "2effb9a70062726b52b7907a4bf27038f3d999d4a5213313cec84921306701bf",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Afib can cause stroke, blood clots, dementia and death."
+  },
+  "NCT06914284": {
+    "decision": "include",
+    "sourceHash": "3b4fede55c19e43a0c7f800be45161e6477dc06d10bb037da0574e87833cbf39",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The goal of this clinical trial is to identify reliable markers of apathy in elderly subjects with bipolar disorder, age between 70 and 85 years, in order to accurately identify subjects at high risk of progressing to dementia by measuring motor activity (actimetrics), recorded language and analysing brain changes (MRI)."
+  },
+  "NCT06590584": {
+    "decision": "exclude",
+    "sourceHash": "d712aa56d2637ecea3e3dac73dbd3399359bb3f678cdbce42a2f959ebc0678b7",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Obesity represents a major health problem as it significantly increases the risk of diseases such as type 2 diabetes mellitus, fatty liver disease, hypertension, myocardial infarction, stroke, dementia, osteoarthritis, obstructive sleep apnea and various cancers, thus contributing to a decrease in both quality of life and life expectancy."
+  },
+  "NCT03149705": {
+    "decision": "exclude",
+    "sourceHash": "bce1897bc5451294250029b7ba961d6c1958a57779fb4be11fa27170fa309c2f",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Ischemic stroke is the first cause of acquired disability of the adult, the second cause of dementia and the third cause of death in the industrialized countries, what constitutes à major public health issue."
+  },
+  "NCT06740162": {
+    "decision": "include",
+    "sourceHash": "de2ca39e724813ff149a0c1ce05f087190a49d24b94b7ac443849aef2631e25d",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Purpose: Conduct a wait-list randomized controlled trial (RCT) of an inclusive physical activity program called PACE for adults with intellectual disability (ID) who are not yet showing signs of Alzheimer's Disease (AD)/age-related dementias (ARD)."
+  },
+  "NCT07566598": {
+    "decision": "exclude",
+    "sourceHash": "2bb9d19739fa88b9395445cc09ee615213508a7a23742d4fc076c68af79be029",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Worldwide, cerebrovascular accidents (also known as strokes) are the leading cause of acquired disability, the second-leading cause of dementia (after Alzheimer's disease) and the second-leading cause of death (but the leading cause of death among women)."
+  },
+  "NCT07107906": {
+    "decision": "exclude",
+    "sourceHash": "b7ddc416bf39f3082acf9ac07f54dc1133678b5f8d62a849fbe667b91ed503ef",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Research consistently shows that loneliness and social isolation are associated with poorer mental and physical health outcomes, increased risk of dementia, and increased mortality."
+  },
+  "NCT05694039": {
+    "decision": "include",
+    "sourceHash": "e2638da0f117653a3d2792fa34d9de5b3b340930dda7c01dda16d41ce22f1d21",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Deafness is one of the nine potentially modifiable risk factors for dementia simulated by the Lancet dementia Prevention, intervention and Care Committee in 2017. Some studies have found that the risk factors of dementia in deafness system, with the increase of the degree of deafness, the risk of cognitive decline increases, while after long-term wear of hearing aids, the deterioration of immediate and delayed memory is less, and the possibility of cognitive decline slows down. Therefore, it is necessary for us to improve the auditory ability of patients with deafness through auditory intervention, so as to slow down its effect on dementia and reduce the incidence of dementia. However, there are few studies on cognitive function of presbycusis patients in China, and there is no research on how many years of auditory intervention can effectively slow down the incidence of dementia in presbycusis patients with MCI."
+  },
+  "NCT06911372": {
+    "decision": "exclude",
+    "sourceHash": "abcd5c39fc65427f7aa25394344438fd6a634a0512b7e6fb329677a3bd8d5a0b",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Importantly, the health-related consequences of GDM extend well beyond pregnancy, such that women with a history of GDM have a 40% increased risk of cerebrovascular diseases and a 67% increased risk of dementia, compared to women with a history of uncomplicated pregnancy."
+  },
+  "NCT06945614": {
+    "decision": "include",
+    "sourceHash": "d128fc5ce3b9ab3e2ce7552582932d471705b46871908d42ce53011da58985f6",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This first phase safety clinical study is part of evaluation of the xenon gas inhalation as a therapy for neurodegenerative diseases, such as Alzheimer's disease."
+  },
+  "NCT06290167": {
+    "decision": "include",
+    "sourceHash": "8c999af0591d96935b095f6d17b4949292884241f36859204e2b8d01fba775eb",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "to investigate its efficacy in improving the cognitive functioning in a randomized clinical trial for 2 different populations: subjects with subjective memory complaints and mild cognitive impairment. Expected outcome is an improvement in cognitive functioning (assessed with a complete neuropsychological battery) after the training, thus advancing literature about non-pharmacological interventions in the preclinical stages of dementia along with innovative technical instruments."
+  },
+  "NCT06251258": {
+    "decision": "exclude",
+    "sourceHash": "aaf7a804e6ea3b3ba91aaa897200f8ed0d1d51797261b9d8e03bcd60655aba5e",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Participants aged over 65 or under 18 will also be excluded to mitigate potential biases related to dementia and cognitive alterations not related to insomnia."
+  },
+  "NCT06207136": {
+    "decision": "exclude",
+    "sourceHash": "8cb01a07d3c18a5d83fb4c32da067697f723830d54f99f91250026d9f480fdaa",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The goal of this pilot study is to examine the feasibility and effects of an 18-month intervention diet compared to an active control diet (standard diet) in those living with Parkinson's Disease (PD), without dementia."
+  },
+  "NCT06726616": {
+    "decision": "include",
+    "sourceHash": "3dbbb06c7e74a38c87986b58f0b45066da8db59a348f36074b5aee2b339f5701",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Hispanic Americans are the fastest growing older adult group in the United States, disproportionally increasing the risk of an Alzheimer's disease and related dementias diagnosis. This study fits within our longitudinal research goal to reduce dementia incidence by understanding the mechanisms that drive the cognitive-physical aging trajectory."
+  },
+  "NCT06969066": {
+    "decision": "include",
+    "sourceHash": "afd23fcecad58f08c0b4ea81cfc7c1702798b642d4cf9f52013e6972e51ba199",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This randomized controlled trial investigates the effects of Cognitive Remediation Therapy (CRT) on chronic insomnia (CI) with mild cognitive impairment."
+  },
+  "NCT07397923": {
+    "decision": "exclude",
+    "sourceHash": "4a24e3c2b8a4ff9a7c9508c6a9d8313c8afed88c56b2de15f47aa014b5f43708",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Co-morbid major psychiatric disorders requiring continuous medication (e.g., Major Depressive Disorder, Schizophrenia, Bipolar Disorder, Dementia)."
+  },
+  "NCT06013579": {
+    "decision": "include",
+    "sourceHash": "d5281bb156af7dae58470dd729792b856b40d39284b26736cfa5c1503fa12dd1",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "People aging with HIV are at higher risk for Alzheimer's disease and related dementias, and although physical activity is a promising target to mitigate such risk, this population engages in low levels of physical activity. The current study will leverage an existing R01 to address these gaps and provide implications for development of personalized approaches for the treatment and prevention of cognitive impairment and dementia in older people with HIV."
+  },
+  "NCT05273125": {
+    "decision": "include",
+    "sourceHash": "a604e4f8e2ce60ce61e653bb7c30b5124ad80493a98931fb9790b64b75c418fa",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Mild cognitive impairment (MCI) is defined by lower performance in one or more cognitive domains with preservation of independence in functional abilities. From a cognitive perspective, they are susceptible to converting to the dementia stage at an annual rate of 10%. In the absence of a curative treatment for dementia, it is essential to have an effective and personalized prevention strategy by identifying the predictive factors for falls in this at-risk population with MCI."
+  },
+  "NCT06098235": {
+    "decision": "exclude",
+    "sourceHash": "c0cb9251a7f118545aee9b7674176aef8e10de7a0bb0af35fab810de2f2027c1",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This randomized controlled trial will enroll 160 individuals aged over 40 without dementia who are at high risk of stroke, collecting multi-modal MRI imaging, serum, and fecal samples to investigate the impact of the ORIENT diet on brain functional networks."
+  },
+  "NCT04898790": {
+    "decision": "exclude",
+    "sourceHash": "c6b73612ca48a97d5e0fb36a2a42864c88dc90ddc19e9efa7b75928e03be31e9",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Age is a risk factor for Alzheimer's Dementia (AD) and the hematological malignancies leading to HCT."
+  },
+  "NCT05555693": {
+    "decision": "exclude",
+    "sourceHash": "1514005c8a55f06bd6056e489c3080443057165f46d6afc2c5e3624895819d5b",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "According to the current research on Alzheimer's disease (AD) and POCD in the elderly, it has been found that they have similar pathological basis and some homologous related genes. Altogether, POCD is closely related to molecular pathway neuropsychiatric diseases (such as dementia, depression and Alzheimer's disease)."
+  },
+  "NCT06451874": {
+    "decision": "include",
+    "sourceHash": "4e29d88e0ea8d1dab0a7086ccf3d40834c226d2ca38686b1b51aa150be12fa19",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This study will begin to evaluate personalized preventative dementia treatments for Veterans at risk for developing dementia."
+  },
+  "NCT05696704": {
+    "decision": "include",
+    "sourceHash": "5d4cab939bd3d840f45e8d7b18eb8eccb6886956bb341e7edeb10ed8d9d73816",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The overarching goal of this project is to evaluate if evidence-based interventions can reduce PDG, burden, and stress in informal caregivers of individuals with dementia when provided over telehealth."
+  },
+  "NCT06083467": {
+    "decision": "include",
+    "sourceHash": "967d15ae5ef900aa7a952a4b02f78e06eb8ced98ebf382d4cddab0f83b606fe8",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This current protocol will provide the key data to help determine the specificity of our to-be-developed radiotracers by implementing a multi-site diagnostic assessment core and PET imaging of A-beta amyloid (may be completed at some sites as part of another protocol) that is commonly deposited in the brains of people with Parkinson's Disease (PD), Multiple System Atrophy (MSA), Progressive Supranuclear Palsy (PSP) or Frontotemporal Dementia (FTD) as well as healthy controls."
+  },
+  "NCT06679374": {
+    "decision": "exclude",
+    "sourceHash": "0e00a6de557cf61f95a2da0dbe11687328934e5d02b7603aa9b66606282d9b73",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This trial aims to test whether one year of Varenicline, when compared to placebo, can reduce fall risk and show improvement in the ability to multitask while walking.\n\nParticipants that are eligible after screening for the study will be randomized to receive Varenicline or placebo. Along with the study medication participants will have visits (over the phone and in person), various tests and imaging, questionnaires, and laboratory collections."
+  },
+  "NCT05951764": {
+    "decision": "include",
+    "sourceHash": "021ea0ed47d062ba8e8fb3c93d63a8001aa12df1301dc8bb8cea0bd5508f09d1",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "More accurate and earlier identification of people at risk of cardiovascular disease (CVD) and neurodegenerative diseases (memory, cognition, dementia) through the appropriate use of biomarkers could lead to earlier initiation of preventive therapies and potentially avoid sometimes fatal events and complications."
+  },
+  "NCT06327334": {
+    "decision": "exclude",
+    "sourceHash": "63881a885d1e4f59d02f5ea5e4017a38e9c936bb3c7458036f1ede28cdfef821",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Despite advances in post-resuscitation care of patients with cardiac arrest (CA), the majority of survivors who are treated after restoration of spontaneous circulation (ROSC) will have sequelae of hypoxic-ischemic brain injury ranging from mild cognitive impairment to a vegetative state."
+  },
+  "NCT07171255": {
+    "decision": "include",
+    "sourceHash": "9a11444f54e92b2844638f74b553723a821cc8cd659e788f0239b397360d3100",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Alzheimer's disease and related dementias are a public health crisis impacting individuals across the world. Determine the impact of a technology-driven exercise program on blood pressure and functional mobility associated with dementia risk. We hypothesize that the exercise program will result in improvements in blood pressure and functional mobility (2-minute step test and 30-second chair rise test) and that participants with high exercise adherence will see the greatest improvements in biomarkers associated with reduced dementia risk. We hypothesize that RemoteEx+ will reduce barriers to exercise (Barriers to Being Active Quiz and improve knowledge surrounding dementia and modifiable risk factors (Dementia Knowledge Assessment Tool - Version 2 \\[DKAT2\\]) that will result in fewer lifestyle-related health disparities for the communities involved in this study."
+  },
+  "NCT07547319": {
+    "decision": "include",
+    "sourceHash": "2ddf6d22a238c3f04a9277243831c42728d663a0cd01fbaf4a1474dd06d6b8ba",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Cognitive impairment, including mild cognitive impairment (MCI) and mild dementia, is a growing public health challenge with limited effective treatment options."
+  },
+  "NCT03261089": {
+    "decision": "exclude",
+    "sourceHash": "c508277b8482f16ebbc33a1e36a3fe623fb5428c6ba7eebf43509c9c55058535",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "dementia or prior cerebrovascular injury), or included an unduly restrictive population, such as patients with a strictly comatose state."
+  },
+  "NCT05081596": {
+    "decision": "include",
+    "sourceHash": "5f2964b5ad8bb0348bf59f3f6ab3fad07e6adc8b2369917720051d11dafb4687",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The purpose of the study is to examine the effect of Problem Adaptation Therapy for Pain (PATH-Pain) on cognitive functioning, depression and pain-related disability in 100 older adults with cognitive impairment, chronic pain, and depression. The study will test if PATH-Pain has better cognitive, affective, and functional outcomes than Attention Control Usual Care."
+  },
+  "NCT06634641": {
+    "decision": "exclude",
+    "sourceHash": "e8e02e6f0caaa91ae1da28f767df542702708a53a843fef6e600d39e4465a033",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Clozapine is a second generation antipsychotic drug used in psychiatry to treat schizophrenia, affective disorders or certain symptoms of dementia."
+  },
+  "NCT07348471": {
+    "decision": "exclude",
+    "sourceHash": "65fce6f64716d8e91c1823b2ffd87e99c26f55a21061380749ce51e49683936d",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "FMT has shown promise in ameliorating cognitive deficits in models of Alzheimer's disease, chronic cerebral hypoperfusion, traumatic brain injury, and chronic unpredictable mild stress (CUMS). Clinically, FMT has been associated with cognitive improvement in patients with dementia, recurrent Clostridioides difficile infection, and sepsis-associated encephalopathy."
+  },
+  "NCT07200726": {
+    "decision": "exclude",
+    "sourceHash": "20b4f507e4a95ef126946f910555b011d151f30848946a475e51feb1add6fafe",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "* dementia, as diagnosed by a neurologist;"
+  },
+  "NCT06012552": {
+    "decision": "exclude",
+    "sourceHash": "33d184555704ece115311c178b3cf1b42ac7915b2eb067c46f5ce85fa597fdef",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "In the preliminary assessment authors found that 83% of COVID-19 inpatients had at least mild cognitive impairment."
+  },
+  "NCT06324149": {
+    "decision": "include",
+    "sourceHash": "76c88c835dbe6eb6eb883055901275a2e0e458771cc584451392df5fffd479ee",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Moreover, are going to evaluate with the same multidimensional visits patients with mild cognitive impairment and dementia followed up at the Neurologic Unit of the San Raffaele Hospital."
+  },
+  "NCT06847074": {
+    "decision": "exclude",
+    "sourceHash": "23b54311c977a058325cab5097162d21d1d3c6ed72b1f205d06b0fccc90d3cf3",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "health problems, such as heart disease, diabetes, cognitive impairment, and dementia."
+  },
+  "NCT06989697": {
+    "decision": "include",
+    "sourceHash": "9f893e7cc4a286ef2b299d82355d6fe2ffbba2c2d9e2616331fb88a6d111d1e0",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Given the increased risk of cognitive decline and dementia in patients with type 2 diabetes, and the need for preventive strategies, this study will investigate whether the combination therapy can prevent or mitigate cognitive deterioration."
+  },
+  "NCT06874205": {
+    "decision": "exclude",
+    "sourceHash": "d3b41525280d0191c069965c9eb559b72900eac590400ecd6bcbb7a370b8e675",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This protein may play a major role in disorders such as Alzheimer disease or major depressive disorder."
+  },
+  "NCT06626152": {
+    "decision": "exclude",
+    "sourceHash": "a54b4059adb4ff3caedef4ce447dd35bc2e1136207a628e2cf541cc94a3f3032",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Adults over the age of 60 with symptoms of major depressive disorder are said to have late-life depression (LLD), a condition that usually decreases a person's quality of life and is associated with other risks like physical frailty and dementia."
+  },
+  "NCT05891873": {
+    "decision": "include",
+    "sourceHash": "a7516a34e311aa118596d90eea04212c958abe82c3d02dc4441fa4a55bd62dff",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Intensive and critical care in the intensive care unit (ICU) is often associated with ICU delirium and post-ICU dementia, regardless of the nature of the primary disease or insult. A complementary multicentre observational 4-year follow-up study, performed in an adult neurointensive/critical care stroke cohort and in a paediatric intensive/critical care cohort in centres following currently recommended preventive measures (Delusion-deep-cz) will investigate the incidence of ICU delirium and post-ICU dementia and their modifiable and non-modifiable predisposing and precipitating risk factors."
+  },
+  "NCT07627386": {
+    "decision": "include",
+    "sourceHash": "06d0e85d8b80df3de32947ad7f9e01d760ac48bdb4d5017c55c227868c853843",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "What is the efficacy of the Family FINGER intervention on secondary outcome measures: dementia risk, cognition, and lifestyles?"
+  },
+  "NCT06400017": {
+    "decision": "exclude",
+    "sourceHash": "167b22a96f8487d15ea355f6ee811360d5c12a6fe9779af885e2cc6c618551c1",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "1)Serious mental, cognitive and psychological disorders, unable to sign informed consent or cooperate with the operation and various tasks; 2) There are contraindications for neurosurgery, such as hydrocephalus, cerebral atrophy, cerebrovascular sequelae, heart disease and other cardiovascular and cerebrovascular diseases; 3) There are concomitant diseases that seriously affect health, such as tumors, serious abnormalities of liver and kidney function (indexes more than 3 times normal); 4) There is intracranial space occupation, cerebrovascular disease, mental illness, other neurological diseases, claustrophobia, or there is an implant in the body, which affects the nuclear magnetic scan; 5) The results of the Mini-Mental State Scale (MMSE) \\<24 or the Montreal Cognitive Assessment Scale (MoCA) \\<18 in the preoperative assessment, or the results of other scales indicate the presence of severe dementia."
+  },
+  "NCT07810517": {
+    "decision": "include",
+    "sourceHash": "61007c0432ca5e79b7726eb98704b31786ade0eac1985d11fdb344ea9efe0126",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This randomized crossover clinical trial aims to evaluate the effect of a synbiotic containing Lactobacillus acidophilus and inulin on cognitive function in adults with obesity and mild cognitive impairment."
+  },
+  "NCT07355387": {
+    "decision": "exclude",
+    "sourceHash": "a6fdbdde57113374baf4f19d98f096124343695faf189efcdd99d9fb1103b53b",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The study involves a two-arm, Phase 1, randomized controlled clinical trial designed to establish the feasibility and effects of a Functional Balance Intervention (FBI) on physical and cognitive function, as well as measures of daily living among persons with multiple sclerosis (PwMS).\n\nCombined Specific Aims:\n\nAim 1: Examine the effect of the FBI (Intervention Group) on physical function in PwMS compared to a stretching program (Control Group).\n\nHypothesis 1: After four months of training, the FBI group will show significantly greater improvements in physical function compared to the stretching group.\n\nAim 2: Examine the effect of the multicomponent FBI on cognitive function in PwMS compared to the stretching program.\n\nHypothesis 2: After four months of training, the FBI group will show significantly greater improvements in cognitive function compared to the stretching group.\n\nAim 3: Examine the effects of the multicomponent FBI compared to the Control Group among PwMS on measures of daily living (dual-task performance, balance confidence, community mobility, and quality of life).\n\nHypothesis 3: After four months of training, the FBI group will show significantly greater improveme"
+  },
+  "NCT07667985": {
+    "decision": "exclude",
+    "sourceHash": "83118e0edda07cda16a7dd5b8bfab3347844d7ff56ec143e6a6bdb119bb468d7",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "While research shows that a high cognitive reserve protects against conditions like dementia, we still do not fully understand how it helps older adults bounce back from normal, everyday physical and mental exhaustion."
+  },
+  "NCT07686393": {
+    "decision": "exclude",
+    "sourceHash": "2bb1895d83c3cc631358d00ef338a1910a0f56a5a2b8a750562da0b05ee49aed",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The new tracer may be able to help them with many diseases, such as Alzheimer s disease and Parkinson s disease."
+  },
+  "NCT06431711": {
+    "decision": "exclude",
+    "sourceHash": "49be3847d1a89ba0131f85eb15a438b9212ea0376624c1c7916394bdb6ba01e9",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Cerebral small-vessel disease (CSVD) is a significant contributor to stroke and dementia, primarily impacting individuals over the age of 60."
+  },
+  "NCT06340282": {
+    "decision": "exclude",
+    "sourceHash": "9a898db1bf4cfafd49511b712408630237fd1e90361354dd3631e8bd1625a1b9",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Those with severe dementia or other terminal illnesses will be excluded."
+  },
+  "NCT06955013": {
+    "decision": "exclude",
+    "sourceHash": "f34d571901b5bcfca8ef4ab8de5cef6f0c4dd4b147cd698f8d88945c1f0116d8",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Exclusion criteria included pediatric patients, patients unable to sign consent for themselves (including non-English speakers, patients with dementia or altered mental status), as well as populations potentially at risk (such as pregnant patients, prisoners, and minors)."
+  },
+  "NCT05800821": {
+    "decision": "exclude",
+    "sourceHash": "5a50dc7b87a759795ca9637bb634c8bf3a35fd2447d3e360a77ee6f0a09d3bc2",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "It is characterised by throbbing ipsilateral frontotemporal or periorbital headache, and sometimes diffuse headache, eye and facial pain, vomiting, confusion, macular oedema, visual disturbances, focal motor seizures with frequent secondary generalisation, focal neurological deficits, and intracerebral or subarachnoid haemorrhage."
+  },
+  "NCT07428447": {
+    "decision": "exclude",
+    "sourceHash": "2a15711a18cd41e269fa847aeef421d90bac9331c7512c1d964b66cd7540b776",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Post-mortem studies reveal Lewy body pathology in some ET patients, suggesting a subset may have prodromal PD."
+  },
+  "NCT06219889": {
+    "decision": "include",
+    "sourceHash": "31235fd68e965a74dce0dc75b1a74d2891817dd613985e4ee378412a2c870f41",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Second, longer-term cognitive outcomes will be investigated in patients with ICH randomized to Q1 versus Q2 neurochecks with the goal of identifying whether hourly neurochecks increase the risk for dementia."
+  },
+  "NCT06671353": {
+    "decision": "exclude",
+    "sourceHash": "d43e32c138c9c296e784eae0dafb9d350a51f43acfe4292452edc401e3a002ec",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "It has been associated with higher mortality rates, hospitalization rates, risk of falls, occurrence of fractures, decreased mobility, depression, cognitive decline, dementia, loneliness, and admission to long-term care facilities."
+  },
+  "NCT07299279": {
+    "decision": "include",
+    "sourceHash": "d7dbdbffd1465d1d0dbfb375b72c5e82accc435efbf04845ab71282c2220b1fe",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "To date, there are no routinely recommended interventions to address MCI in PD and prevent it from evolving into dementia."
+  },
+  "NCT06416514": {
+    "decision": "include",
+    "sourceHash": "6b71324e3113400bb561dc0baa077a676ee98c2e520bfccc98ce243bd10663af",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The incidence of MBI and the probability of progression to dementia are high. Early detection and intervention have important clinical significance to reduce the occurrence of dementia, delay the progression of dementia and promote healthy aging to active aging. The Landmark model is applied to the elderly MBI population to study the influencing factors of normal aging, MBI and dementia and the probability of metastasis, which is a beneficial attempt to further advance the defense line of dementia."
+  },
+  "NCT06052605": {
+    "decision": "include",
+    "sourceHash": "b70a1004dd2a22c0d2c104b1401ac835c304f0c673094ba9f21992346d9a5b85",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The goal of this clinical trial is to develop and test an educational program about dementia in older adults living with epilepsy. Can providing education on healthy aging, chronic disease management, dementia, and modifiable lifestyle dementia risk factors improve dementia knowledge and health literacy among older adults with epilepsy?"
+  },
+  "NCT07404241": {
+    "decision": "exclude",
+    "sourceHash": "bff2f82cce07e72dd8fa8d3fa9b9312fe6edf31cea1e39b7140d770951d96832",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Preliminary data from our group suggested that gamma-band EEG activity in frontotemporal regions may correlate with neuropsychiatric fluctuations."
+  },
+  "NCT07461584": {
+    "decision": "include",
+    "sourceHash": "9f064bd417d451d7cb2bb43ae4fdc1d70146bfe2985997391030e3425fb87446",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This project optimizes high-resolution transcranial Alternating Current Stimulation (tACS) to improve memory in healthy older adults, advancing drug-free approaches for Alzheimer's disease and related dementia (ADRD)."
+  },
+  "NCT06480838": {
+    "decision": "exclude",
+    "sourceHash": "81e0a37edc612fe5d016191f1d2fd300bb5767330aac7782f30dce3836191157",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Cognitive impairment after moderate to severe traumatic brain injury (msTBI) not only significantly affects the quality of life in individuals with msTBI, but also increases the possibility of late-life dementia."
+  },
+  "NCT06066775": {
+    "decision": "include",
+    "sourceHash": "6199911d1c4940fcd50509540828baa8170e58ea96dc4b62b49734e6475a09d2",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "With aging, brain aging leads to a general decline in cognitive ability, and the prevalence of neurodegenerative diseases such as Alzheimer's disease (AD) and Parkinson's disease (PD) increases. Phase 1: Baseline investigation (community-based survey) Aims: To investigate whether glucose and lipids are the risk factors for brain aging-related conditions, such as mild cognitive impairment."
+  },
+  "NCT07232667": {
+    "decision": "exclude",
+    "sourceHash": "86715ab14a38bd56ed5717db7e7aa9eca944ee621f689c9b31ab5d2fe0524bda",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This rapid demographic shift, combined with increasing rates of chronic diseases, frailty, and dementia, has created growing challenges for healthcare and caregiving systems. Yunlin County, particularly its coastal region, has been one of Taiwan's earliest super-aged areas, showing higher rates of diabetes (10.5%), hypertension (28%), hyperlipidemia (26%), dementia (8%), and depression (12%) compared with national averages."
+  },
+  "NCT05878171": {
+    "decision": "exclude",
+    "sourceHash": "bd68654d075ee5c2946e0f046b8b3873ae2cb8fb55ccab828765f64c10e34298",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This study sought to understand patients with kidney disease's preferences for life-sustaining care during disease progression, and to understand whether prognostic perceptions, symptom distress, dementia, and decision conflict affect patients' preferences."
+  },
+  "NCT04375657": {
+    "decision": "include",
+    "sourceHash": "0c687ee94dfdc4d3f7be8702c9724f654a48461cc25df1fee3bc1d3b07be6681",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The study will evaluate biomarkers for epigenetic aging and immunosenescence, as well as evaluate established clinical measures and risk factors for prevention of physical frailty, cancer, cardiovascular disease, diabetes, dementia, and also infectious diseases, including flu and COVID-19."
+  },
+  "NCT07022522": {
+    "decision": "exclude",
+    "sourceHash": "2564484ac34e076a4198903cbb9bb2cb39bd535e27154561ac584b75971dc4e3",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Cognitive impairment is one of the most common non-motor symptoms in PD patients, with approximately 30% of patients exhibiting cognitive dysfunction at diagnosis and up to 80% eventually progressing to dementia."
+  },
+  "NCT05734404": {
+    "decision": "exclude",
+    "sourceHash": "b6fbae250f682f40c5291a99e804d4c2ba96074d0ef96f29fa557cbe570ef9ea",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Primary central nervous system vasculitis (CNSV) is a potentially fatal, single-organ vasculitis that often involves a spectrum of neurologic complications, including strokes, cognitive and speech impairment, visual loss, dementia, and encephalopathy."
+  },
+  "NCT07025317": {
+    "decision": "exclude",
+    "sourceHash": "1acadb8b1c9168eea96ca68259843d3ce62ab04d12ad3a99146bd3ebe2e74bb7",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Emerging evidence suggests that concussions (a type of mild traumatic brain injury; mTBIs) may cause chronic neurological disturbances with effects lasting beyond 20 years, changing brain structure and nearly doubling the risks of developing dementia into old age."
+  },
+  "NCT03705715": {
+    "decision": "include",
+    "sourceHash": "27820880a5bce99b9526ffe803fe490cb4960458d3cdbe001ef760df9371c848",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The purpose of this research is to determine whether there is more extensive inflammation in the brain of people with clinical evidence of neuropsychiatric syndromes, such as mood disorder, chronic pain syndrome, dementia, traumatic brain injury, or substance abuse."
+  },
+  "NCT04670029": {
+    "decision": "exclude",
+    "sourceHash": "38204de6a345d14a623f8eed806c62962471b9ac465baf269d79818492d50847",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "It was first described in the elderly and classified as geriatric syndrome such as dementia, falls or frailty."
+  },
+  "NCT06043570": {
+    "decision": "exclude",
+    "sourceHash": "6622d43b5a5daa363adf7512ecdc7fcdebac0ef0f4f0f39704b4cb99f2617f68",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "AF has enormous socioeconomic implications because it increases the risk of mortality and morbidity resulting from stroke, congestive heart failure, dementia and impaired quality of life."
+  },
+  "NCT07130669": {
+    "decision": "include",
+    "sourceHash": "b1502b9f54579ac7a292faf428eb09710e2fee55713980e7bd4b177f9a419176",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "How to ensure adherence to computerized cognitive training in unsupervised circumstances (e.g., at-home, self-administered) in older adults at risk for Alzheimer's disease (AD) or AD related dementia (AD/ADRD) is understudied."
+  },
+  "NCT05334992": {
+    "decision": "include",
+    "sourceHash": "d6320bcc831e6ad12916ed3dba64badc90e8739dd34e326916565fb9df6363c8",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The overarching goal of this project is to evaluate if evidence-based interventions can reduce PDG, burden, and stress in informal caregivers of individuals with dementia"
+  },
+  "NCT02097706": {
+    "decision": "exclude",
+    "sourceHash": "6f12d5bad14a74bc9f615763ad1a26f04a6eef090c172c59ba63baace34bb373",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The trial drug is an uncompetitive NMDA receptor antagonist approved for Alzheimer's disease is increasingly being studied in a variety of non-dementia psychiatric disorders."
+  },
+  "NCT06608004": {
+    "decision": "exclude",
+    "sourceHash": "9fe9bca9a057e94e672cc3ca294b6cd7338cde7a2c256270b945c4056b67b847",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "In addition, olfactory deficits occur in other neuromuscular diseases with central involvement, such as myasthenia, Parkinson\\&#39;s or Alzheimer\\&#39;s disease, in the absence of concomitant cognitive or diaphragmatic impairment."
+  },
+  "NCT07207122": {
+    "decision": "exclude",
+    "sourceHash": "7f39013b41930b104f3193d87b8bc0b8d2a50c921da78eb54ea699d315f15aa1",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This is a pilot randomized, sham-controlled, double-blind, multi-center study evaluating the safety and preliminary effectiveness of the Gen0Bh Transcranial Focused Ultrasound System for the treatment of motor symptoms in individuals with idiopathic Parkinson's disease."
+  },
+  "NCT04521881": {
+    "decision": "include",
+    "sourceHash": "57cafc8ac15c47d60a891a4762b03a300f75ecc17955337e8ab9e500b36095c3",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The CRASH-4 trial aims to assess the effects of early intramuscular TXA on intracranial haemorrhage, disability, death, and dementia in older adults with symptomatic mild head injury"
+  },
+  "NCT06090201": {
+    "decision": "exclude",
+    "sourceHash": "4d9b947c6078da5750241577615ab80ac1b88583a0a22ab6c3c18113b72392f3",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "CMBs are associated with intracerebral hemorrhage (ICH) and also cognitive impairment and dementia."
+  },
+  "NCT07377682": {
+    "decision": "include",
+    "sourceHash": "bc391e6936831fe1d7f0cd444b3f4285f40672ccda63fa3f7148674220a257ad",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "TRACOMDD study is a study with the intention to describe the real-world use of trazodone and the clinical response in a sub-group of patients affected by Major Depressive Disorder and Mild Cognitive impairment, by collecting data from standard clinical practice in Italy, Poland, and Romania"
+  },
+  "NCT06896825": {
+    "decision": "include",
+    "sourceHash": "5e3d2b554b435aedf950425cac286bcbb902db5b84462a9858583f73b289f88f",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The sample has several risk factors for Alzheimer's disease and related dementias: low physical activity, social isolation risk via living alone, and subjective cognitive impairment. Therefore, a long-term goal includes the determination of the intervention's effectiveness at increasing physical activity, social support, and stress resilience to reduce risk for developing dementia."
+  },
+  "NCT03143374": {
+    "decision": "include",
+    "sourceHash": "007a1341f97e3da748d7b159261e6f262553e06a29603a4fe47933ab86db15f2",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "This study looks at neurodegenerative diseases such as frontotemporal degeneration (FTD)."
+  },
+  "NCT05264818": {
+    "decision": "exclude",
+    "sourceHash": "ae5b86e6c7c92fc712ada479d754e83c7d691796be3740e74e7c9480f7c66197",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Studies have shown glycocalyx alteration in various vascular and autoimmune pathologies such as diabetes, high blood pressure, chronic renal failure, ischemic heart disease, stroke, dementia, septic shock, and several other inflammatory pathologies with a common basis in vascular insufficiency."
+  },
+  "NCT05850416": {
+    "decision": "include",
+    "sourceHash": "9ba9cf86b0baf6b2d792268599d724d612957996eefc0664a286f45f872f8fab",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Hypertension (HTN) is the most significant stroke, cardiovascular disease and dementia risk factor and is substantially under-treated especially in older persons. In this study the investigators will develop mGlide-Care to address uncontrolled HTN in people with mild cognitive impairment (MCI) and early stage Alzheimer's Disease and Alzheimer's Disease Related Dementia (AD/ADRD)."
+  },
+  "NCT06200909": {
+    "decision": "include",
+    "sourceHash": "6d36df05178296775207f8298816bf6d2696334acad20bfd4e3b5faeec5cd465",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The purpose of this study is to assess whether an 8-week mindfulness program enhances psychological well-being (e.g., stress, depressive symptoms), biological indicators of stress (e.g., inflammation), and cognitive function (e.g., attentional ability) in primary family caregivers of persons with dementia or a related neurodegenerative disease."
+  },
+  "NCT06835595": {
+    "decision": "include",
+    "sourceHash": "a8d523bb3e96071499708d090e7b7aad12bcf3fa477cf8bc4f39de730e129cd6",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "* TMS measures of cortical excitability are able to distinguish between PD patients cognitively normal, PD-Mild Cognitive Impairment (PD-MCI) and PD-Dementia (PD-D)?"
+  },
+  "NCT06818409": {
+    "decision": "exclude",
+    "sourceHash": "bed4bca92a370529c3676f6e8ecba3e9b63abb384fa8e738b3fdcc2d485c7ff1",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Patients with preoperative delirium, preoperative dementia, pathological or open fractures, systemic or localized infections in the fracture region during the preoperative period, or multiple trauma will be excluded."
+  },
+  "NCT06208527": {
+    "decision": "exclude",
+    "sourceHash": "1c035a9dc6cfd72e035521ef1253b867be679b2b23bbe10c890fe97a3ad38220",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "In animal studies, NR, which is converted to nicotinamide adenine dinucleotide (NAD), has shown potential as a neuroprotective agent, with indications of protection against amyotrophic lateral sclerosis (ALS), Alzheimer's dementia, and Parkinson's disease."
+  },
+  "NCT07200180": {
+    "decision": "exclude",
+    "sourceHash": "c72123aa52a8921a006025ad9bea59a1945f72cd9bbeaad4cdd24734f49eb456",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Such lesions are associated with cognitive decline and an increased risk of dementia."
+  },
+  "NCT07640542": {
+    "decision": "exclude",
+    "sourceHash": "feccf85bac9d07760da54a085e60d755d8f92d43148f589d614e533d79125712",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "This is an open-label, single-center Phase 1 study evaluating the safety, tolerability, and test-retest characteristics of \\[11C\\]MODAG-005, an investigational positron emission tomography/computed tomography (PET/CT) radioligand intended to image pathological alpha-synuclein deposition in the brain. The study will enroll participants with Parkinson's disease (PD), participants with multiple system atrophy (MSA), and age-matched healthy controls (AMHC).\n\nParticipants with PD or MSA will undergo two \\[11C\\]MODAG-005 PET/CT imaging sessions: one baseline scan and one follow-up scan 7 to 48 days later. Age-matched healthy controls will undergo one baseline scan. A subset of PD and MSA participants will receive a single oral dose of anle138b (Emrusolmin) before the second scan to evaluate tracer uptake under blocking conditions. The primary objective is to assess the safety and tolerability of \\[11C\\]MODAG-005. Secondary objectives include evaluating whether \\[11C\\]MODAG-005 PET imaging can distinguish participants with MSA or PD from age-matched healthy controls, distinguish PD from MSA, and determine test-retest variability of PET outcome measures."
+  },
+  "NCT06391073": {
+    "decision": "include",
+    "sourceHash": "82a649ee6fc1f8206f0917fa0dcc7f97c7ee8be9ec6c1c79da434bb429cba617",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Subsequently, we will estimate the reduction in heart attack, stroke, and dementia if Reach Out were implemented across all U.S."
+  },
+  "NCT04997824": {
+    "decision": "exclude",
+    "sourceHash": "6d808d0fc7df380e8cf4e819972b7557b3ccc34a5feb7e9da21d3f0bb5165fa9",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Atrial fibrillation (AF) is a major cardiovascular disease with a prevalence of 1.7% of the total population in Korea, associated with 25% of ischemic stroke and 30% of heart failure, and is a major cardiovascular disease that doubles the risk of dementia."
+  },
+  "NCT05765656": {
+    "decision": "exclude",
+    "sourceHash": "430edf8bddc6a819ea4b5e7d763e7907ce2a873e64b172a88a25d9344d1bb2c1",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "The consequences of BZDR are multiple with an increased risk of daytime sedation, balance disorders leading to falls and fractures, cognitive disorders, road accidents and dementia."
+  },
+  "NCT07045259": {
+    "decision": "include",
+    "sourceHash": "e7fc7177e78851b00079806b073113116e1584686db89dd54e4b40b320afd570",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The primary aim of our study is to compare the effects of neuromuscular exercise training versus structured exergaming program on locomotor and cognitive functions in elderly individuals with Motor Cognitive Risk (MCR), which defines the transition state between typical aging and dementia and mild cognitive impairment."
+  },
+  "NCT06268080": {
+    "decision": "exclude",
+    "sourceHash": "514aff523e31aa9a8599ecaca625f56ba96d011df4ccf3a23e412972a69dcac3",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Delirium causes significant distress to patients and family, and is associated with prolonged hospital stay, physical disability, progression to dementia-like illnesses, and discharge to long-term care."
+  },
+  "NCT06336382": {
+    "decision": "include",
+    "sourceHash": "84e2041e8564a088bbd2653cfac521010be2700c3e30317c397fa06d8137c2a1",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Hallucinations or delusions that occur for the first time in older people with no acute medical problems or mood symptoms may be related to impending dementia."
+  },
+  "NCT06044922": {
+    "decision": "exclude",
+    "sourceHash": "76b2b589d86d787477a876682dcc706fd15bbb501be525b7f42fab2d55f501b9",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Despite advances in post-resuscitation care of patients with cardiac arrest (CA), the majority of survivors who are treated after restoration of spontaneous circulation (ROSC) will have sequelae of hypoxic-ischemic brain injury ranging from mild cognitive impairment to a vegetative state."
+  },
+  "NCT05746715": {
+    "decision": "include",
+    "sourceHash": "118e7d31554c1475d6a51684b9356ea265e8095b65a71ccc35aa50a77b06c132",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "Creutzfeldt-Jakob Disease (CJD) is the most common prion disease in humans causing a rapidly progressive neurological decline and dementia and is invariably fatal."
+  },
+  "NCT07359768": {
+    "decision": "exclude",
+    "sourceHash": "13710b1f116bafc630cb724cee65e090a45a64349148a8ea9279622e94134338",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Microvascular dysfunction, particularly endothelial dysfunction, is increasingly recognized as a key mechanism underlying various cardiovascular diseases (CVD), including heart failure, ischemic heart disease, atherosclerosis, stroke, dementia, and kidney failure."
+  },
+  "NCT05195398": {
+    "decision": "include",
+    "sourceHash": "5755078d394f698b14d337dd13916a1992a242972bf7c1e9cdd84c718d0a1700",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "The investigators will conduct a randomized, double-blinded, sham-controlled trial of approximately 60 patients with minor stroke and post-stroke mild cognitive impairment (psMCI)."
+  },
+  "NCT05976152": {
+    "decision": "include",
+    "sourceHash": "a36ad33224ce8e815904b6207b7b583a3026af73d792063914816105eaef1808",
+    "reason": "Reviewed scope includes a dementia/MCI cohort, caregiver support, disease-specific research, or an explicit dementia prevention/risk outcome.",
+    "evidence": "It can be classified according to the severity of cognitive impairment as post-stroke cognitive impairment no dementia (PSCIND) and post-stroke dementia (PSD). A randomized, double-blind, multicenter clinical study involving 281 non-dementia vascular cognitive impairment (VCI) patients showed that the overall cognitive scores of patients treated with donepezil for 24 weeks significantly improved compared to the placebo group."
+  },
+  "NCT05293756": {
+    "decision": "exclude",
+    "sourceHash": "301d398de4467a1cf763bb139d06c2c091a4d0b06a20e871cb0b37a0c87aedbd",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "HTN is the single most influential risk factor for cardiovascular disease (CVD), as well as a risk factor for the incidence of stroke, diabetes, chronic kidney disease, and dementia."
+  },
+  "NCT06802588": {
+    "decision": "exclude",
+    "sourceHash": "a734e79038f1d4cd4a0d78e748f92240ed95638f51947adf0c2528ef9312b4c3",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "One third of the patients dies within the month following ICH, and survivors often experience residual disability with a high risk of recurrent ICH, other serious vascular events, and neurological complications such as epilepsy and dementia."
+  },
+  "NCT05598112": {
+    "decision": "exclude",
+    "sourceHash": "a283b1514fb5cf7d560a52c0747a86126a4586b9db68deeff9a0faac0f47329e",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "Increasing preclinical and clinical data indicate the contribution of gut microbiome on aging and aging-related diseases such as cardiovascular disease, Alzheimer Disease, and diabetes."
+  },
+  "NCT07546929": {
+    "decision": "exclude",
+    "sourceHash": "477157d007a0b064ba884c71da85d43f232e0c8048d1a37b61fe2145a8520bf6",
+    "reason": "Reviewed study focuses on another condition; the dementia connection is background, an exclusion, or a general research reference.",
+    "evidence": "High insulin levels also increase the incidence of cancers, stroke, and dementia."
+  }
+}

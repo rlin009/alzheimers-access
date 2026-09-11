@@ -1,38 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
+import "@fontsource-variable/dm-sans";
+import Header from "./components/header";
 import Footer from "./components/footer";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: {
-    default: "Alzheimer's Access",
-    template: "%s | Alzheimer's Access",
-  },
+  title: { default: "Alzheimer's Access", template: "%s | Alzheimer's Access" },
   description:
-    "Find Alzheimer's and dementia clinical trials a family member may qualify for, in plain language.",
+    "Find Alzheimer's and dementia clinical trials to ask about, plus local care support and respite resources for families.",
+  referrer: "no-referrer",
 };
-
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
-        <div style={{ flex: 1 }}>{children}</div>
+    <html lang="en">
+      <body>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <Header />
+        {children}
         <Footer />
-        <Analytics />
       </body>
     </html>
   );

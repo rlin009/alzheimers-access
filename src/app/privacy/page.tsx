@@ -1,174 +1,81 @@
-// src/app/privacy/page.tsx
+import type { Metadata } from "next";
 import Link from "next/link";
-
-// Set this before the page goes live. The deletion section below tells
-// people to write to this address, so an empty value makes that section a
-// promise the site cannot keep.
-const CONTACT_EMAIL: string = "";
-
-const ACCENT = "#0B5FFF";
-const TEXT = "#111111";
-const SUBTEXT = "#333333";
-
-function Row({
-  field,
-  why,
-}: {
-  field: string;
-  why: string;
-}) {
-  return (
-    <div
-      style={{
-        borderTop: "1px solid #dddddd",
-        padding: "1rem 0",
-      }}
-    >
-      <p style={{ fontSize: "1.125rem", fontWeight: 700, color: TEXT, marginBottom: "0.25rem" }}>
-        {field}
-      </p>
-      <p style={{ fontSize: "1.125rem", lineHeight: 1.5, color: SUBTEXT }}>{why}</p>
-    </div>
-  );
-}
-
+import PageHeading from "../components/page-heading";
+export const metadata: Metadata = { title: "Privacy" };
 export default function Privacy() {
   return (
-    <main
-      style={{
-        minHeight: "100dvh",
-        padding: "2rem 1.5rem",
-        backgroundColor: "#ffffff",
-        color: TEXT,
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "2rem",
-          lineHeight: 1.2,
-          fontWeight: 800,
-          marginBottom: "1.5rem",
-        }}
-      >
-        Privacy
-      </h1>
-
-      <p
-        style={{
-          fontSize: "1.25rem",
-          lineHeight: 1.5,
-          color: SUBTEXT,
-          marginBottom: "2rem",
-          maxWidth: "42rem",
-        }}
-      >
-        You're trusting us with information about a family member's health at
-        a hard moment. Here is exactly what we store and why.
-      </p>
-
-      <section style={{ marginBottom: "2rem", maxWidth: "42rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>
-          What we store, and why
-        </h2>
-
-        <Row
-          field="Approximate location"
-          why="Used to find trials and services near you. We store a general area (like a city or state), not a street address."
-        />
-        <Row
-          field="Your relationship to the person diagnosed"
-          why="Some trials have different criteria depending on who is enrolling — the person with the diagnosis or their caregiver."
-        />
-        <Row
-          field="Diagnosis stage, if known"
-          why="Many trials only accept a specific stage. This lets us skip trials that would never apply."
-        />
-        <Row
-          field="Age band"
-          why="Trials often have age cutoffs. We store a range (like '65–74'), not a birthdate."
-        />
-        <Row
-          field="Whether a study partner is available"
-          why="Most Alzheimer's trials require a study partner. Knowing this up front avoids showing you trials you can't actually join."
-        />
-      </section>
-
-      <section style={{ marginBottom: "2rem", maxWidth: "42rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>
-          What we don't ask for
-        </h2>
-        <p style={{ fontSize: "1.125rem", lineHeight: 1.6, color: SUBTEXT }}>
-          We do not ask for your name, the name of the person diagnosed, an
-          email address, a phone number, or a home address. You can browse
-          and get results without creating any kind of account.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: "2rem", maxWidth: "42rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>
-          What we never do
-        </h2>
-        <p style={{ fontSize: "1.125rem", lineHeight: 1.6, color: SUBTEXT }}>
-          We never sell this information, and we never share it with trial
-          sponsors, advertisers, or anyone else. It is used only to sort
-          trials and services for you.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: "2rem", maxWidth: "42rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>
-          Deleting your information
-        </h2>
-        <p style={{ fontSize: "1.125rem", lineHeight: 1.6, color: SUBTEXT }}>
-          Your answers are stored without a name attached, so there is nothing
-          in our records that identifies you. The only thing that points at
-          your answers is the web address of your results page, which contains
-          a random code.
-        </p>
-        {CONTACT_EMAIL ? (
-          <p
-            style={{
-              fontSize: "1.125rem",
-              lineHeight: 1.6,
-              color: SUBTEXT,
-              marginTop: "1rem",
-            }}
-          >
-            If you want those answers deleted, save that web address and send
-            it to {CONTACT_EMAIL}. We will remove them. Deleting your answers
-            does not affect anyone else.
+    <main id="main-content" className="page-shell prose-page">
+      <PageHeading title="Privacy">
+        <p>You can choose what to share.</p>
+      </PageHeading>
+      <article className="prose">
+        <section>
+          <h2>What you can share</h2>
+          <p>
+            All six questions are optional: approximate location, relationship,
+            diagnosis stage, age band, study-partner availability, and
+            willingness to travel.
           </p>
-        ) : null}
-      </section>
-
-      <section style={{ marginBottom: "2.5rem", maxWidth: "42rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 800, marginBottom: "1rem" }}>
-          This site is not medical advice
-        </h2>
-        <p style={{ fontSize: "1.125rem", lineHeight: 1.6, color: SUBTEXT }}>
-          This site surfaces public information about trials and local
-          services. It does not diagnose, treat, or advise on care or
-          participation in any trial. Decisions about a trial should always
-          go through the trial's own coordinator and your doctor.
-        </p>
-      </section>
-
-      <Link
-        href="/start"
-        style={{
-          display: "inline-block",
-          padding: "1rem 1.75rem",
-          fontSize: "1.25rem",
-          fontWeight: 700,
-          color: "#ffffff",
-          backgroundColor: ACCENT,
-          borderRadius: "0.75rem",
-          textDecoration: "none",
-          minHeight: "44px",
-        }}
-      >
-        Start your search
-      </Link>
+          <p>
+            We use age, location, study-partner availability, and travel
+            preference to sort trial listings. Relationship and diagnosis stage
+            are saved with your answers but do not currently change that sort.
+          </p>
+        </section>
+        <section>
+          <h2>What is stored</h2>
+          <p>
+            When you submit, your answers are saved in the site’s database
+            without a name attached. A code in your results link points to those
+            answers. Submitting changes saves a new set of answers and gives you
+            a new results link.
+          </p>
+          <p>
+            The site uses hosting and database services to operate. The survey
+            is part of this site; it is not sent to an external form service.
+            Answers are not sent to trial coordinators by this site.
+          </p>
+        </section>
+        <section>
+          <h2>What we don’t ask for</h2>
+          <p>
+            You do not need to provide your name, the name of the person
+            diagnosed, an email address, a phone number, or a street address. No
+            account is needed.
+          </p>
+        </section>
+        <section>
+          <h2>Your results link</h2>
+          <p>
+            Keep your results link private. Anyone with that link can see the
+            connected results and review the answers you submitted.
+          </p>
+          <p>
+            ClinicalTrials.gov and support organizations have their own privacy
+            policies. Opening those links takes you to their websites.
+          </p>
+        </section>
+        <section>
+          <h2>Your choices</h2>
+          <p>
+            You can leave any question blank. Read this page before deciding
+            what feels safe to share. No answers are sent until you press Submit
+            or Update results.
+          </p>
+        </section>
+        <section>
+          <h2>This site is not medical advice</h2>
+          <p>
+            This site shows public information about trials and local services.
+            It does not diagnose, treat, or decide whether someone can take
+            part. Discuss trial participation with the trial coordinator and
+            your doctor.
+          </p>
+        </section>
+        <Link className="text-action" href="/start">
+          Back to the questions
+        </Link>
+      </article>
     </main>
   );
 }

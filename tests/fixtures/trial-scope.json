@@ -1,0 +1,1224 @@
+[
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT06776705",
+        "orgStudyIdInfo": {
+          "id": "2023.636"
+        },
+        "organization": {
+          "fullName": "Chinese University of Hong Kong",
+          "class": "OTHER"
+        },
+        "briefTitle": "Low-intensity TUS for Sleep Disturbances in Patients With Chronic Tinnitus",
+        "officialTitle": "A Pilot Randomized Controlled Trial of MRI-guided Focused Low-intensity Transcranial Ultrasound Stimulation (TUS) for Sleep Disturbances in Patients With Chronic Tinnitus"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-01",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2025-01-15",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2025-12-31",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2026-06-30",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2025-01-10",
+        "studyFirstSubmitQcDate": "2025-01-10",
+        "studyFirstPostDateStruct": {
+          "date": "2025-01-15",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-07-17",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-07-18",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Tinnitus",
+          "Sleep Disturbances",
+          "Cognition"
+        ],
+        "keywords": [
+          "Tinnitus",
+          "Cognitive Dysfunction",
+          "Sleep distubances",
+          "Transcranial ultrasound stimulation",
+          "Hippocampus",
+          "Complex attention",
+          "Simulation",
+          "Central Nervous System Diseases"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "Background: Tinnitus, as a common symptom, can jeopardize the sleep quality and brain function and even lead to hearing loss and cognitive decline in elderly patients. The co-occurring tinnitus and sleep disturbances can significantly affect the cognitive functions and quality of life, and even be implicated as a key contributing factor in the development of prodromal dementia. At present, very few non-pharmacological therapies are developed for managing these comorbidities in elderly patients. Focused low-intensity transcranial ultrasound stimulation (TUS) enables to stimulation the deep brain structures, such as hippocampus, with optimized focality and specific frequency.\n\nObjectives: We aim to 1) investigate the safety, feasibility and efficacy of a 2-week focused low-intensity TUS on the severity of tinnitus and sleep disturbances in elderly patients; 2) determine the sample size of a full-scale randomized clinical trial of low-intensity TUS in patients with tinnitus; 3) evaluate the effects of low-intensity TUS on the severity of tinnitus, sleep quality and cognitive functions at 2, 4 and 6 weeks after the treatments.\n\nDesign: A 2-week randomized, double-blind, controlled clinical trial. Methods: Chinese right-handed tinnitus patients with sleep disturbances (aged from 60 to 90 years) will be randomly assigned to a 2-week intervention of either low intensity TUS or sham TUS, with 7 participants per arm. Before intervention, T1-weighted magnetic resonance imaging (MRI) and diffusion-weighted imaging (DWI) data is used to construct individual realistic head model. Comprehensive assessments, including sleep quality, cognitive performance and quality of life will be conducted at baseline, 2nd week, 4th week and 6th week. Program adherence and adverse effects will be monitored throughout intervention.",
+        "detailedDescription": "Significance: This study aims to investigate the feasibility, safety and efficacy of low intensity TUS for sleep disturbances in patients with tinnitus. It wills also test the program adherence, tolerability and adverse effects of this innovative neurotechnology. Information will be helpful for in-depth understanding the relationship of \"tinnitus, sleep and cognition\" and guiding the further studies of otology, sleep medicine and age-related neurodegenerative diseases.\n\nData analysis: The primary outcomes will be the changes in tinnitus symptoms and sleep quality, and the comparisons of group differences across different time points. Secondary outcomes will be the changes of cognitive functions and quality of life. Intention-to-treat analysis will be carried out. Changes of efficacy indicators from baseline to each follow up point will be tested with mixed effect model."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Chinese, right-handed, aged from 60 to 80 years.\n* Chronic tinnitus is defined as tinnitus with a duration of at least 3 months. Depending on the justification, different time course definitions of chronic tinnitus are possible.\n* Sleep disturbances are defined as a Pittsburgh Sleep Quality Index (PSQI) total score above 5.\n* No interference with independence in everyday activities.\n\nExclusion Criteria:\n\n* Diseases of ear canal and tympanic membrane checked by otoscopic examination.\n* Previous diagnosis of Meniere's disease and acoustic neuromas.\n* Past history of neurological or mental disorders.\n* Physically frail affecting attendance to treatment sessions.\n* Already attending regular treatments, such as cognitive behavioral therapy or music therapy.\n* Taking a psychotropic or other medication known to affect hearing functions.\n* Significant communicative impairments.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "60 Years",
+        "maximumAge": "85 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D014012",
+            "term": "Tinnitus"
+          },
+          {
+            "id": "D020447",
+            "term": "Parasomnias"
+          },
+          {
+            "id": "D060825",
+            "term": "Cognitive Dysfunction"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D006311",
+            "term": "Hearing Disorders"
+          },
+          {
+            "id": "D004427",
+            "term": "Ear Diseases"
+          },
+          {
+            "id": "D010038",
+            "term": "Otorhinolaryngologic Diseases"
+          },
+          {
+            "id": "D012678",
+            "term": "Sensation Disorders"
+          },
+          {
+            "id": "D009461",
+            "term": "Neurologic Manifestations"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D012816",
+            "term": "Signs and Symptoms"
+          },
+          {
+            "id": "D013568",
+            "term": "Pathological Conditions, Signs and Symptoms"
+          },
+          {
+            "id": "D012893",
+            "term": "Sleep Wake Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          },
+          {
+            "id": "D003072",
+            "term": "Cognition Disorders"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT07110207",
+        "orgStudyIdInfo": {
+          "id": "JACQUIN 2025"
+        },
+        "organization": {
+          "fullName": "Centre Hospitalier Universitaire Dijon",
+          "class": "OTHER"
+        },
+        "briefTitle": "Single-centre Descriptive Study of Taste in Frontotemporal Lobar Degeneration Through the Analysis of Taste Evoked Potentials",
+        "officialTitle": "Single-centre Descriptive Study of Taste in Frontotemporal Lobar Degeneration Through the Analysis of Taste Evoked Potentials",
+        "acronym": "FRONTAL-PEG"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-08",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2025-08-18",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2027-08",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2027-08",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2025-07-31",
+        "studyFirstSubmitQcDate": "2025-07-31",
+        "studyFirstPostDateStruct": {
+          "date": "2025-08-07",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-08-19",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-08-24",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Frontotemporal Lobar Degeneration (FTLD)"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The FRONTAL-PEG study focuses on taste perception in frontotemporal lobar degeneration (FTLD). This neurodegenerative disease, characterised by progressive loss of nerve cells, is the second leading cause of dementia after Alzheimer's disease.\n\nPatients with FTLD often experience olfactory disorders (= sense of smell) and eating disorders: increased appetite, increased food intake and excessive consumption of sugary foods and snacking. This often leads to excessive weight gain. These eating disorders are still poorly understood at present.\n\nIn this context, we hypothesise that an alteration in the gustatory pathway - i.e. the way in which the brain perceives taste - could contribute to the eating disorders frequently observed in frontotemporal dementia (FTD), particularly in the marked attraction to sweet foods. We therefore wish to objectively evaluate the taste response to a sweet solution (sucrose) in patients with FTLD, using taste evoked potentials (TEPs). Taste evoked potentials are a reliable and reproducible technique for assessing brain activity in response to taste stimulation. One of their advantages is that they are non-invasive.\n\nThis study will document, for the first time in this disease, the characteristics of cortical (brain) processing of taste information.\n\nThe FRONTAL-PEG study is an interventional, regional, single-centre study conducted at the Dijon University Hospital, in collaboration with the CMRR (Memory, Resources and Research Centre) and the CSGA (Centre for Taste and Food Sciences).\n\nAll investigations are carried out at the CSGA (building adjacent to the Dijon University Hospital), with the exception of blood tests, which are carried out at the Dijon University Hospital.\n\nThe total duration of participation in the study is one morning. No follow-up is planned at the end of the study."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Person who has given their free and informed consent\n* Person of legal age\n* Fasting \\> 2 hours before PEG measurement\n* Body Mass Index (BMI) \\< 30 kg/m² (according to medical record data)\n* DLFT: diagnostic criteria for established or probable DLFT\n\nExclusion Criteria:\n\n* Persons not affiliated with or not covered by a social security scheme\n* Persons subject to legal protection measures (guardianship, trusteeship)\n* Persons subject to judicial protection measures\n* Pregnant women, women in labour or breastfeeding women\n* MMSE score \\< 15 and/or MoCA score \\< 10\n* Known COVID-19 infection within 6 months prior to inclusion\n* Active smokers (\\> 4 cigarettes per day on a regular basis)\n* Subject with a pacemaker (contraindication for bioelectrical impedance analysis)\n* Subject with diabetes (type 1 or type 2)\n* Taking medication (during the study) that interferes with taste",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D057174",
+            "term": "Frontotemporal Lobar Degeneration"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003704",
+            "term": "Dementia"
+          },
+          {
+            "id": "D001927",
+            "term": "Brain Diseases"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D057177",
+            "term": "TDP-43 Proteinopathies"
+          },
+          {
+            "id": "D019636",
+            "term": "Neurodegenerative Diseases"
+          },
+          {
+            "id": "D057165",
+            "term": "Proteostasis Deficiencies"
+          },
+          {
+            "id": "D008659",
+            "term": "Metabolic Diseases"
+          },
+          {
+            "id": "D009750",
+            "term": "Nutritional and Metabolic Diseases"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D006403",
+            "term": "Hematologic Tests"
+          },
+          {
+            "id": "D000073216",
+            "term": "Mental Status and Dementia Tests"
+          },
+          {
+            "id": "D015596",
+            "term": "Nutrition Assessment"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D019411",
+            "term": "Clinical Laboratory Techniques"
+          },
+          {
+            "id": "D019937",
+            "term": "Diagnostic Techniques and Procedures"
+          },
+          {
+            "id": "D003933",
+            "term": "Diagnosis"
+          },
+          {
+            "id": "D008919",
+            "term": "Investigative Techniques"
+          },
+          {
+            "id": "D009483",
+            "term": "Neuropsychological Tests"
+          },
+          {
+            "id": "D011581",
+            "term": "Psychological Tests"
+          },
+          {
+            "id": "D004191",
+            "term": "Behavioral Disciplines and Activities"
+          },
+          {
+            "id": "D003625",
+            "term": "Data Collection"
+          },
+          {
+            "id": "D004812",
+            "term": "Epidemiologic Methods"
+          },
+          {
+            "id": "D017531",
+            "term": "Health Care Evaluation Mechanisms"
+          },
+          {
+            "id": "D011787",
+            "term": "Quality of Health Care"
+          },
+          {
+            "id": "D017530",
+            "term": "Health Care Quality, Access, and Evaluation"
+          },
+          {
+            "id": "D015991",
+            "term": "Epidemiologic Measurements"
+          },
+          {
+            "id": "D011634",
+            "term": "Public Health"
+          },
+          {
+            "id": "D004778",
+            "term": "Environment and Public Health"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT06891703",
+        "orgStudyIdInfo": {
+          "id": "ACI-15916-PD-2401"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "2024-515664-31-00",
+            "type": "CTIS"
+          }
+        ],
+        "organization": {
+          "fullName": "AC Immune SA",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "[18F]ACI-15916 PET in α-synucleinopathies",
+        "officialTitle": "Phase 1 Study to Evaluate [18F]ACI-15916 as a Potential PET Radioligand for Imaging α-synuclein Deposits in the Brain of Patients With Suspected α-synuclein Pathology Compared With Healthy Volunteers"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-11",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2025-03-20",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2026-03",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2026-03",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2025-03-18",
+        "studyFirstSubmitQcDate": "2025-03-18",
+        "studyFirstPostDateStruct": {
+          "date": "2025-03-24",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-11-18",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-11-19",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Parkinson's Disease (PD)",
+          "Multiple System Atrophy (MSA)",
+          "Dementia With Lewy Bodies (DLB)"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The goal of this clinical trial is to test whether we can reliably and safely measure the accumulation of pathological protein α-synuclein \\[involved in some diseases such as Parkinson's disease, Lewy body dementia and Multiple System Atrophy (MSA), collectively named α-synucleinopathies\\] using a new positron emission tomography (PET) tracer called \\[18F\\]ACI-15916. Both healthy people and people with (suspected) α-synuclein pathology will participate to this trial.\n\nThe main questions it aims to answer are:\n\n* whether \\[18F\\]ACI-15916 is safe and well tolerated when injected into participants\n* whether \\[18F\\]ACI-15916 reliably detects α-synuclein in the brain using PET technique.\n* whether there are differences in the amount of this protein between people with diseases related to α-synuclein accumulation in the brain and people without these diseases.\n\nParticipants will:\n\n* Visit the clinic to consent to their participation and to ensure they are eligible \\[physical and neurological examinations, questionnaires, blood and urine tests, ECG and in some cases a MRI and a PET scan with a licensed tracer (\\[18F\\]FE-PE2I) to confirm or not the disease\\].\n* Visit the clinic to receive the tracer \\[18F\\]ACI-15916 intravenously and be scanned in a PET scanner, during which blood will be collected (and optionally spinal fluid).\n* Receive a phone call from the clinic 1 week after the PET scan to report any symptoms and side-effects that they may be having.\n\nSome of the participants may be asked to come again to the clinic for a second PET scan with \\[18F\\]ACI-15916, allowing the researchers to determine if the measurements with the first PET scan are stable and reproducible.\n\nSome of the participants will participate in a specific part of the study to evaluate the distribution of the PET ligand in the whole body, with a similar visit schedule.",
+        "detailedDescription": "This is an open-label, first in human (FiH) positron emission tomography (PET) microdose study in patients with suspected α-synuclein pathology and healthy volunteers (HVs) using \\[18F\\]ACI-15916 as a novel radioligand. This study will be dedicated to qualification of the ligand \\[18F\\]ACI-15916 to measure α-synuclein pathology using PET investigations, including estimation of effective dose and test-retest reliability.\n\nThe study consists of four parts in which a total of up to 46 participants may be included:\n\n* Part 1: Up to 5 HVs and up to 5 patients with Parkinson's Disease (PD) will be included.\n* Part 2: Up to 30 additional subjects including: HV cases (maximum 10) and patients with α-synucleinopathies such as PD, Multiple System Atrophy (MSA) and Dementia with Lewy Bodies (DLB).\n* Part 3: Up to 10 participants from Part 1 and/or Part 2 will have a second PET measurement within one month after their initial PET measurement to evaluate test-retest variability and reproducibility.\n* Part 4. Up to 6 HVs (3 female and 3 male) will undergo a whole-body PET-CT examination to estimate the effective dose after one administration of \\[18F\\]ACI-15916.\n\nThe four study parts can overlap.\n\nThe study consists of a screening period of up to 60 days to assess participants' eligibility, a PET scan with \\[18F\\]ACI-15916 along with arterial blood sampling, and a safety phone call following the scanning visit. For participants in Part 3, a second PET scan with \\[18F\\]ACI-15916 will be performed up to one month after the first scan to evaluate test-retest variability and reproducibility, followed by a new safety phone call. For subjects in Part 4 (dosimetry), no arterial blood sampling will be performed. The total study duration will be up to 10 weeks for Part 1, 2 and 4 participants and up to 14 weeks for Part 3 participants."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria for all Participants:\n\n1. Subject is able to provide written informed consent, which must be obtained before any assessment is performed.\n2. Subjects must be able to understand and be willing to comply with study procedures, restrictions, and requirements.\n3. Body mass index is \\> 18 and \\< 31 kg/m2 and Bodyweight ≥ 50 kg and ≤ 100 kg.\n4. Female participants must not be of childbearing potential or agree to use highly effective methods of contraception.\n5. For subjects receiving arterial cannulation, an adequate circulation to the hand for safe placement of arterial line (as determined by Allen's test).\n\n   Additional Inclusion Criteria for Healthy Volunteers:\n6. Males and females aged ≥ 20 at the time of signing the informed consent.\n7. Normal MRI and DAT PET or SPECT (except for Part 4 participants), as judged by the investigator.\n8. The subject is, in the opinion of the investigator, generally healthy based on the assessment of medical history, physical examination, vital signs, ECG, and the results of the hematology, clinical chemistry, urinalysis, serology, and other laboratory tests.\n9. No family history of α-synucleinopathy, including PD, or other early-onset neurological disease associated with dementia.\n10. No personal history of clinically significant neurologic and/or psychiatric disorders.\n11. Have a Montreal Cognitive Assessment (MoCA) score ≥ 26\n12. No cognitive impairment as judged by the PI or delegated physician.\n\n    Additional Inclusion Criteria for Participants with α-synucleinopathies:\n13. Males and females aged ≥ 40 at the time of signing the informed consent.\n14. Subjects diagnosed with any of the following:\n\n    * Idiopathic PD based on MDS criteria\n    * PD with genetic risk factor (except some mutations as mentioned in exclusion criteria)\n    * Dementia with Lewy bodies (DLB)\n    * Diagnosis of possible or probable Multiple System Atrophy (MSA)\n15. Evidence of dopamine transporter deficit on DAT PET or SPECT imaging performed either as part of Screening or previously acquired (if not older than 6 months) and of good quality as judged by the investigator.\n16. Medications taken for symptomatic treatment of α-synucleinopathy must be maintained on a stable dosage regimen for at least 30 days before the Screening Visit.\n\nExclusion Criteria for all Participants:\n\n1. Female subjects pregnant, lactating or breastfeeding.\n2. Presence of psychiatric symptoms that may interfere with the objectives of the study, as judged by the investigator.\n3. Clinically significant concomitant disease or condition within 6 months prior to screening, that could interfere with the conduct of the study, or that would, in the opinion of the investigator, pose an unacceptable risk to the participant, or compromise the scientific quality of the study.\n4. History of brain surgery or any neurosurgical procedures. Subject has received treatment with a drug, antibody or vaccine targeting α-synuclein.\n5. Known or suspected drug, alcohol or other abuse, or positive urine drug screen which may interfere with the study objective, as judged by the investigator.\n6. History of severe allergy/hypersensitivity or ongoing allergy/hypersensitivity as judged by the investigator.\n7. Subject is involved in the planning and/or conduct of the study (i.e. part of the study team)\n8. History of clinically significant cardio-or cerebrovascular, pulmonary, renal, hepatic, neurological, mental or gastrointestinal disorder or any other major disorder that may interfere with the objectives of the study, as judged by the investigator.\n9. History of and/or screening brain MRI scan (except for Part 4 subjects) indicative of, clinically significant abnormality including but not limited to prior haemorrhage or infarct or \\>3 lacunar infarcts, except changes consistent with α-synucleinopathies for PD, MSA, DLB patients.\n10. Subjects being treated with any anticoagulants or antiplatelet drugs, except aspirin at doses of 100 mg daily or lower within 2 weeks of the planned arterial cannula placement (if performed) for either the baseline or retest imaging.\n11. Screening supine blood pressure \\> 150 mm Hg (systolic) or \\> 90 mm Hg (diastolic), following at least 5 minutes of supine rest. If blood pressure (BP) is \\> 150 mm Hg (systolic) or \\> 90 mm Hg (diastolic), the BP should be repeated two more times and the average of the three BP values should be used to determine the subject's eligibility.\n12. Electrocardiographic (ECG) abnormalities of clinical significance as judged by the investigator. Screening supine 12-lead ECG demonstrating QTc \\> 450 msec at Screening.\n13. Any contraindications to obtaining a brain MRI (except for Part 4 subjects), DaT-SPECT (except for Part 4 subjects) or PET (e.g., claustrophobia unresponsive to reassurance or low dose of an anxiolytic agent, metal implants not compatible with MRI or known hypersensitivity to the active substance or to any of the excipients) and ability to tolerate lying in the scanner for up to \\~180 minutes.\n14. Previous exposure to radiation for medical, scientific or other reasons which could have a high negative impact on the research subject, as judged by the investigator.\n15. Treatment with any other investigational therapy within 5 drug elimination half-lives or 30 days (whichever is longer) prior to inclusion in the study.\n\n    Additional Exclusion Criteria for Healthy Volunteers:\n16. Current use of CNS active drugs, including antidepressant or neuroleptic medications is not permitted, anti-inflammatory drugs or sleep medications may be allowed at the discretion of the investigator.\n17. History of neurological disease/condition that may interfere with the objectives of the study, as judged by the investigator.\n\n    Additional Exclusion Criteria for Participants with α-synucleinopathy:\n18. Medical history indicating a Parkinsonian syndrome other than idiopathic PD, including but not limited to, progressive supranuclear palsy, drug-induced parkinsonism, essential tremor, vascular parkinsonism, primary dystonia or corticobasal syndrome (CBS).\n19. Known carriers of certain familial PD gene mutations (PRKN, PINK1, DJ1, LRRK2), based on previous source documentation.",
+        "healthyVolunteers": true,
+        "sex": "ALL",
+        "minimumAge": "20 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D010300",
+            "term": "Parkinson Disease"
+          },
+          {
+            "id": "D019578",
+            "term": "Multiple System Atrophy"
+          },
+          {
+            "id": "D020961",
+            "term": "Lewy Body Disease"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D020734",
+            "term": "Parkinsonian Disorders"
+          },
+          {
+            "id": "D001480",
+            "term": "Basal Ganglia Diseases"
+          },
+          {
+            "id": "D001927",
+            "term": "Brain Diseases"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D009069",
+            "term": "Movement Disorders"
+          },
+          {
+            "id": "D000080874",
+            "term": "Synucleinopathies"
+          },
+          {
+            "id": "D019636",
+            "term": "Neurodegenerative Diseases"
+          },
+          {
+            "id": "D054969",
+            "term": "Primary Dysautonomias"
+          },
+          {
+            "id": "D001342",
+            "term": "Autonomic Nervous System Diseases"
+          },
+          {
+            "id": "D003704",
+            "term": "Dementia"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT05106036",
+        "orgStudyIdInfo": {
+          "id": "STU-2021-0735"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "R33AG068486",
+            "type": "NIH",
+            "link": "https://reporter.nih.gov/quickSearch/R33AG068486"
+          }
+        ],
+        "organization": {
+          "fullName": "University of Texas Southwestern Medical Center",
+          "class": "OTHER"
+        },
+        "briefTitle": "Preventing Cognitive Decline by Reducing BP Target Trial",
+        "officialTitle": "Preventing Cognitive Decline by Reducing BP Target Trial",
+        "acronym": "PCOT"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-11",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2022-07-11",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2026-08-31",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2026-08-31",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2021-09-27",
+        "studyFirstSubmitQcDate": "2021-10-22",
+        "studyFirstPostDateStruct": {
+          "date": "2021-11-03",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-11-25",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-12-03",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Cognitive Decline",
+          "Blood Pressure",
+          "Hypertension"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The PCOT study is a multi-site randomized trial of patients 70 years or older with high BP. The main goal of the study Preventing Cognitive Decline by Reducing BP Target Trial (PCOT) is to conduct a large pragmatic clinical trial (PCT) to test the hypothesis that patients who receive care with a combination of clinical decision support (CDS) and team-based care delivered in primary care practices will have better blood pressure control and a lower incidence of mild cognitive impairment and dementia than patients receiving usual medical care. Patients will be recruited from UT Southwestern Medical Center and Parkland Health \\& Hospital System.",
+        "detailedDescription": "Aim 1 The main aim is to compare the effects of intensive BP intervention between the intervention and usual care arm on the rate of change in TICS-m per year. The investigators will recruit 4,000 patients over 70 years of age with BP \\>130/80 mmHg from 2 diverse health systems and randomize patients within each health system to usual care or to a combination of care with clinical decision support, practice facilitators and Pharm Ds to lower home BP to \\< 130/80 mmHg. The primary outcome of this trial will be development cognitive decline as determined by a decrease in TICS-m scores from baseline. As a secondary outcome, the investigators will also measure the development of mild cognitive impairment or dementia in a subset of patients who show a decline of ≥3 points through adjudication.\n\nAim 2a Determine the potential harms of intensive lowering BP. The investigators aim to recruit 4,000 study participants and compare the effects of lowering home BP below 130/80 mmHg with usual care on hospitalizations, emergency department visits, cardiovascular events, deaths, syncope, falls, fractures, hypotension, electrolyte abnormalities and acute kidney injury. The investigators will capture measures of adherence and health care resource utilization. The investigators will assess QOL in 4,000 patients. The investigators will capture possible harms of lowering BP below 130/80 mmHg. The investigators have chosen clinical outcomes of relevance to all the stakeholders based on prior experience on pragmatic clinical trials and our prior experience in ICD-Pieces. Outcomes will be captured from the telephone assessment by study personnel and electronic health records and/or claims data and reflecting possible harms from all participants will include hospitalizations, emergency department visits, cardiovascular events, deaths, syncope, hypotension, falls, fractures, electrolyte disturbances and acute kidney injury. There will also be capture of adherence by pharmacy refill data. The investigators will capture BP readings from each visit. The investigators will also capture number of encounters with the health system as a measure of health care utilization.\n\nAim 2b Determine the impact of intensive BP management on QOL. Determine the impact of intensive BP management on QOL. Quality of life (QOL) scores will be obtained using the PROMIS Scale v1.2 - Global Health instrument annually after the administration of the TICS-m."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* High BP defined as at least 1 BP readings of SBP \\>= 130 or DBP \\>=80 during the 24 months prior to enrollment\n* Clinic visit with primary care provider within the last 24 months\n* Ability to write and speak English or Spanish\n* 70 years of age or older\n* Ability to understand and willingness to provide informed consent\n* Owns a smartphone\n\nExclusion Criteria:\n\n* Blood pressure consistently \\<130/80 mmHg\n* Presence of dementia, Alzheimer's disease, or significant neurological disease\n* Major and unstable heart disease (e.g., acute heart failure (systolic or diastolic), acute on chronic heart failure (systolic or diastolic), acute coronary syndrome or cardiac arrest, liver or renal transplantation\n* Under 70 years of age\n* Inability to write or speak English or Spanish\n* Chronic kidney disease stage 5 or ESKD\n* Chemotherapy\n* Any conditions judged by the medical providers to contraindicate participation due to risk to patient safety or lack of adherence\n* Expected life expectancy under a year",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "70 Years",
+        "stdAges": [
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D060825",
+            "term": "Cognitive Dysfunction"
+          },
+          {
+            "id": "D006973",
+            "term": "Hypertension"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003072",
+            "term": "Cognition Disorders"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          },
+          {
+            "id": "D014652",
+            "term": "Vascular Diseases"
+          },
+          {
+            "id": "D002318",
+            "term": "Cardiovascular Diseases"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT07449117",
+        "orgStudyIdInfo": {
+          "id": "CZ.02.01.01/00/23_025/0008726"
+        },
+        "organization": {
+          "fullName": "Masaryk University",
+          "class": "OTHER"
+        },
+        "briefTitle": "Effect of Striatal Temporal Interference Stimulation on Language Processing in Neurodegenerative Diseases",
+        "officialTitle": "Immediate Effects of Non-invasive Temporal Interference Stimulation Targeting Deep Fronto-Striatal Structures on Language Processing and Behavioral Performance in Patients With Neurodegenerative Diseases"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-02",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2026-03",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2027-12",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2028-12",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2026-02-27",
+        "studyFirstSubmitQcDate": "2026-02-27",
+        "studyFirstPostDateStruct": {
+          "date": "2026-03-04",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-02-27",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-03-04",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Mild Cognitive Impairment (MCI) Amnestic",
+          "Lewy Body Disease With Mild Cognitive Impairment",
+          "Parkinson's Disease With Mild Cognitive Impairment"
+        ],
+        "keywords": [
+          "Temporal Interference Stimulation",
+          "Functional Magnetic Resonance Imaging",
+          "Sentence Comprehension",
+          "Language Processing",
+          "Brain Connectivity",
+          "Striatum",
+          "Fronto-striatal Circuit",
+          "Mild Cognitive Impairment",
+          "Neurodegenerative Diseases"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The purpose of this study is to investigate the immediate effects of non-invasive temporal interference stimulation (TIS) targeting the striatum on sentence processing and brain connectivity in patients with neurodegenerative diseases.",
+        "detailedDescription": "The study aims to investigate the immediate effects of non-invasive temporal interference stimulation (TIS) targeting the deep structures of the fronto-striatal circuit involved in language processing. The research focuses on patients with neurodegenerative diseases who often suffer from communication deficits and impaired sentence comprehension.\n\nParticipants will undergo a cross-over design consisting of a single session of active TIS directed at the striatum and a session of placebo stimulation. The stimulation will be administered in a randomized order. The duration of the stimulation is approximately 20 minutes. During the stimulation, participants will perform a sentence comprehension task. Resting-state fMRI measurements will be taken before and after the stimulation to evaluate offline effects on brain connectivity and potential neuroplasticity."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Possible or probable Mild Cognitive Impairment with Lewy Bodies (MCI-LB), in Parkinson's Disease (MCI-PD) or Amnestic Mild Cognitive Impairment (aMCI).\n\nExclusion Criteria:\n\n* Any severe psychiatric disorder.\n* History of other neurological diseases affecting the central nervous system.\n* Severe head trauma.\n* Uncompensated internal or oncological disease.\n* Presence of MRI-incompatible metal in the body (e.g., pacemaker).",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "60 Years",
+        "maximumAge": "80 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D060825",
+            "term": "Cognitive Dysfunction"
+          },
+          {
+            "id": "D019636",
+            "term": "Neurodegenerative Diseases"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003072",
+            "term": "Cognition Disorders"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT03809351",
+        "orgStudyIdInfo": {
+          "id": "IRB-300002780 R19-006"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "1P30AG086401-01",
+            "type": "NIH",
+            "link": "https://reporter.nih.gov/quickSearch/1P30AG086401-01"
+          }
+        ],
+        "organization": {
+          "fullName": "University of Alabama at Birmingham",
+          "class": "OTHER"
+        },
+        "briefTitle": "UAB Alzheimer's Disease Center Core Cohort - Tau Imaging Substudy",
+        "officialTitle": "UAB Alzheimer's Disease Center Core Cohort - Tau Imaging Substudy",
+        "acronym": "AV1451 ADC"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-08",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2020-07-08",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2028-07",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2028-07",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2019-01-14",
+        "studyFirstSubmitQcDate": "2019-01-15",
+        "studyFirstPostDateStruct": {
+          "date": "2019-01-18",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-08-10",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-08-12",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Alzheimer Disease"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The primary objective of this study is to measure the concentration and the regional brain distribution of pathologic tau deposition using the PET tracer AV-1451 in participants in the UAB-ADC cohort. The amount and distribution of AV-1451 in the brain will be correlated to demographic, clinical, genetic, and biospecimen data acquired through the separate ongoing UAB-ADC study. Assessment of interactions between race and vascular risk factors, brain tau levels measured with AV-1451-PET, and cognitive status will be the primary outcome of this imaging study. Individuals participating in this AV-1451-PET/MRI study will also be enrolled in an ongoing \\[C-11\\]PiB-PET/MRI study (IRB-300001005, IND-138128), and their amyloid, tau and cognitive statuses will be compared in terms of race and vascular risk factors."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n1. Enrollment in the UAB-ADC study under a separate IRB-approved research protocol.\n2. Enrollment in the UAB-ADC amyloid-PET substudy under a separate IRB-approved research protocol. The amyloid-PET study does not have to have been completed prior to enrollment and participation in this tau-PET study.\n3. Negative urine or serum hCG test within 2 days of \\[F-18\\]AV-1451 administration in women of child bearing potential. Women who are post-menopausal with at least 1 year since last menses or documented surgical sterilization will not require pregnancy testing.\n\nExclusion Criteria:\n\n1. Meets any exclusion criteria for the UAB-ADC study.\n2. Inability or contraindication for undergoing MRI and/or PET imaging\n3. Inability to participate in the imaging studies due to severity of dementia",
+        "healthyVolunteers": true,
+        "sex": "ALL",
+        "minimumAge": "50 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000544",
+            "term": "Alzheimer Disease"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003704",
+            "term": "Dementia"
+          },
+          {
+            "id": "D001927",
+            "term": "Brain Diseases"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D024801",
+            "term": "Tauopathies"
+          },
+          {
+            "id": "D019636",
+            "term": "Neurodegenerative Diseases"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT07766174",
+        "orgStudyIdInfo": {
+          "id": "197038"
+        },
+        "organization": {
+          "fullName": "University of Utah",
+          "class": "OTHER"
+        },
+        "briefTitle": "Transforming Maternal Mental Health Care",
+        "officialTitle": "Transforming Maternal Mental Health Care Using Innovative Digital Solutions for the Intermountain West",
+        "acronym": "IUFU"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-08",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2026-09-01",
+          "type": "ESTIMATED"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2031-04-30",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2032-04-30",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2026-06-02",
+        "studyFirstSubmitQcDate": "2026-08-10",
+        "studyFirstPostDateStruct": {
+          "date": "2026-08-14",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-08-26",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-08-31",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Perinatal Mental Health"
+        ],
+        "keywords": [
+          "Pregnant",
+          "Mental Health Check-Ins and Support",
+          "App",
+          "Care Navigator",
+          "Real-Time Vital Signs Data",
+          "Nutrition and Wellness Guidance",
+          "Education and Birthing Support",
+          "Exercise and Pelvic Floor Rehab"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The overall objective of this pilot study is to assess the feasibility of a RCT comparing Lōvu-augmented with usual prenatal care at UU. This would be a critical next step toward the long-term goal to identify technology-based interventions to improve maternal mental health in the Intermountain West. The investigator's central hypothesis is that Lōvu will be both feasible and have high patient and clinician satisfaction, and that Lōvu-generated data will be a promising substrate for AI-based mental health risk stratification.",
+        "detailedDescription": "Collectively, perinatal mental health disorders impact 20% of pregnancies in the U.S. and are the leading cause of pregnancy-related mortality, contributing to 23% of deaths. In the U.S., 50-75% of perinatal depression (PND) is undiagnosed and PND is untreated in nearly 85%. This is a result, in part, of the systematic underfunding of investigations into maternal mental health. The critical relevance of this reality for \"Women Across the Lifespan\" could not be more pressing than in Utah and the Intermountain West, where expanding maternity care deserts limit access to mental health care, and suicide rates are 57% above the national average. The traditional prenatal care paradigm does not address maternal mental health needs. It utilizes relatively wide intervals between prenatal visits during the first three quarters of pregnancy-a time of substantial need for education, psychosocial support, and mental health services-only to culminate in a 'care cliff' postpartum, when the risk of mental health crises and maternal mortality is highest.\n\nTechnology has enabled remote visits, but telehealth implementations remain anchored to the traditional prenatal care model and consist of two elements: virtual rather than in-person visits, and EHR-based electronic messaging. This amounts to a \"worst of both worlds\", in which diluted personal connection and the escalating burden of e-messaging contribute to clinician burnout while the core deficiencies of the traditional paradigm remain. Thus, there is a critical need for novel approaches to prenatal care that more fully deliver on the promise of technology to 1) increase patient access and support, 2) reduce clinician burnout, and 3) improve maternal and newborn outcomes.\n\nAim 1: Assess the feasibility of a randomized, controlled trial comparing usual vs. Lōvu-augmented prenatal care among N=50 pregnant patients. Feasibility will be defined as the successful recruitment of \\> 50% of patients approached and 90% participant retention for the 12-month study period.\n\nAim 2: Assess mental health screening completion, care utilization, and user satisfaction in Lovu-augmented vs usual care. Investogators will assess the following outcomes: for clinical care: participant completion of PHQ-9 (PND), GAD-7 (anxiety), NIDA quick screen (substance use), and time to mental health referral and first visit; for utilization: burden of patient-generated e-messages and phone calls to the UU MFM clinic; satisfaction: telehealth usability questionnaire12 and telemedicine satisfaction questionnaire;13 system usability scale.14\n\nAim 3: Utilize pilot study data to inform the future development of a novel AI-based mental health early warning and referral system. Investigators will 1) harmonize data from the user app, digital sensors, UU electronic health records (EHR) and 2) develop streamlined data transfer and harmonization workflows."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Pregnant people receiving care at University of Utah Clinics\n* Less than 14 weeks gestation at enrollment\n\nExclusion Criteria:\n\n* Patients enrolled in other studies utilizing remote monitoring",
+        "healthyVolunteers": true,
+        "sex": "FEMALE",
+        "minimumAge": "18 Years",
+        "maximumAge": "45 Years",
+        "stdAges": [
+          "ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000544",
+            "term": "Alzheimer Disease"
+          },
+          {
+            "id": "D009043",
+            "term": "Motor Activity"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003704",
+            "term": "Dementia"
+          },
+          {
+            "id": "D001927",
+            "term": "Brain Diseases"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D024801",
+            "term": "Tauopathies"
+          },
+          {
+            "id": "D019636",
+            "term": "Neurodegenerative Diseases"
+          },
+          {
+            "id": "D019965",
+            "term": "Neurocognitive Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          },
+          {
+            "id": "D001519",
+            "term": "Behavior"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT05334992",
+        "orgStudyIdInfo": {
+          "id": "TexasTechU"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "tech",
+            "type": "OTHER",
+            "domain": "TexasTechU"
+          }
+        ],
+        "organization": {
+          "fullName": "Texas Tech University",
+          "class": "OTHER"
+        },
+        "briefTitle": "Improving Mental Health for Care Partners of Persons With AD/ADRD",
+        "officialTitle": "Reducing Pre-Death Grief, Burden, and Stress in Informal Caregivers: A Group and Individual Therapy Approach"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-02",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2022-02-01",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2028-12-31",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2028-12-31",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2022-03-21",
+        "studyFirstSubmitQcDate": "2022-04-11",
+        "studyFirstPostDateStruct": {
+          "date": "2022-04-19",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-02-09",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-02-12",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Mental Health Issue",
+          "Grief",
+          "Burden, Caregiver"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "The overarching goal of this project is to evaluate if evidence-based interventions can reduce PDG, burden, and stress in informal caregivers of individuals with dementia",
+        "detailedDescription": "Aim 1: Examine the effects of two individual evidence-based therapies for informal caregivers of dementia patients.\n\nAim 2: Examine the effects of a modified evidence-based group therapy for informal caregivers of dementia patients."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Participants must be informal caregivers (e.g., spouse; child; close friend) of individuals with dementia\n* Informal caregivers can be family members or close friends\n* Adults (18 to 89 years old) who read, write, and speak in English\n* Mental Health Diagnosis (e.g., Generalized Anxiety Disorder; Major Depressive Disorder\n\nExclusion Criteria:\n\n* Formal caregivers (who are being paid to take care of the patient)\n* Any informal caregivers with cognitive impairment is identified during the assessment.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "120 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000084802",
+            "term": "Caregiver Burden"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D013315",
+            "term": "Stress, Psychological"
+          },
+          {
+            "id": "D001526",
+            "term": "Behavioral Symptoms"
+          },
+          {
+            "id": "D001519",
+            "term": "Behavior"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000099025",
+            "term": "Mindfulness-Based Cognitive Therapy"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D064866",
+            "term": "Mindfulness"
+          },
+          {
+            "id": "D015928",
+            "term": "Cognitive Behavioral Therapy"
+          },
+          {
+            "id": "D001521",
+            "term": "Behavior Therapy"
+          },
+          {
+            "id": "D011613",
+            "term": "Psychotherapy"
+          },
+          {
+            "id": "D004191",
+            "term": "Behavioral Disciplines and Activities"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT05925101",
+        "orgStudyIdInfo": {
+          "id": "Pro2022002044"
+        },
+        "organization": {
+          "fullName": "Rutgers, The State University of New Jersey",
+          "class": "OTHER"
+        },
+        "briefTitle": "Basic and Applied Research on Extinction Bursts",
+        "officialTitle": "Basic and Applied Research on Extinction Bursts"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-04",
+        "overallStatus": "RECRUITING",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2023-07-07",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2028-03-01",
+          "type": "ESTIMATED"
+        },
+        "completionDateStruct": {
+          "date": "2028-05-31",
+          "type": "ESTIMATED"
+        },
+        "studyFirstSubmitDate": "2023-06-21",
+        "studyFirstSubmitQcDate": "2023-06-21",
+        "studyFirstPostDateStruct": {
+          "date": "2023-06-29",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-04-28",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-04-29",
+          "type": "ACTUAL"
+        }
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Problem Behavior",
+          "Aggression",
+          "Self Injury"
+        ]
+      },
+      "descriptionModule": {
+        "briefSummary": "Although highly effective, treatments like FCT include extinction, which can have adverse side effects. The extinction burst, an increase in the frequency or intensity of destructive behavior at the start of treatment, is the most common side effect of extinction, and can increase the risk of harm to the patient and others. The goal of the current study is to evaluate the prevalence of extinction bursts when various parameters of reinforcement (i.e., rate, magnitude, quality) are manipulated.",
+        "detailedDescription": "PRELIMINARY PROCEDURES\n\nPaired-Stimulus Preference Assessment As part of our standard clinical practice, the investigators will use a paired-stimulus preference assessment to evaluate each participant's preference for various leisure items. During this assessment, therapists will select an array of items informed by the Reinforcer Assessment for Individuals with Severe Disability (RAISD), which is a structured interview between the behavior analyst and the participant's caregiver to identify stimuli that may serve as reinforcers. Then, on each trial of the assessment, the therapist will place two of the items (e.g., iPad, Nintendo Switch) in front of the participant. When the participant reaches for a given item, the therapist will remove the unselected item while the data collector records which of these two items the participant approached and the participant's consumption of the selected item. After approximately 30 s, the therapist will present another pair of stimuli to the participant, with processes in place to randomize the positioning (left, right) of the stimuli and the order in which pairs are presented. This will continue until the therapist presents all potential pairs of stimuli to the participant. The data collector will then compute and graph the number of times each stimulus was selected to derive a preference hierarchy (e.g., low, moderate, high). The most selected item that the participant reliably consumes will serve as the stimulus programmed in Experiment 3's high-quality condition and the tangible reinforcer for all conditions in Experiments 1 and 2 should the participant's destructive behavior be maintained by tangible reinforcement. The least selected item with which the participant interacts will serve as the stimulus programmed in Experiment 3's low-quality condition.\n\nCompeting-Stimulus Assessment As part of our standard clinical practice, the investigators will use a competing-stimulus assessment to evaluate each participant's preference for various food and leisure items relative to the functional reinforcer for destructive behavior. During this assessment, therapists will select an array of items informed by the RAISD. Then, on each 2-min trial of the competing-stimulus assessment, the therapist will place one of the stimuli (e.g., M\\&Ms) in front of the participant and allow the participant to interact with or consume that item. If at any point during the trial, the participant displays destructive behavior, the therapist will deliver the functional reinforcer (e.g., attention) for 20 s. During each trial, trained observers record the duration of engagement with each competing stimulus and each occurrence of destructive behavior. Each stimulus is assessed three times (i.e., three 2-min trials) in a quasirandom order. Then, the results are tabulated and summarized in a graph showing the duration of stimulus engagement and the rate of destructive behavior for each stimulus. The highest competing stimulus is the one with the highest duration of stimulus engagement and the lowest rates of destructive behavior. Researchers will use this selected stimulus in Experiment 4 in the rate-drop/quality increase condition to determine whether delivering a higher quality reinforcer will counteract the effects of a drop in the rate of reinforcement and prevent or mitigate an extinction burst at the start of\n\nFCT.\n\nFunctional Analysis As part of our standard clinical practice, the investigators will conduct a functional analysis of each participant's destructive behavior. Functional analyses help identify what consequences (e.g., access to attention) maintain destructive behavior. Prior to conducting a functional analysis, researchers routinely conduct a risk assessment to ensure that it is safe to conduct a functional analysis with each patient using the procedures developed in our program. Researchers also will conduct preference assessments with each participant to determine a preference hierarchy (e.g., of toys, foods). The investigators will use this information to individualize each condition of the functional analysis for each participant. Researchers will extend session duration when indicated (e.g., if it appears that destructive behavior begins to occur near the end of a 5-min session). The functional analysis will include at least three test conditions (social attention, demand, and monitored alone/ignore) and one control condition (play) that researchers conduct within a multielement design. Researchers will interview the caregivers prior to the functional analysis to determine the relevant stimuli (e.g., types of attention, preferred items, demands) to program within each condition. In accordance with \"best clinical practice,\" researchers will include an additional test condition (tangible) if the caregiver reports providing, or is observed to provide, preferred tangible items following destructive behavior. For some participants who do not display destructive behavior during standard test conditions, researchers may evaluate other test conditions relevant to their case to determine idiosyncratic sources of reinforcement (e.g., social control, where adult compliance with child requests functions as reinforcement for destructive behavior). Researchers will program a uniquely colored surgical smock, worn by the therapist, for each condition to facilitate discrimination between test and control conditions.\n\nIn the attention condition, the therapist will provide the participant with high-quality attention for 1 min prior to the session. Then, the therapist will withdraw attention and pretend to read a magazine while the participant has an opportunity to play with a moderately preferred toy. If the participant emits destructive behavior, the therapist will deliver 20 s of vocal (e.g., \"Stop that, you'll hurt yourself\") and physical (e.g., rubbing the participant's back) attention according to a fixed-ratio 1 (FR 1) schedule. In the demand condition, the therapist will deliver non-preferred demands (e.g., \"Write your name\") using sequential verbal, modeled, and physical prompts every 5 s. Compliance will produce praise (e.g., \"Nice job writing your name!\"), noncompliance will result in physical guidance (e.g., hand- over-hand prompting the participant to write his or her name) and no praise, and destructive behavior will produce a 20-s break from demands on an FR 1 schedule. In the monitored alone condition, the participant will be alone in a treatment room without any toys or materials, but a therapist will monitor the participant from behind a one-way observation window. If the participant displays aggression toward others, researchers will conduct a monitored ignore condition instead of an alone condition, during which a therapist will monitor the participant from inside the therapy room but will not interact with the participant or respond to the participant's destructive behavior. In the tangible condition, the therapist will provide the participant access to a highly preferred toy for 1 min prior to the start of the session. The therapist will then withdraw the toy at the beginning of the session and return it to the participant for 20 s following destructive behavior according to an FR 1 schedule. In the control condition (play), the therapist will provide continuous access to the participant's highly preferred toy from the tangible condition and will deliver attention every 20 s for the absence of destructive behavior (e.g., \"Nice job playing with your blocks!\"). Researchers will conduct at least three sessions in each condition or until researchers verify that destructive behavior is maintained by social reinforcement (e.g., access to attention or tangible items) using the ongoing visual inspection criteria developed and validated by our research team.\n\nIN-HOME BASELINE GENERALIZATION SESSIONS\n\nFollowing the functional analysis described above, the treatment team determines whether it is safe to conduct baseline sessions in the home prior to initiating treatment. If the participant caused physical harm to self, others, or the environment or if they required specialized equipment (e.g., protective equipment; a padded treatment room; emergency restraint) to prevent such harm during the functional analysis, then researchers do not conduct baseline sessions in the home, but still collect post-treatment generalization sessions in the home (described below). If it is safe to conduct baseline sessions in the home, researchers use the following procedures.\n\nBaseline Sessions Researchers collect a series of three 5-min baseline sessions in the test condition from the functional analysis with the highest rates of destructive behavior. Prior to the first session, the therapist inspects the room in the home where the sessions will take place and removes any objects that could be dangerous to the participant or the caregivers (e.g., an object that could be used as a weapon). Next, researchers use behavioral skills training to teach the caregiver how to implement the session procedures using verbal instruction, modeling, behavioral rehearsal (i.e., role-play with a therapist), and performance feedback. Researchers train each caregiver to a mastery criterion (i.e., at least 90% accuracy across all components when implementing practice sessions with a therapist) prior to conducting baseline sessions with the participant. Additionally, prior to conducting session in the home, researchers train caregivers in our managing-challenging-behavior techniques (e.g., blocking hits and kicks, releasing bites) until the caregivers implement all techniques with 90% accuracy during role-play. If at any point the participant displays destructive behavior that poses an imminent danger to self, others, or the environment that cannot be safely blocked (e.g., eye poking, biting), the therapist terminates the session.\n\nData Collection During generalization sessions, our research team will monitor the sessions inconspicuously (e.g., collecting directo bservation data from a nearby hallway using specialized software; routinely checking inter-observer agreement).\n\nGeneral Instructions to Caregiver \"We are asking for your assistance in helping us to understand and observe your child's destructive behavior. We would appreciate you help in working to replicate the challenging situations that you discussed with your primary therapist. Our goal in conducting these sessions is to help us to identify things and may trigger and reinforce your child's problem behavior in the home. The session that we would like you to conduct will be 5 minutes in length. For each 5- minute session, we would like you to follow the procedures described below as closely as possible. After you read the instructions, we will answer any questions that you have before we start the session. If at any point, you feel that you or your child are unsafe, please let a therapist know, and we will immediately assist in keeping you and your child safe. It is our goal to maintain safety throughout the assessment and treatment of your child's destructive behavior.\"\n\nCondition-Specific Instructions to Caregiver The therapist will set up the materials and arrange the room and select the specific instructions to give to the caregiver from the options below based on the results of the functional analysis (e.g., for escape-reinforced destructive behavior, they will set up for a demand condition and use the instructions below labeled \"Demand\"). The therapist will give the caregiver a copy of the selected instructions described below, have them read it, and then answer any questions they have.\n\nDemand. \"In this session, we want you to instruct your child to complete a variety of nonpreferred tasks from the list of such tasks that you and your child's primary therapist specified during the parent interview. The session will last 5 minutes. You may use any materials in the room that you would like to complete the instructions during this session. Please do exactly what you normally do at home to get your child to complete such tasks. We are interested in observing how you give instructions and how your child responds to those instructions. When the 5-minute session is over, a therapist will give you a brief break. Again, if at any point you feel that you or your child are not safe, please let a therapist know, and we will immediately assist in keeping you and your child safe.\"\n\nAttention. \"In this session, we want to observe you and your child in a situation in which you must manage your child's behavior while you also complete a task. In this case, the task will be to complete this questionnaire using the pencil and clipboard we have provided to you. While you complete the task, please interact with your child as you normally would. After one minute, you will be signaled by a therapist to tell your child that you have some work to do and that they should play quietly. After you tell your child this, please move away from your child and work on the task. Please react to your child's behaviors as you normally would but do your best to complete the task we have placed on the clipboard throughout the 5-minute session. If you complete the task, please review it, and continue to \"work on it\" until the session is complete. When the 5-minute session is over, a therapist will give you a brief break. Again, if at any point you feel that you or your child are not safe, please let a therapist know, and we will immediately assist in keeping you and your child safe.\"\n\nTangible. \"In this session, please give your child this toy that we have identified as one of your child's most preferred items. After one minute, you will be signaled by a therapist to take the toy away from your child. You should play with the toy/item for the remainder of the session. If your child displays destructive behavior, please react to it as you normally would. When the 5-minute session is over, a therapist will give you a brief break. Again, if at any point you feel that you or your child are not safe, please let a therapist know, and we will immediately assist in keeping you and your child safe.\"\n\nGENERAL EXPERIMENTAL PROCEDURES\n\nSelecting the Functional Communication Response (FCR) During functional communication training (FCT), researchers often teach the child an FCR modality that therapists can physically guide, such as a card exchange or card touch, because it is critically important to minimize exposure to the establishing operation for destructive behavior during the early stages of FCT (i.e., limiting the time the child does not have access to the functional reinforcer). Typically, researchers create a laminated index card with a photograph of the child consuming the reinforcer (e.g., the child playing with an iPad) and then teach the child to either exchange or touch the FCR card to gain access to the reinforcer maintaining destructive behavior. Caregiver input (e.g., preference for a vocal response) and participant-specific factors (e.g., low vision) are also considered when selecting the FCR for each patient.\n\nExperimental Design Researchers will evaluate the effects of functional communication training on destructive behavior using an ABAB (baseline, FCT, baseline, FCT) reversal design. Researchers will conduct within-participant comparisons of FCT conditions using an embedded alternating-treatments design. All sessions will last 5 min. Researchers will conduct Experiment 3 with participants whose destructive behavior is reinforced by access to tangible items so that researchers can vary reinforcement quality based on the paired-stimulus preference assessment.\n\nData Collection and Computation of Interobserver Agreement and Procedural Integrity Trained observers will collect data on the frequency of participant destructive behavior and therapist (or caregiver) implementation of the assessment and treatment protocols to assess procedural integrity using BDataPro® software developed in our lab. A second observer will score at least one third of sessions independently to assess data accuracy (reliability). The second data collector will be blind to the project's research questions and hypotheses for at least 1/6th (17%) of sessions. For at least one third of sessions, observers will collect procedural-integrity data to ensure that the assessment and treatment protocols are implemented as planned. That is, researchers will collect data on whether therapists correctly implemented the planned antecedents, prompts, and consequences for each target response. Researchers will then transform the data into a percentage-correct measure by dividing the number of correct therapist responses by the number of opportunities for a correct response. Researchers will retrain therapists who show less than 90% implementation accuracy for two consecutive sessions. The reliability of direct-observation measures is typically established through measurement of interobserver agreement. To calculate inter-observer agreement, sessions will be partitioned into successive, 10-s intervals (e.g., Seconds 0-9, 10-19, 20-29). In each 10-s interval, researchers will determine whether the observers agreed or disagreed on the frequency of each target behavior. An exact agreement will be defined as both observers recording the same frequency of a target behavior in each 10-s interval. Researchers will then calculate the percentage of exact agreements per session. Interobserver agreement in our program averages above 90%, and observers undergo retraining if agreement levels fall below 80% for two consecutive sessions.\n\nEXPERIMENT-SPECIFIC PROCEDURES\n\nExperiment 1: Effect of Reinforcement Rate Drop\n\nBaseline. Researchers will conduct three identical baselines each in separate and distinct contexts differing in the color of the room and the therapists' clothing (e.g., blue versus yellow versus brown rooms and therapist clothing). Each baseline will be identical to the condition from the functional analysis with the highest rates of destructive behavior, except for the following modifications. Researchers will program an independent, dense variable-interval (VI) 1.5-s schedule of reinforcement for destructive behavior in each baseline and deliver the reinforcer for 20 s each time to make the baselines highly like typical clinical baselines. Researchers will use independent VI schedules rather than an FR 1 schedule to better control and equate the obtained rate of reinforcement in each condition. The investigators have used VI schedules for this purpose to good effect in multiple prior studies on resurgence of destructive behavior, the investigators have used both VI schedules and FR 1 schedules and produced comparable results. Researchers will equate reinforcement magnitude (i.e., each reinforcer delivery lasting 20 s) and quality (i.e., the functional reinforcer identified during the functional analysis) across the baseline conditions.\n\nStability criteria. Researchers will conduct at least five baseline sessions in each context until the standard deviation of responding in the last five sessions of each condition is no more than 50% of the mean of those sessions.\n\nTreatment. The reinforcement magnitude and quality will be identical to baseline. Researchers will randomly assign the three treatments (extinction-only, rate-drop, and rate-hold conditions) to the color-correlated baseline contexts. In the extinction-only condition, researchers will discontinue reinforcement for destructive behavior, but not deliver alternative reinforcement for the FCR. In the rate-drop condition, researchers will place destructive behavior on extinction and deliver the functional reinforcer for the FCR according to a VI 15-s reinforcement schedule (i.e., a robust reduction in reinforcement rate relative to baseline). In the rate-hold condition, researchers will place destructive behavior on extinction and deliver the functional reinforcer for the FCR according to a yoked VI 1.5-s schedule that matches the exact rate and timing of reinforcer deliveries for destructive behavior in baseline. To teach the participant the FCR in the rate-drop and rate-hold conditions, researchers will embed a constant prompt delay in each FCT condition. Each time the programmed VI schedule elapses, researchers will implement a 5-s prompt delay wherein researchers allow up to 5 s for the participant to emit the FCR independently prior to prompting the response (e.g., physically guiding the participant to exchange the FCR card). To minimize adventitious reinforcement of destructive behavior in the FCT conditions, researchers will incorporate a 3-s changeover delay by withholding reinforcement for FCRs until the response occurs without destructive behavior occurring within 3 s of the FCR. Researchers will continue treatment sessions until researchers observe an 85% reduction in destructive behavior relative to baseline across all three conditions for two consecutive sessions.\n\nExperiment 2: Effect of Reinforcement Magnitude Drop\n\nBaseline. Baseline procedures will be identical to Ex 1 except researchers will program three times the magnitude of reinforcement. That is, researchers will program 60 s of reinforcement, instead of 20 s, when researchers deliver the functional reinforcer in each baseline context. Researchers will equate reinforcement quality (i.e., the functional reinforcer identified during the functional analysis) and rate (i.e., VI 1.5-s schedule) across the baseline conditions. Researchers will use the stability criteria described above for Ex 1a to determine when to end baseline and initiate treatment.\n\nTreatment. The reinforcement rate and quality will be identical to baseline. Researchers will randomly assign the three treatments (extinction-only, magnitude-drop, and magnitude-hold conditions) to the color-correlated baseline contexts. In the extinction-only condition, researchers will discontinue reinforcement for destructive behavior, but not deliver alternative reinforcement for the FCR. In the magnitude-drop condition, researchers will place destructive behavior on extinction and deliver the functional reinforcer for the FCR for 6 s (i.e., a large reduction in reinforcement magnitude relative to baseline). In the magnitude-hold condition, researchers will place destructive behavior on extinction and deliver the functional reinforcer for the FCR for the same duration as in baseline (i.e., 60 s). To teach the participant the FCR, researchers will incorporate the prompt-delay and changeover-delay procedures as described in Ex 1a's FCT conditions. Researchers will continue treatment sessions until researchers observe an 85% reduction in destructive behavior relative to baseline across all three conditions for two consecutive sessions.\n\nExperiment 3: Effect of Reinforcement Quality Drop\n\nParticipant Selection. Researchers will conduct Ex 3 with participants who display destructive behavior reinforced by access to tangible items so that researchers can vary reinforcement quality using the results of a paired-stimulus preference assessment.\n\nBaseline. Baseline procedures will be identical to Ex 1, except that researchers will conduct two identical baselines in separate and distinct contexts (rather than three). Researchers will use the stability criteria described above for Ex 1a to determine when to end baseline and initiate treatment.\n\nTreatment. The reinforcement rate and magnitude will be identical to baseline. Researchers will randomly assign the quality-drop and quality-hold conditions to the color-correlated baseline contexts. In the quality-drop condition, researchers will place destructive behavior on extinction and deliver the reinforcer from the paired-choice assessment that the participant chooses approximately 1/12th as often as the highest preferred stimulus from that assessment contingent on the FCR (i.e., which will produce a large reduction in reinforcement quality relative to baseline). In the quality-hold condition, researchers will place destructive behavior on extinction and deliver the same reinforcer from baseline (i.e., the highest quality reinforcer from the paired-stimulus preference assessment) for the FCR. To teach the participant the FCR, researchers will incorporate the prompt-delay and changeover-delay procedures as described in Ex 1's FCT condition. Researchers will continue treatment sessions until researchers observe an 85% reduction in destructive behavior relative to baseline across both conditions for two consecutive sessions.\n\nExperiment 4: Clinical Study on Counteracting Reinforcement-Rate Drop with Quality Increase.\n\nBaseline. Baseline procedures will be identical to Ex 1, except that researchers will conduct two identical baselines in separate and distinct contexts (rather than three). Researchers will use the stability criteria described above for Ex 1 to determine when to end baseline and initiate treatment.\n\nTreatment. The reinforcement magnitude will be identical to baseline. The investigators will randomly assign the rate-drop-only and rate-drop/quality-increase conditions to the color-correlated baseline contexts. In the rate-drop-only condition, researchers will place destructive behavior on extinction and deliver the functional reinforcer for the FCR according to a VI 15-s reinforcement schedule (i.e., a robust reduction in reinforcement rate relative to baseline). In the rate-drop/quality-increase condition, researchers will program the same large drop in reinforcement rate by delivering reinforcement on a VI 15-s schedule for the FCR, but also will increase reinforcement quality by simultaneously delivering the highest quality reinforcer identified during the competing-stimulus assessment described above. To teach the participant the FCR, researchers will incorporate the prompt-delay and changeover-delay procedures as described in Ex 1's FCT condition. Researchers will continue treatment sessions until an 85% decrease in destructive behavior is observed relative to baseline across both conditions for two consecutive sessions.\n\nPost-Study Procedures\n\nResearchers will continue to provide relevant treatment services following the conclusion of the patient's participation in the experiment. After initial ABAB designs with dense reinforcement schedules for FCRs (like those in Experiments 1, 2, 3, and 4), researchers progress treatment with systematic evaluations of reinforcement-schedule thinning. Over the course of several weeks, researchers incorporate discriminative stimuli (e.g., multiple or chained schedules) and progressively thin reinforcement to a practical reinforcement schedule selected by the caregiver. During the last two weeks of treatment, researchers transfer treatment to relevant stakeholders (e.g., caregivers, teachers) and contexts (e.g., home, school, community).\n\nIN-HOME POST-TREATMENT GENERALIZATION SESSIONS\n\nAfter the post-study procedures described above, caregivers will implement treatment sessions in their home to assess for generalization of treatment effects. Researchers will use behavioral skills training to teach the caregiver how to implement the treatment procedures using verbal instruction, modeling, behavioral rehearsal (i.e., role-play with a therapist), and performance feedback. Researchers will train each caregiver to a mastery criterion (i.e., at least 90% accuracy across all components when implementing practice sessions with a therapist) prior to conducting treatment sessions with the participant. In addition, researchers have the caregiver implement treatment sessions under close supervision in our clinic setting before having them implement the treatment in the home setting. During generalization sessions in the home, our research team will monitor the sessions inconspicuously (e.g., collecting data from a nearby hallway) and provide the caregiver with performance feedback as needed.\n\nAfter the participants meet their behavioral goals in the clinic, caregivers will implement the terminal mult-FCT procedures within their homes during three 5-min sessions under conditions that parallel the in-home baseline generalization condition described above (e.g., If the patient displayed the highest rates of destructive behavior in the demand condition of the functional analysis, the treatment generalization sessions will also occur in a demand context). Researchers will use data from the generalization sessions to evaluate how our final FCT treatment works for caregivers in a natural setting. Researchers will terminate any session if destructive behavior increases to unsafe levels for the caregivers or participants. Researchers will provide additional caregiver training, if necessary, until participants exhibit low levels of destructive behavior with their caregivers, as is typical of our routine clinical practice."
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n1. children aged 3 to 17;\n2. problem behavior that occurs at least 10 times a day, despite previous treatment;\n3. problem behavior maintained by social positive reinforcement;\n4. stable protective supports for self-injurious behavior (e.g., helmet) with no anticipated changes during enrollment;\n5. on a stable psychoactive drug regimen for at least 10 half-lives per drug or drug free;\n6. stable educational plan and placement with no anticipated changes during the child's treatment.\n\nExclusion Criteria:\n\n1. patients currently receiving 15 or more hours per week of treatment for their problem behavior;\n2. DSM-5 diagnosis of Rett syndrome or other degenerative conditions (e.g., inborn error of metabolism);\n3. a comorbid health condition or major mental disorder that would interfere with study participation;\n4. occurrence of self-injury during study assessments that presents a risk of serious or permanent harm (e.g., detached retinas) based on our routine clinical-risk assessment;\n5. patients requiring changes to protective supports for self-injury or drug treatment, but we will invite these patients to participate when protective supports and drug regimen are stable.",
+        "healthyVolunteers": true,
+        "sex": "ALL",
+        "minimumAge": "3 Years",
+        "maximumAge": "17 Years",
+        "stdAges": [
+          "CHILD"
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-09-11"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000066553",
+            "term": "Problem Behavior"
+          },
+          {
+            "id": "D000374",
+            "term": "Aggression"
+          },
+          {
+            "id": "D016728",
+            "term": "Self-Injurious Behavior"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D001526",
+            "term": "Behavioral Symptoms"
+          },
+          {
+            "id": "D001519",
+            "term": "Behavior"
+          },
+          {
+            "id": "D002652",
+            "term": "Child Behavior"
+          },
+          {
+            "id": "D000096762",
+            "term": "Aberrant Motor Behavior in Dementia"
+          },
+          {
+            "id": "D012919",
+            "term": "Social Behavior"
+          }
+        ]
+      }
+    }
+  }
+]
