@@ -1,0 +1,10 @@
+("retrograde cricopharyngeus" OR "retrograde cricopharyngeal" OR "R-CPD") AND PUB_YEAR:2024  
+* Count: 28
+("cricopharyngeal achalasia" OR "antegrade cricopharyngeal" OR "cricopharyngeal dysfunction") AND PUB_YEAR:2024
+* Count: 44
+("esophageal achalasia" OR "achalasia cardia") AND PUB_YEAR:2024
+* Count: 310
+("Zenker diverticulum" OR "Zenker's diverticulum") AND PUB_YEAR:2024
+* Count: 67
+("diffuse esophageal spasm" OR "jackhammer esophagus") AND PUB_YEAR:2024
+* Count: 44
