@@ -2,11 +2,11 @@ import "dotenv/config";
 import { createClient } from "@supabase/supabase-js";
 
 const TERM_SETS = [
-  { condition: "Alzheimer", terms: 'Alzheimer OR "Alzheimer\'s disease" OR "Alzheimer disease"' },
-  { condition: "Lewy body", terms: '"Lewy body" OR "Lewy bodies" OR "dementia with Lewy"' },
-  { condition: "Frontotemporal", terms: 'Frontotemporal OR "frontotemporal dementia"' },
-  { condition: "MCI", terms: '"Mild Cognitive Impairment" OR "mild cognitive impairment"' },
-  { condition: "Vascular dementia", terms: '"vascular dementia" OR "vascular cognitive impairment"' },
+        { condition: "R-CPD", terms: '"retrograde cricopharyngeus" OR "retrograde cricopharyngeal" OR "R-CPD"' },
+        { condition: "A-CPD", terms: '"cricopharyngeal achalasia" OR "antegrade cricopharyngeal" OR "cricopharyngeal dysfunction"' },
+        { condition: "Achalasia", terms: '"esophageal achalasia" OR "achalasia cardia"' },
+        { condition: "Zenker's", terms: '"Zenker diverticulum" OR "Zenker\'s diverticulum"' },
+        { condition: "Spasm", terms: '"diffuse esophageal spasm" OR "jackhammer esophagus"' },
 ] as const;
 
 const START_YEAR = 1990;
