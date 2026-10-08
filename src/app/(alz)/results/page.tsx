@@ -11,8 +11,8 @@ import {
 } from "@/lib/triage";
 import { validProfileId, rowToForm } from "@/lib/profile";
 import ResultsList, { type TrialView } from "./results-list";
-import PageHeading from "../components/page-heading";
-import Recovery from "../components/recovery";
+import PageHeading from "../../components/page-heading";
+import Recovery from "../../components/recovery";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Your trial matches",

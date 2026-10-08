@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import PageHeading from "./components/page-heading";
+import PageHeading from "../components/page-heading";
 export default function ErrorPage({ reset }: { reset: () => void }) {
   return (
     <main id="main-content" className="page-shell state-page">

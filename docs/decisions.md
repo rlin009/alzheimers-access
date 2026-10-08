@@ -26,3 +26,23 @@ Per field, from docs/validation-report.md after the 40 gold trials were re-parse
 - cognitive_scale: not a yes/no field, not used in triage until validated in week 4.
 
 One thing the re-parse showed: recall on requires_study_partner dropped from 83% to 67% when the same 40 trials were run again with the same model. Precision stayed at 100%. So the field is stable in the direction that matters for exclusion, and less stable in the direction that only costs a phone call. Two of the four misses now come back as "not required" rather than "not mentioned", which is worth reading in week 4.
+
+---
+
+## Free the Burp decisions (weeks 5 and 6)
+
+The working title was Name It, which is why the code folders are still called `nameit` (`src/lib/nameit`, `src/data/nameit`, the `ni-` style names). The site and its address are Free the Burp, at /free-the-burp.
+
+**One site, two separate products.** Free the Burp lives at /free-the-burp in the same Next.js app, in its own route group with its own layout, fonts and styles. The two products do not share navigation. Alzheimer's Access moved into `src/app/(alz)` without any change to its pages.
+
+**Free the Burp is static.** Every Free the Burp page is built ahead of time from files in the repo: `content/conditions/*.md`, `content/vocabulary.csv` and `src/data/nameit/*.json`. It does not need the database to load, so it keeps working even if the Supabase keys on Vercel break, which happened to Alzheimer's Access in October.
+
+**Trials come from a file, not the trials table.** Putting achalasia trials into the `trials` table would have mixed them into Alzheimer's Access results, because that site reads every recruiting row. The 33 Free the Burp trials live in `src/data/nameit/trials.json`, each with a one-sentence summary written by a person. `scripts/fetch-nameit-trials.ts` refreshes the facts and prints any new trial for someone to read first. Four studies that only mention these conditions in passing are listed as excluded, with the reason.
+
+**Search terms were tightened after reading the results.** See `docs/attention-notes.md`. The bare abbreviation "R-CPD" matched dozens of chemistry papers, so it was dropped, and only PubMed papers are counted.
+
+**Diagnosis delay was read by hand, not by the model.** See `docs/delay-validation.md`. Fewer than 20 of 389 abstracts carried a number, so a model pass would not have cleared the 10-example rule and would have mostly confirmed "not applicable".
+
+**Every factual sentence cites a source, and the build enforces it.** A condition page that cites a source key missing from `src/data/nameit/sources.json`, or that does not have the six agreed sections in order, fails the build. An independent fact-check of about 185 claims found 20 problems before launch, all corrected.
+
+**No symptom checker, no doctor directory.** The phrase finder shows which conditions a phrase is linked to and how to tell them apart. It never says what someone has. For R-CPD clinicians, the site links to noburp.info.

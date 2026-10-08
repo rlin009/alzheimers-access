@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/dm-sans";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import "./globals.css";
+
+// The site holds two separate projects: Alzheimer's Access, in app/(alz),
+// and Free the Burp, in app/(free-the-burp). Each group has its own layout, fonts and
+// styles, and they do not link to each other's navigation. This root layout
+// only provides the document shell they share.
 export const metadata: Metadata = {
-  title: { default: "Alzheimer's Access", template: "%s | Alzheimer's Access" },
-  description:
-    "Find Alzheimer's and dementia clinical trials to ask about, plus local care support and respite resources for families.",
   referrer: "no-referrer",
 };
+
 export default function RootLayout({
   children,
 }: {
@@ -16,14 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

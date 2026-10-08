@@ -1,0 +1,193 @@
+{
+  "note": "Every number below was read from the study abstract by hand and checked against it. Diagnostic delay means time from first symptom to diagnosis unless the measure says otherwise.",
+  "searched": {
+    "query": "each condition's search terms AND (\"diagnostic delay\" OR \"time to diagnosis\" OR misdiagnosis OR misdiagnosed), PubMed-indexed",
+    "papers": {
+      "R-CPD": 8,
+      "A-CPD": 19,
+      "Achalasia": 256,
+      "Zenker's": 66,
+      "Spasm": 82
+    },
+    "alsoRead": "All 89 R-CPD abstracts, and every A-CPD, Zenker's and spasm abstract mentioning symptom duration",
+    "uniquePapers": 389
+  },
+  "conditions": [
+    {
+      "condition": "R-CPD",
+      "builtToMeasure": 0,
+      "headline": "About 17 years",
+      "headlineDetail": "Symptoms began at a mean age of 13.6 and diagnosis came at a mean age of 30.4, in one clinic series of 106 patients.",
+      "rows": [
+        {
+          "measure": "Mean age at first symptoms vs at diagnosis",
+          "value": "13.6 vs 30.4 years",
+          "n": 106,
+          "design": "Prospective clinic series, France",
+          "source": "mailly2025",
+          "caveat": "Two group averages, not each person's own wait. Patients who reach a specialist clinic may have waited longer than most."
+        },
+        {
+          "measure": "Worked out the diagnosis themselves",
+          "value": "99.1%",
+          "n": 106,
+          "design": "Prospective clinic series, France",
+          "source": "mailly2025",
+          "caveat": "After a combined 162 medical visits."
+        },
+        {
+          "measure": "Recognised the diagnosis themselves",
+          "value": "78.9%",
+          "n": 450,
+          "design": "5 studies that recorded how the diagnosis was made, within a systematic review",
+          "source": "lechien2025",
+          "caveat": "About 450 patients in those 5 studies. Pooled from uncontrolled studies."
+        },
+        {
+          "measure": "First learned the name on social media",
+          "value": "All 13",
+          "n": 13,
+          "design": "Qualitative interview study, United States",
+          "source": "miller2024",
+          "caveat": "Small and not designed to give a percentage, but unanimous."
+        },
+        {
+          "measure": "A doctor put the symptoms down to reflux",
+          "value": "32%",
+          "n": 207,
+          "design": "Online survey of an R-CPD community",
+          "source": "chen2026",
+          "caveat": "Self-reported, recruited online."
+        },
+        {
+          "measure": "Given a different diagnosis before seeing a specialist (children)",
+          "value": "28%",
+          "n": 25,
+          "design": "Retrospective chart review",
+          "source": "wright2026",
+          "caveat": "Small and from one centre."
+        }
+      ]
+    },
+    {
+      "condition": "A-CPD",
+      "builtToMeasure": 0,
+      "headline": "Not measured",
+      "headlineDetail": "No study in the search measured how long it takes to diagnose. The only figure is a symptom duration from a 1980 surgical series.",
+      "rows": [
+        {
+          "measure": "Average symptom duration before surgery",
+          "value": "3.9 years (range 1 month to 11 years)",
+          "n": 40,
+          "design": "Surgical case series, 1980",
+          "source": "orringer1980",
+          "caveat": "Written before modern definitions. 30% of these patients also had a Zenker's pouch."
+        }
+      ]
+    },
+    {
+      "condition": "Achalasia",
+      "builtToMeasure": 6,
+      "headline": "About 2 years",
+      "headlineDetail": "Median 24 months in the largest recent study. Six studies have measured it, in adults and children, over nearly 30 years.",
+      "rows": [
+        {
+          "measure": "Median time to diagnosis",
+          "value": "24 months (IQR 12 to 72)",
+          "n": 278,
+          "design": "Retrospective single-centre study, Italy, 2013 to 2023",
+          "source": "pasta2024",
+          "caveat": "76.6% waited more than a year."
+        },
+        {
+          "measure": "Mean time to diagnosis",
+          "value": "4.7 years",
+          "n": 300,
+          "design": "Retrospective database, Germany, 30 years",
+          "source": "muller2023",
+          "caveat": "42% had at least one wrong diagnosis first (26% one, 16% more than one), most often reflux (16.7%)."
+        },
+        {
+          "measure": "Mean time to diagnosis",
+          "value": "5.7 years",
+          "n": 345,
+          "design": "Consecutive patients, France, 1980 to 1998",
+          "source": "dalteroche2001",
+          "caveat": "Older data; no shortening over the period studied."
+        },
+        {
+          "measure": "Mean symptom duration before diagnosis",
+          "value": "4.7 years",
+          "n": 87,
+          "design": "Prospective structured interviews, Germany",
+          "source": "eckardt1997",
+          "caveat": "Longer waits went with more unsuccessful doctor visits, not with unusual symptoms."
+        },
+        {
+          "measure": "Mean time to diagnosis (children)",
+          "value": "22 months",
+          "n": 100,
+          "design": "Retrospective single-centre study, Iran",
+          "source": "mazhari2025",
+          "caveat": "Standard deviation 33 months, so a wide spread."
+        },
+        {
+          "measure": "Median time to diagnosis (children)",
+          "value": "10.5 months",
+          "n": 97,
+          "design": "Retrospective multicentre study, France",
+          "source": "nicolas2022",
+          "caveat": ""
+        }
+      ]
+    },
+    {
+      "condition": "Zenker's",
+      "builtToMeasure": 0,
+      "headline": "Not measured",
+      "headlineDetail": "Only one small study (28 patients) reports a delay before diagnosis. Other small treatment series give how long symptoms had lasted.",
+      "rows": [
+        {
+          "measure": "Mean symptom duration",
+          "value": "4.8 years",
+          "n": 7,
+          "design": "Case series of a new endoscopic technique",
+          "source": "tang2008",
+          "caveat": "Seven patients."
+        },
+        {
+          "measure": "Delay before diagnosis",
+          "value": "17 months",
+          "n": 28,
+          "design": "Retrospective series, France",
+          "source": "merrot2003",
+          "caveat": "Elderly patients treated with laser."
+        },
+        {
+          "measure": "Mean symptom duration",
+          "value": "2.5 years",
+          "n": 25,
+          "design": "Prospective treatment series",
+          "source": "maydeo2019",
+          "caveat": "Includes 5 patients with a different kind of pouch."
+        }
+      ]
+    },
+    {
+      "condition": "Spasm",
+      "builtToMeasure": 0,
+      "headline": "Not measured",
+      "headlineDetail": "No study in the search measured diagnostic delay. One small POEM series mentions symptom duration.",
+      "rows": [
+        {
+          "measure": "Mean symptom duration before POEM",
+          "value": "42.6 months",
+          "n": 13,
+          "design": "Retrospective single-centre series, jackhammer esophagus",
+          "source": "canakis2023",
+          "caveat": "Thirteen patients, measured at treatment rather than diagnosis."
+        }
+      ]
+    }
+  ]
+}

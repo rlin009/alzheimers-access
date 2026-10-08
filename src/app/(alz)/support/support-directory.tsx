@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { PhoneIcon, GlobeIcon, ArrowUpRightIcon } from "../components/icons";
+import { PhoneIcon, GlobeIcon, ArrowUpRightIcon } from "../../components/icons";
 import type { SupportProvider } from "@/lib/support";
 export default function SupportDirectory({
   providers,

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getSupportProviders } from "@/lib/support";
-import PageHeading from "../components/page-heading";
+import PageHeading from "../../components/page-heading";
 import SupportDirectory from "./support-directory";
 export const metadata: Metadata = { title: "Local support" };
 export default async function SupportPage() {

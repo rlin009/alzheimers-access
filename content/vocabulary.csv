@@ -1,2 +1,51 @@
-Phrase, Conditions, Notes
-trapped air and bloating and discomfort; not being able to release air normally, rcpd, 
+phrase,conditions,notes,group,evidence
+"I can't burp, and I never could",R-CPD,"The main sign of R-CPD, and it is usually lifelong.",air,Chen 2024 PMID 38115814; Bastian 2019 PMID 31236539
+I've been like this since I was a kid,R-CPD,"Most people say it began before age 25, or as long as they can remember.",air,Chen 2026 PMID 41977029; Miller 2024 PMID 37916795
+my parents couldn't burp me as a baby,R-CPD,Parents often remember a baby who would not burp.,air,Chen 2026 PMID 41977029; Bastian 2019 PMID 31236539
+a bubble stuck in my chest,R-CPD,"Pressure behind the breastbone that a burp would relieve, but the burp never comes.",air,Bastian 2019 PMID 31236539; noburp.info
+my belly swells up after eating or drinking,R-CPD; Achalasia,In R-CPD the swelling is air and almost everyone has it. In achalasia the fullness comes with food sticking or coming back up.,air,Chen 2024 PMID 38115814; Guts UK achalasia factsheet
+feeling full after a few bites,Achalasia; R-CPD,In achalasia food piles up above the stomach. In R-CPD trapped air fills the belly.,air,Guts UK achalasia factsheet; Chen 2026 PMID 41977029
+"so much gas, I pass wind all the time",R-CPD,Air that cannot come up goes down instead.,air,Chen 2024 PMID 38115814; Chen 2026 PMID 41977029
+"I can't throw up, even when I'm sick",R-CPD,The same muscle that blocks burps can block vomiting.,air,Chen 2024 PMID 38115814; Bastian 2019 PMID 31236539
+hiccups that really hurt,R-CPD,A newer described symptom that most survey respondents report.,air,Chen 2026 PMID 41977029; Tiwana 2026 PMID 42046665
+fizzy drinks and beer make it much worse,R-CPD,Carbonation adds gas that has no way out.,air,Bastian 2019 PMID 31236539; noburp.info
+it gets worse on planes,R-CPD,Trapped gas expands as the plane climbs.,air,Bastian 2019 PMID 31236539
+I make myself gag to let air out,R-CPD,Sometimes called air vomiting. It brings short relief.,air,noburp.info; Bastian 2019 PMID 31236539
+gurgling or croaking from my throat and chest,R-CPD; Zenker's,"R-CPD noises come after eating or drinking, with trapped air and no burp. Zenker's gurgling comes from the neck as you swallow.",sound,Bastian 2019 PMID 31236539; Laryngopedia Zenker's page
+squeaky sounds when I try to burp,R-CPD,Felt low in the neck and the top of the chest.,sound,noburp.info; Leong 2026 PMID 41631676
+a gurgling bulge in my neck,Zenker's,Only with large pouches.,sound,Bizzotto 2013 PMID 24043908
+food sticks at the bottom of my throat,A-CPD; Zenker's,"Both are felt around the Adam's apple. Zenker's also brings gurgling, bad breath and food coming back up.",stick,Laryngopedia A-CPD page; Martinez-Paredes 2022 PMID 35846818
+pills get caught in my throat,A-CPD; Zenker's,Often the first sign that the upper sphincter is not opening fully.,stick,Laryngopedia A-CPD page; Laryngopedia Zenker's page
+solid food sticks but drinks go down fine,A-CPD,"Points to the upper sphincter. In achalasia and spasm, drinks struggle too.",stick,Laryngopedia food lodgment page; Laryngopedia A-CPD page
+I have to swallow two or three times per bite,A-CPD; Zenker's,With Zenker's some food or saliva also comes back up and has to be swallowed again.,stick,Laryngopedia Zenker's page; Mari 2025 PMID 40543044
+my throat feels tight when I swallow,A-CPD,"Felt in the neck, and only while swallowing.",stick,Krekeler 2024 PMID 38714548
+a lump in my throat,A-CPD; Zenker's,"If it is there all day and food goes down fine, it is often globus, which is none of these five. Still worth asking about.",stick,Krekeler 2024 PMID 38714548; Martinez-Paredes 2022 PMID 35846818
+I've switched to soft food because meat and bread are hard,A-CPD,Usually worsens slowly over months to years.,stick,Laryngopedia A-CPD page
+food feels stuck in my chest after I eat,Achalasia; Spasm,"In achalasia it happens every meal and slowly gets worse. With spasm it comes and goes, often with chest pain.",stick,Vaezi 2020 PMID 32773454; Zaher 2023 PMID 37551217
+even water is hard to swallow,Achalasia; Spasm,Trouble with liquids points lower than the throat.,stick,Vaezi 2020 PMID 32773454; Patel 2022 PMID 35227779
+I drink water with every bite to push food down,Achalasia,A common way people with achalasia get food through.,stick,Patel 2015 PMID 26198208; Kalantari 2024 PMID 38745739
+I raise my arms or arch my back to get food down,Achalasia,Positions that help gravity push food through a closed lower sphincter.,stick,Patel 2015 PMID 26198208
+it has slowly got worse over a couple of years,Achalasia; A-CPD,Achalasia is felt in the chest and affects food and drink. A-CPD is felt in the neck and affects solids first.,stick,Vaezi 2020 PMID 32773454; Laryngopedia A-CPD page
+coughing or choking while I eat,A-CPD; Zenker's; Achalasia,With A-CPD or Zenker's it happens during the swallow. With achalasia it is more often after meals or when lying down.,stick,Mari 2025 PMID 40543044; Martinez-Paredes 2022 PMID 35846818; Patel 2015 PMID 26198208
+I avoid some foods because I'm scared I'll choke,A-CPD; Zenker's,Fear of choking is common with problems at the top of the esophagus.,stick,Krekeler 2024 PMID 38714548; Martinez-Paredes 2022 PMID 35846818
+"food comes back up hours later, undigested",Zenker's; Achalasia,"In Zenker's it comes into the mouth from a pouch in the neck, with gurgling and bad breath. In achalasia it comes from the chest, often with saliva and at night.",up,Bizzotto 2013 PMID 24043908; Patel 2015 PMID 26198208
+"what comes up tastes like food, not acid",Achalasia; Zenker's,"Bland, undigested food points away from ordinary reflux.",up,Zaninotto 2025 PMID 41378886; Bizzotto 2013 PMID 24043908
+I wake up with food or spit on my pillow,Achalasia; Zenker's,Night-time regurgitation is a main achalasia symptom. Zenker's can also bring saliva and food up at night.,up,Patel 2015 PMID 26198208; Zaninotto 2025 PMID 41378886
+I drool or spit up a lot of saliva,Achalasia,Saliva cannot get past the bottom of the esophagus.,up,Patel 2015 PMID 26198208; Zaninotto 2025 PMID 41378886
+losing weight without trying,Achalasia; Zenker's,Both make eating hard enough that people eat less.,up,Patel 2015 PMID 26198208; StatPearls Zenker diverticulum
+bad breath no matter how much I brush,Zenker's,Food trapped in the pouch goes bad.,breath,Dell'Anna 2024 PMID 39410559
+my voice has gone hoarse,Zenker's,Hoarseness is more common with small pouches.,breath,StatPearls Zenker diverticulum; Martinez-Paredes 2022 PMID 35846818
+clearing my throat all the time,Zenker's,Saliva keeps coming back up from the pouch.,breath,Laryngopedia Zenker's page
+coughing at night when I lie down,Achalasia; Zenker's,"In both, leftover food can spill toward the windpipe.",breath,Patel 2015 PMID 26198208; Zaninotto 2025 PMID 41378886
+chest infections that keep coming back,Achalasia; Zenker's,"From food going down the windpipe, often at night.",breath,Vaezi 2020 PMID 32773454; Dell'Anna 2024 PMID 39410559
+squeezing pain behind my breastbone,Spasm; Achalasia; R-CPD,"Spasm pain comes in episodes. Achalasia pain comes with food sticking or coming back up. R-CPD pain comes after eating, with bloating and no burp.",pain,Patel 2022 PMID 35227779; Vaezi 2020 PMID 32773454; Lechien 2025 PMID 40411338
+chest pain I thought was a heart attack,Spasm; R-CPD; Achalasia,Always have the heart checked first. Doctors call it non-cardiac chest pain once the heart is cleared.,pain,Patel 2022 PMID 35227779; Kahrilas 1987 PMID 3623025
+my heart tests were normal but the chest pain keeps coming back,Spasm; R-CPD,Spasm is tied to swallowing. R-CPD pain is tied to trapped air after meals.,pain,Zaher 2023 PMID 37551217; Kahrilas 1987 PMID 3623025
+"chest pain that comes and goes, even between meals",Spasm; Achalasia,Spasm comes in episodes. Achalasia pain can come before or after eating.,pain,Zaher 2023 PMID 37551217; Vaezi 2020 PMID 32773454
+very hot or very cold drinks set it off,Spasm,A known trigger for spasm.,pain,Mayo Clinic esophageal spasms page
+something caught in my throat or chest that comes and goes,Spasm,The problem is low in the esophagus but can be felt as high as the throat.,pain,Zaher 2023 PMID 37551217
+heartburn,Achalasia; Spasm; R-CPD,"Heartburn on its own is usually reflux. It is worth asking about these when it comes with food sticking, undigested food coming back up, or not being able to burp.",told,Vaezi 2020 PMID 32773454; Lechien 2025 PMID 40411338
+acid reflux pills don't help,Achalasia; Spasm; R-CPD,"When acid medicine fails, guidelines say to test for a swallowing-muscle problem.",told,Vaezi 2020 PMID 32773454; Patel 2022 PMID 35227779
+the doctor said it was just reflux,Achalasia; R-CPD; Spasm,Achalasia is most often first misdiagnosed as reflux. About a third of R-CPD survey respondents were told it was reflux.,told,Muller 2023 PMID 37158189; Chen 2026 PMID 41977029
+I was told it was trapped wind or IBS,R-CPD,Bloating and throat noises often get blamed on the gut first.,told,noburp.info
+I was told it was anxiety or an eating disorder,Achalasia,"Bringing up undigested food without trying can be mistaken for making yourself sick, especially in young people.",told,Capps 2025 PMID 39972474

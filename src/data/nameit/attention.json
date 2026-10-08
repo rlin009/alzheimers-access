@@ -1,0 +1,962 @@
+{
+  "fetched": "2026-10-08",
+  "source": "Europe PMC search API, PubMed-indexed papers only (SRC:MED), counted by publication year",
+  "firstYear": 1990,
+  "lastYear": 2026,
+  "partialYear": 2026,
+  "queries": {
+    "R-CPD": "(\"retrograde cricopharyngeus\" OR \"retrograde cricopharyngeal\")",
+    "A-CPD": "(\"cricopharyngeal achalasia\" OR \"antegrade cricopharyngeal\" OR \"cricopharyngeal dysfunction\") NOT (\"retrograde cricopharyngeus\" OR \"retrograde cricopharyngeal\")",
+    "Achalasia": "(\"esophageal achalasia\" OR \"achalasia cardia\")",
+    "Zenker's": "(\"Zenker diverticulum\" OR \"Zenker's diverticulum\")",
+    "Spasm": "(\"diffuse esophageal spasm\" OR \"jackhammer esophagus\")"
+  },
+  "allTime": {
+    "R-CPD": 89,
+    "A-CPD": 509,
+    "Achalasia": 9296,
+    "Zenker's": 1888,
+    "Spasm": 1217
+  },
+  "before1990": {
+    "R-CPD": 0,
+    "A-CPD": 63,
+    "Achalasia": 2891,
+    "Zenker's": 285,
+    "Spasm": 162
+  },
+  "originalQueryTotals1990to2026": {
+    "R-CPD": 144,
+    "A-CPD": 530,
+    "Achalasia": 6494,
+    "Zenker's": 1639,
+    "Spasm": 1104
+  },
+  "rows": [
+    {
+      "condition": "R-CPD",
+      "pub_year": 1990,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1991,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1992,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1993,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1994,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1995,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1996,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1997,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1998,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 1999,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2000,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2001,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2002,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2003,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2004,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2005,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2006,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2007,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2008,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2009,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2010,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2011,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2012,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2013,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2014,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2015,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2016,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2017,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2018,
+      "paper_count": 0
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2019,
+      "paper_count": 1
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2020,
+      "paper_count": 2
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2021,
+      "paper_count": 3
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2022,
+      "paper_count": 5
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2023,
+      "paper_count": 3
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2024,
+      "paper_count": 20
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2025,
+      "paper_count": 28
+    },
+    {
+      "condition": "R-CPD",
+      "pub_year": 2026,
+      "paper_count": 27
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1990,
+      "paper_count": 10
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1991,
+      "paper_count": 3
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1992,
+      "paper_count": 9
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1993,
+      "paper_count": 2
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1994,
+      "paper_count": 4
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1995,
+      "paper_count": 5
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1996,
+      "paper_count": 6
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1997,
+      "paper_count": 5
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1998,
+      "paper_count": 7
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 1999,
+      "paper_count": 4
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2000,
+      "paper_count": 8
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2001,
+      "paper_count": 8
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2002,
+      "paper_count": 4
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2003,
+      "paper_count": 6
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2004,
+      "paper_count": 6
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2005,
+      "paper_count": 9
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2006,
+      "paper_count": 2
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2007,
+      "paper_count": 7
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2008,
+      "paper_count": 10
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2009,
+      "paper_count": 9
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2010,
+      "paper_count": 7
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2011,
+      "paper_count": 10
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2012,
+      "paper_count": 8
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2013,
+      "paper_count": 15
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2014,
+      "paper_count": 12
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2015,
+      "paper_count": 13
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2016,
+      "paper_count": 15
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2017,
+      "paper_count": 23
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2018,
+      "paper_count": 15
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2019,
+      "paper_count": 24
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2020,
+      "paper_count": 25
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2021,
+      "paper_count": 12
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2022,
+      "paper_count": 25
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2023,
+      "paper_count": 30
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2024,
+      "paper_count": 26
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2025,
+      "paper_count": 28
+    },
+    {
+      "condition": "A-CPD",
+      "pub_year": 2026,
+      "paper_count": 34
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1990,
+      "paper_count": 106
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1991,
+      "paper_count": 110
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1992,
+      "paper_count": 90
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1993,
+      "paper_count": 94
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1994,
+      "paper_count": 102
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1995,
+      "paper_count": 111
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1996,
+      "paper_count": 107
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1997,
+      "paper_count": 120
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1998,
+      "paper_count": 101
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 1999,
+      "paper_count": 123
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2000,
+      "paper_count": 112
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2001,
+      "paper_count": 130
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2002,
+      "paper_count": 122
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2003,
+      "paper_count": 102
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2004,
+      "paper_count": 104
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2005,
+      "paper_count": 123
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2006,
+      "paper_count": 133
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2007,
+      "paper_count": 114
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2008,
+      "paper_count": 130
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2009,
+      "paper_count": 139
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2010,
+      "paper_count": 145
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2011,
+      "paper_count": 144
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2012,
+      "paper_count": 173
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2013,
+      "paper_count": 218
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2014,
+      "paper_count": 170
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2015,
+      "paper_count": 253
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2016,
+      "paper_count": 258
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2017,
+      "paper_count": 232
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2018,
+      "paper_count": 239
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2019,
+      "paper_count": 221
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2020,
+      "paper_count": 296
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2021,
+      "paper_count": 343
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2022,
+      "paper_count": 318
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2023,
+      "paper_count": 344
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2024,
+      "paper_count": 301
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2025,
+      "paper_count": 269
+    },
+    {
+      "condition": "Achalasia",
+      "pub_year": 2026,
+      "paper_count": 205
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1990,
+      "paper_count": 17
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1991,
+      "paper_count": 11
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1992,
+      "paper_count": 29
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1993,
+      "paper_count": 15
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1994,
+      "paper_count": 30
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1995,
+      "paper_count": 21
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1996,
+      "paper_count": 23
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1997,
+      "paper_count": 21
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1998,
+      "paper_count": 28
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 1999,
+      "paper_count": 31
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2000,
+      "paper_count": 28
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2001,
+      "paper_count": 26
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2002,
+      "paper_count": 32
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2003,
+      "paper_count": 33
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2004,
+      "paper_count": 24
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2005,
+      "paper_count": 28
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2006,
+      "paper_count": 29
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2007,
+      "paper_count": 38
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2008,
+      "paper_count": 28
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2009,
+      "paper_count": 39
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2010,
+      "paper_count": 39
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2011,
+      "paper_count": 36
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2012,
+      "paper_count": 36
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2013,
+      "paper_count": 58
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2014,
+      "paper_count": 60
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2015,
+      "paper_count": 52
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2016,
+      "paper_count": 69
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2017,
+      "paper_count": 60
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2018,
+      "paper_count": 51
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2019,
+      "paper_count": 66
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2020,
+      "paper_count": 75
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2021,
+      "paper_count": 82
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2022,
+      "paper_count": 75
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2023,
+      "paper_count": 93
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2024,
+      "paper_count": 64
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2025,
+      "paper_count": 88
+    },
+    {
+      "condition": "Zenker's",
+      "pub_year": 2026,
+      "paper_count": 67
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1990,
+      "paper_count": 9
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1991,
+      "paper_count": 14
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1992,
+      "paper_count": 18
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1993,
+      "paper_count": 17
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1994,
+      "paper_count": 7
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1995,
+      "paper_count": 8
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1996,
+      "paper_count": 10
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1997,
+      "paper_count": 11
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1998,
+      "paper_count": 10
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 1999,
+      "paper_count": 11
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2000,
+      "paper_count": 9
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2001,
+      "paper_count": 10
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2002,
+      "paper_count": 6
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2003,
+      "paper_count": 10
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2004,
+      "paper_count": 10
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2005,
+      "paper_count": 14
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2006,
+      "paper_count": 9
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2007,
+      "paper_count": 15
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2008,
+      "paper_count": 22
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2009,
+      "paper_count": 16
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2010,
+      "paper_count": 15
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2011,
+      "paper_count": 20
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2012,
+      "paper_count": 29
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2013,
+      "paper_count": 35
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2014,
+      "paper_count": 37
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2015,
+      "paper_count": 59
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2016,
+      "paper_count": 44
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2017,
+      "paper_count": 62
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2018,
+      "paper_count": 60
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2019,
+      "paper_count": 44
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2020,
+      "paper_count": 72
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2021,
+      "paper_count": 80
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2022,
+      "paper_count": 61
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2023,
+      "paper_count": 59
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2024,
+      "paper_count": 43
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2025,
+      "paper_count": 66
+    },
+    {
+      "condition": "Spasm",
+      "pub_year": 2026,
+      "paper_count": 32
+    }
+  ]
+}

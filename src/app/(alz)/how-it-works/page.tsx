@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageHeading from "../components/page-heading";
+import PageHeading from "../../components/page-heading";
 export const metadata: Metadata = { title: "How this works" };
 export default function HowItWorks() {
   return (

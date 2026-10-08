@@ -6,7 +6,7 @@ import {
   ListBulletsIcon,
   ChatCircleDotsIcon,
   CaretDownIcon,
-} from "./components/icons";
+} from "../components/icons";
 export default function Home() {
   const steps = [
     {

@@ -13,7 +13,7 @@ HEADLINE FINDINGS:
 
 Requires_study_partner, Count, % of 968
 
-- Not mentioned, 640, 67.1%
+- Not mentioned, 650, 67.1%
 - Required, 271, 28.0%
 - Not required, 47, 4.9%
 

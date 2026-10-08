@@ -5,7 +5,7 @@ import {
   CaretDownIcon,
   MapPinIcon,
   ArrowUpRightIcon,
-} from "../components/icons";
+} from "../../components/icons";
 import { displayAnswer, fields, type FormState } from "@/lib/profile";
 export type TrialView = {
   id: string;

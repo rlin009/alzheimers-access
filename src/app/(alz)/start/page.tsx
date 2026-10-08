@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PageHeading from "../components/page-heading";
+import PageHeading from "../../components/page-heading";
 import ProfileForm from "./profile-form";
 import { emptyForm, rowToForm, validProfileId } from "@/lib/profile";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
