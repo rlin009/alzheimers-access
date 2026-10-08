@@ -9,14 +9,14 @@
     "A-CPD": "(\"cricopharyngeal achalasia\" OR \"antegrade cricopharyngeal\" OR \"cricopharyngeal dysfunction\") NOT (\"retrograde cricopharyngeus\" OR \"retrograde cricopharyngeal\")",
     "Achalasia": "(\"esophageal achalasia\" OR \"achalasia cardia\")",
     "Zenker's": "(\"Zenker diverticulum\" OR \"Zenker's diverticulum\")",
-    "Spasm": "(\"diffuse esophageal spasm\" OR \"jackhammer esophagus\")"
+    "Spasm": "(\"diffuse esophageal spasm\" OR \"distal esophageal spasm\" OR \"jackhammer esophagus\" OR \"hypercontractile esophagus\")"
   },
   "allTime": {
     "R-CPD": 89,
     "A-CPD": 509,
     "Achalasia": 9296,
     "Zenker's": 1888,
-    "Spasm": 1217
+    "Spasm": 1537
   },
   "before1990": {
     "R-CPD": 0,
@@ -801,12 +801,12 @@
     {
       "condition": "Spasm",
       "pub_year": 1995,
-      "paper_count": 8
+      "paper_count": 9
     },
     {
       "condition": "Spasm",
       "pub_year": 1996,
-      "paper_count": 10
+      "paper_count": 11
     },
     {
       "condition": "Spasm",
@@ -836,7 +836,7 @@
     {
       "condition": "Spasm",
       "pub_year": 2002,
-      "paper_count": 6
+      "paper_count": 7
     },
     {
       "condition": "Spasm",
@@ -846,7 +846,7 @@
     {
       "condition": "Spasm",
       "pub_year": 2004,
-      "paper_count": 10
+      "paper_count": 11
     },
     {
       "condition": "Spasm",
@@ -856,107 +856,107 @@
     {
       "condition": "Spasm",
       "pub_year": 2006,
-      "paper_count": 9
+      "paper_count": 12
     },
     {
       "condition": "Spasm",
       "pub_year": 2007,
-      "paper_count": 15
+      "paper_count": 17
     },
     {
       "condition": "Spasm",
       "pub_year": 2008,
-      "paper_count": 22
+      "paper_count": 30
     },
     {
       "condition": "Spasm",
       "pub_year": 2009,
-      "paper_count": 16
+      "paper_count": 17
     },
     {
       "condition": "Spasm",
       "pub_year": 2010,
-      "paper_count": 15
+      "paper_count": 17
     },
     {
       "condition": "Spasm",
       "pub_year": 2011,
-      "paper_count": 20
+      "paper_count": 23
     },
     {
       "condition": "Spasm",
       "pub_year": 2012,
-      "paper_count": 29
+      "paper_count": 39
     },
     {
       "condition": "Spasm",
       "pub_year": 2013,
-      "paper_count": 35
+      "paper_count": 40
     },
     {
       "condition": "Spasm",
       "pub_year": 2014,
-      "paper_count": 37
+      "paper_count": 41
     },
     {
       "condition": "Spasm",
       "pub_year": 2015,
-      "paper_count": 59
+      "paper_count": 67
     },
     {
       "condition": "Spasm",
       "pub_year": 2016,
-      "paper_count": 44
+      "paper_count": 56
     },
     {
       "condition": "Spasm",
       "pub_year": 2017,
-      "paper_count": 62
+      "paper_count": 77
     },
     {
       "condition": "Spasm",
       "pub_year": 2018,
-      "paper_count": 60
+      "paper_count": 78
     },
     {
       "condition": "Spasm",
       "pub_year": 2019,
-      "paper_count": 44
+      "paper_count": 55
     },
     {
       "condition": "Spasm",
       "pub_year": 2020,
-      "paper_count": 72
+      "paper_count": 87
     },
     {
       "condition": "Spasm",
       "pub_year": 2021,
-      "paper_count": 80
+      "paper_count": 100
     },
     {
       "condition": "Spasm",
       "pub_year": 2022,
-      "paper_count": 61
+      "paper_count": 89
     },
     {
       "condition": "Spasm",
       "pub_year": 2023,
-      "paper_count": 59
+      "paper_count": 89
     },
     {
       "condition": "Spasm",
       "pub_year": 2024,
-      "paper_count": 43
+      "paper_count": 83
     },
     {
       "condition": "Spasm",
       "pub_year": 2025,
-      "paper_count": 66
+      "paper_count": 117
     },
     {
       "condition": "Spasm",
       "pub_year": 2026,
-      "paper_count": 32
+      "paper_count": 62
     }
   ]
 }

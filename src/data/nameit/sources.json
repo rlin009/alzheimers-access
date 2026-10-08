@@ -754,5 +754,13 @@
     "pmid": "35020054",
     "doi": "10.1007/s00464-022-09021-3",
     "url": "https://pubmed.ncbi.nlm.nih.gov/35020054/"
+  },
+  "mion2019": {
+    "authors": "Mion F, Marjoux S, Subtil F et al.",
+    "title": "Botulinum toxin for the treatment of hypercontractile esophagus: Results of a double-blind randomized sham-controlled study",
+    "journal": "Neurogastroenterol Motil",
+    "year": 2019,
+    "doi": "10.1111/nmo.13587",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/nmo.13587"
   }
 }

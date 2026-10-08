@@ -6,7 +6,7 @@ import { TRIALS, longDate, trialsFor, type Trial } from "@/lib/nameit/data";
 export const metadata: Metadata = {
   title: "Recruiting trials",
   description:
-    "Every study registered on ClinicalTrials.gov that is recruiting people with R-CPD, A-CPD, Zenker's, esophageal spasm or achalasia, in plain words.",
+    "Studies found on ClinicalTrials.gov listed as recruiting or not yet recruiting people with R-CPD, A-CPD, Zenker's, esophageal spasm or achalasia, in plain words.",
 };
 
 function ages(t: Trial) {
@@ -16,7 +16,7 @@ function ages(t: Trial) {
   if (min && max) return `Ages ${min} to ${max}`;
   if (min) return `Ages ${min} and over`;
   if (max) return `Up to age ${max}`;
-  return "Any age listed";
+  return "Age limits not specified";
 }
 
 function kind(t: Trial) {
@@ -30,11 +30,10 @@ export default function TrialsPage() {
       <div className="ni-wrap ni-page">
         <header className="ni-page-head">
           <p className="ni-eyebrow">Recruiting trials</p>
-          <h1 className="ni-page-title">Studies looking for people right now</h1>
+          <h1 className="ni-page-title">Studies to keep an eye on</h1>
           <p className="ni-lede">
-            {total} studies on ClinicalTrials.gov are recruiting, or about to recruit,
-            people with one of these five conditions. Few enough to list every one, so
-            here they all are, each described in one plain sentence. Checked{" "}
+            {total} studies on ClinicalTrials.gov are listed as recruiting or not yet recruiting for
+            people with one of these five conditions. These are the studies our search found, described in plain words. A registry listing does not guarantee an open place. Checked{" "}
             {longDate(TRIALS.fetched)}.
           </p>
           <nav className="ni-jump" aria-label="Jump to a condition">
@@ -68,11 +67,9 @@ export default function TrialsPage() {
               </div>
               {list.length === 0 ? (
                 <div className="ni-trial-empty">
-                  <p className="ni-trial-empty-big">Nobody is running one.</p>
+                  <p className="ni-trial-empty-big">No open studies found in this search.</p>
                   <p>
-                    No study registered anywhere in the world on ClinicalTrials.gov is
-                    recruiting people with {c.name}. What is known about treating it comes from
-                    case series and surveys, which is why the evidence is still uncertain.
+                    Our ClinicalTrials.gov search found no studies listed as recruiting or not yet recruiting for {c.name} on {longDate(TRIALS.fetched)}. Studies in other registries or under other terms may not appear here.
                   </p>
                 </div>
               ) : (

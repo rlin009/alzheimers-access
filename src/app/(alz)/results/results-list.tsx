@@ -30,10 +30,10 @@ function TrialGroup({ group, query }: { group: GroupView; query: string }) {
   return (
     <details className="trial-group" id={group.id} open={group.defaultOpen}>
       <summary>
-        <span>
+        <h2>
           {group.heading} ({query ? matches.length + " of " : ""}
           {group.trials.length})
-        </span>
+        </h2>
         <CaretDownIcon size={24} aria-hidden />
       </summary>
       {matches.length ? (

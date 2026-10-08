@@ -58,8 +58,7 @@ export default function HowItWorks() {
           </p>
           <p>
             Location matching is approximate and based on U.S. states. It does
-            not calculate driving distance. Relationship and diagnosis stage are
-            collected, but do not currently change the trial sort.
+            not calculate driving distance. We do not currently use relationship or diagnosis stage to sort trials, so we no longer ask for them. A coordinator still needs to check diagnosis-specific criteria.
           </p>
         </section>
         <section>

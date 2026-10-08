@@ -25,6 +25,12 @@ const MARKS: Mark[] = [
   { slug: "achalasia", name: "Achalasia", hint: "won't open into the stomach", y: 572, to: [120, 607] },
 ];
 
+export function TubeLegend() {
+  return <ul className="ni-tube-legend" aria-label="Diagram descriptions">{MARKS.map(mark =>
+    <li key={mark.slug}><a href={`/free-the-burp/conditions/${mark.slug}`}>{mark.name}</a><span>{mark.hint}</span></li>
+  )}</ul>;
+}
+
 export default function Tube({
   active = [],
   id = "tube",

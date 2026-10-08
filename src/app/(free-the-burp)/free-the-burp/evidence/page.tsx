@@ -36,10 +36,8 @@ export default function EvidencePage() {
             How much has been written
           </h2>
           <p className="ni-ev-intro">
-            Achalasia has {fmt(ATTENTION.allTime["Achalasia"])} papers indexed in PubMed,{" "}
-            {fmt(ATTENTION.before1990["Achalasia"])} of them from before 1990. R-CPD has{" "}
-            {rcpd}, and every one is from 2019 or later. The R-CPD line only starts to
-            climb in 2024.
+            Our searches returned {fmt(ATTENTION.allTime["Achalasia"])} achalasia records indexed in PubMed,{" "}
+            {fmt(ATTENTION.before1990["Achalasia"])} of them from before 1990. The modern-name R-CPD search returned {rcpd} records. It misses earlier reports published under different names. These are search results, not a complete census of research.
           </p>
           <AttentionChart />
           <RcpdBars />
@@ -52,6 +50,7 @@ export default function EvidencePage() {
                   <th scope="col" className="num">All time</th>
                   <th scope="col" className="num">Before 1990</th>
                   <th scope="col" className="num">1990 to 2026</th>
+                  <th scope="col" className="num">Unreconciled difference</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,12 +64,14 @@ export default function EvidencePage() {
                       <td className="num">{fmt(ATTENTION.allTime[l])}</td>
                       <td className="num">{fmt(ATTENTION.before1990[l])}</td>
                       <td className="num">{fmt(since)}</td>
+                      <td className="num">{fmt(ATTENTION.allTime[l] - ATTENTION.before1990[l] - since)}</td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
           </div>
+          <p className="ni-chart-caption">The final column makes differences between the all-time query and summed yearly queries explicit. The cause has not been verified; it may involve date indexing or records changing between requests. These differences are not assigned to a year.</p>
         </section>
 
         <section className="ni-ev-section" aria-labelledby="delay-h">
@@ -78,10 +79,9 @@ export default function EvidencePage() {
             How long it takes to get the name
           </h2>
           <p className="ni-ev-intro">
-            Only achalasia has studies built to measure this. For the other four, the
-            best available numbers are side notes in small treatment studies, or for
+            Our search found dedicated diagnostic-delay studies for achalasia. For the other four, available figures came from small studies with other purposes, or for
             R-CPD, one clinic&rsquo;s averages. Where nobody has measured something, the
-            gap is left empty on purpose.
+            gap is left empty. “Not measured” here means no dedicated study was found in this search.
           </p>
 
           <div className="ni-delay-grid">
@@ -96,7 +96,7 @@ export default function EvidencePage() {
                   <p className="ni-delay-count">
                     {d.builtToMeasure
                       ? `${d.builtToMeasure} studies built to measure it`
-                      : "No study built to measure it"}
+                      : "No dedicated study found in our search"}
                   </p>
                 </header>
                 <ul>
@@ -155,12 +155,13 @@ export default function EvidencePage() {
               diagnosis&rdquo;, &ldquo;misdiagnosis&rdquo; or &ldquo;misdiagnosed&rdquo;. That
               returned {DELAY.searched.uniquePapers} different PubMed papers, most of them
               single case reports. Every abstract with a
-              number near those words was read, along with all {rcpd} R-CPD abstracts.
-              Only the numbers shown above were kept, each checked against its abstract.
-              No AI model was used to pull numbers out.
+              number near those words was checked in the original research pass.
+              The diagnostic-delay review is separate from the refreshed paper counts;
+              it is not a systematic review. Each displayed estimate links to its source.
             </p>
           </div>
-          <h3 className="ni-mono-label ni-queries-title">The exact searches</h3>
+          <p className="ni-ev-intro">The refreshed spasm search includes “distal esophageal spasm” and “hypercontractile esophagus”. R-CPD counts remain restricted to modern names: older inability-to-belch reports exist, including reports from 1987, 1989 and 2001 discussed in <a href="https://journals.sagepub.com/doi/10.1177/19160216251329012">Lechien and colleagues’ review</a>. Adding broad inability-to-belch terms also finds postoperative problems unrelated to R-CPD, so those results are not presented as R-CPD research. No records under the modern name before 2019 does not mean no earlier research.</p>
+          <h3 className="ni-mono-label ni-queries-title">Searches used for this snapshot</h3>
           <dl className="ni-queries">
             {ORDER.map((l) => (
               <div key={l}>
@@ -181,8 +182,7 @@ export default function EvidencePage() {
             <li>
               <strong>A paper count measures attention, not quality.</strong> Thousands
               of achalasia papers include many single case reports. R-CPD&rsquo;s {rcpd} include
-              meta-analyses. The comparison says which condition doctors have been
-              writing about, nothing more.
+              meta-analyses. The comparison is sensitive to terminology, indexing and search coverage. It cannot by itself measure research quality or clinical attention.
             </li>
             <li>
               <strong>The R-CPD 17 years is two averages, not a measured wait.</strong>{" "}
@@ -192,8 +192,7 @@ export default function EvidencePage() {
             </li>
             <li>
               <strong>The achalasia studies disagree.</strong> The median wait was 24
-              months in Italy and the mean was 4.7 years in Germany. A mean is pulled up
-              by the few people who waited decades, which is why the median is lower.
+              months in Italy and the mean was 4.7 years in Germany. These studies involved different patients and methods, so the results are not directly comparable. A mean is more affected by unusually long waits than a median.
             </li>
             <li>
               <strong>2026 is not finished.</strong> The last point on the chart covers

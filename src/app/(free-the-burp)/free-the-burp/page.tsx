@@ -58,7 +58,7 @@ export default async function FreeTheBurpHome() {
               <span className="ni-stat-hot">{rcpd}</span>
             </p>
             <p className="ni-stat-label">
-              research papers on achalasia, against {rcpd} on R-CPD, all of those since 2019.
+              records returned by our achalasia search, compared with {rcpd} by our modern-name R-CPD search. Counts depend on the terms used.
             </p>
             <Sparkline />
           </div>
@@ -69,7 +69,7 @@ export default async function FreeTheBurpHome() {
               <span>5</span>
             </p>
             <p className="ni-stat-label">
-              conditions where anyone has measured how long a diagnosis takes. For
+              conditions for which our search found dedicated diagnostic-delay studies. For
               achalasia it is about two years. People with R-CPD in one clinic had
               symptoms for about 17 years before diagnosis, and almost all of them
               found the name themselves.
@@ -82,7 +82,7 @@ export default async function FreeTheBurpHome() {
               <span className="ni-stat-hot">{rcpdTrials}</span>
             </p>
             <p className="ni-stat-label">
-              studies recruiting or about to recruit across these conditions, and{" "}
+              studies listed as recruiting or not yet recruiting across these conditions, and{" "}
               {rcpdTrials === 0 ? "none" : rcpdTrials} for R-CPD. Checked{" "}
               {longDate(TRIALS.fetched)}.
             </p>

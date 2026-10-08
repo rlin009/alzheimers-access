@@ -231,7 +231,7 @@ function stripTrailingListNumbering(sentence: string): string {
  * the first sentence mentioning one of the given keywords. */
 function findPhraseInSection(text: string, lowerKeywords: string[]): string | null {
   if (!text) return null;
-  const sentences = text.split(/(?<=[.!?])\s+/);
+  const sentences = text.split(/(?:\r?\n)+|(?<=[.!?])\s+/);
   for (const sentence of sentences) {
     const lower = sentence.toLowerCase();
     if (lowerKeywords.some((k) => lower.includes(k))) {
@@ -270,9 +270,9 @@ function findEligibilityPhrase(
 function withQuote(reason: string, phrase: EligibilityPhrase | null): string {
   if (!phrase) return reason;
   if (phrase.section === 'exclusion') {
-    return `${reason} From the trial's exclusion list: "${phrase.sentence}"`;
+    return `${reason} From the trial's exclusion list: "${phrase.sentence}${/[.!?]$/.test(phrase.sentence) ? "" : "…"}"`;
   }
-  return `${reason} The trial's eligibility criteria say: "${phrase.sentence}"`;
+  return `${reason} The trial's eligibility criteria say: "${phrase.sentence}${/[.!?]$/.test(phrase.sentence) ? "" : "…"}"`;
 }
 
 /** Supabase returns either an array or a single object for a nested

@@ -13,6 +13,7 @@ import { validProfileId, rowToForm } from "@/lib/profile";
 import ResultsList, { type TrialView } from "./results-list";
 import PageHeading from "../../components/page-heading";
 import Recovery from "../../components/recovery";
+import DeleteProfile from "../../components/delete-profile";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Your trial matches",
@@ -260,14 +261,14 @@ export default async function ResultsPage({
       heading: "Worth asking about",
       defaultOpen: true,
       trials: results.worthAsking.map(({ trial, caveats }) =>
-        view(trial, caveats),
+        view(trial, ["The age, location and study-partner details we could check did not rule this listing out. This is not confirmation of eligibility; diagnosis-specific and other requirements still need checking with the coordinator.", ...caveats]),
       ),
     },
     {
       id: "cannot-tell",
       heading: "Can't tell — ask your doctor",
       defaultOpen: true,
-      trials: results.cannotTell.map(({ trial, note }) => view(trial, note ? [note] : [])),
+      trials: results.cannotTell.map(({ trial, note }) => view(trial, [note || "The listing or parsed criteria do not give us enough reliable information to explain a potential match. Ask the coordinator about age, diagnosis, study-partner requirements and available sites."])),
     },
     {
       id: "probably-not",
@@ -299,6 +300,7 @@ export default async function ResultsPage({
         form={rowToForm(profileRow as unknown as Record<string, unknown>)}
         profileId={id}
       />
+    <DeleteProfile id={id} />
     </main>
   );
 }

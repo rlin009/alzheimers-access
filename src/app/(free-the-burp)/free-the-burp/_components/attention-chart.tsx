@@ -73,11 +73,7 @@ export default function AttentionChart() {
     if (e.key === "Escape") setHover(null);
   };
 
-  const hoverValues =
-    hover === null
-      ? []
-      : ORDER.map((l) => ({ l, v: DATA[l][hover - first] })).sort((a, b) => b.v - a.v);
-  const tipLeft = hover !== null && x(hover) > W * 0.6;
+  const selectedYear = hover ?? last - 1;
 
   return (
     <figure className="ni-chart">
@@ -146,32 +142,25 @@ export default function AttentionChart() {
           )}
           <rect x={M.left} y={M.top} width={W - M.left - M.right} height={H - M.top - M.bottom} fill="transparent" />
         </svg>
-        {hover !== null && (
-          <div
-            className="ni-tooltip"
-            style={{
-              left: `${(x(hover) / W) * 100}%`,
-              transform: tipLeft ? "translateX(calc(-100% - 14px))" : "translateX(14px)",
-            }}
-          >
-            <p className="ni-tooltip-year">
-              {hover}
-              {hover === ATTENTION.partialYear ? " (so far)" : ""}
-            </p>
-            {hoverValues.map(({ l, v }) => (
-              <p key={l}>
-                <i style={{ background: SERIES[l] }} />
-                <span>{l}</span>
-                <b>{v}</b>
-              </p>
-            ))}
-          </div>
-        )}
+      </div>
+      <label className="ni-chart-year">Read a year
+        <select value={selectedYear} onChange={event => setHover(Number(event.target.value))}>
+          {years.map(year => <option key={year} value={year}>{year}{year === ATTENTION.partialYear ? " (partial year)" : ""}</option>)}
+        </select>
+      </label>
+      <div className="ni-year-values" aria-live="polite" aria-atomic="true">
+        {ORDER.map(label => <p key={label}>{label}: <strong>{DATA[label][selectedYear - first]}</strong></p>)}
       </div>
       <figcaption className="ni-chart-caption">
-        Papers indexed in PubMed per year, counted through Europe PMC on{" "}
-        {ATTENTION.fetched}. The 2026 line is dashed because the year is not over.
+        PubMed-indexed records returned by the stated Europe PMC searches on {ATTENTION.fetched}.
+        The {last} line is dashed because the year is not over. On a phone, scroll the chart sideways or use the year selector.
       </figcaption>
+      <details className="ni-chart-data"><summary>Read all yearly values in a table</summary>
+        <div className="ni-table-wrap"><table className="ni-table"><caption>Records returned by year</caption>
+          <thead><tr><th scope="col">Year</th>{ORDER.map(label => <th scope="col" key={label}>{label}</th>)}</tr></thead>
+          <tbody>{years.map(year => <tr key={year}><th scope="row">{year}{year === ATTENTION.partialYear ? " (partial)" : ""}</th>{ORDER.map(label => <td key={label}>{DATA[label][year-first]}</td>)}</tr>)}</tbody>
+        </table></div>
+      </details>
     </figure>
   );
 }

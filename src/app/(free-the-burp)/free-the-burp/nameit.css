@@ -6,22 +6,22 @@
    squeezed shut, and nowhere else. */
 
 html:has(.ni) {
-  background: #f1f4f3;
+  background: #f6f9fc;
 }
 html:has(.ni) body {
   margin: 0;
 }
 
 .ni {
-  --ni-paper: #f1f4f3;
+  --ni-paper: #f6f9fc;
   --ni-surface: #ffffff;
-  --ni-ink: #0f1b26;
-  --ni-ink-2: #34424e;
-  --ni-muted: #57636e;
+  --ni-ink: #193b4a;
+  --ni-ink-2: #345564;
+  --ni-muted: #526975;
   --ni-rule: #c9d2d6;
   --ni-rule-soft: #e1e7e9;
-  --ni-blue: #1f3a93;
-  --ni-blue-soft: #e4e9f6;
+  --ni-blue: #126b66;
+  --ni-blue-soft: #e1f1ef;
   --ni-p3: #f2b630;
   --ni-p4: #e5532d;
   --ni-hot-text: #b2361a;
@@ -34,7 +34,7 @@ html:has(.ni) body {
   --ni-s5: #e87ba4;
 
   --ni-display: "Archivo Variable", "Arial Narrow", Arial, sans-serif;
-  --ni-serif: "Source Serif 4 Variable", Georgia, serif;
+  --ni-serif: "DM Sans Variable", Arial, sans-serif;
   --ni-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   color-scheme: light;
@@ -43,7 +43,7 @@ html:has(.ni) body {
   flex-direction: column;
   background: var(--ni-paper);
   color: var(--ni-ink);
-  font-family: var(--ni-display);
+  font-family: var(--ni-serif);
   font-size: 17px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -107,8 +107,8 @@ html:has(.ni) body {
   font-family: var(--ni-mono);
   font-size: 12.5px;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  text-transform: none;
   color: var(--ni-muted);
 }
 .ni-eyebrow {
@@ -116,7 +116,7 @@ html:has(.ni) body {
 }
 .ni-h2 {
   font-family: var(--ni-display);
-  font-stretch: 85%;
+  font-stretch: 100%;
   font-weight: 700;
   font-size: clamp(24px, 2.4vw, 30px);
   line-height: 1.12;
@@ -124,8 +124,8 @@ html:has(.ni) body {
 }
 .ni-h2-large {
   font-size: clamp(30px, 4vw, 50px);
-  font-stretch: 78%;
-  font-weight: 750;
+  font-stretch: 100%;
+  font-weight: 650;
   line-height: 1.02;
   max-width: 22ch;
 }
@@ -210,11 +210,11 @@ html:has(.ni) body {
 }
 .ni-wordmark {
   font-family: var(--ni-display);
-  font-stretch: 68%;
-  font-weight: 850;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: 30px;
   letter-spacing: 0.01em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ni-ink) !important;
   text-decoration: none !important;
   line-height: 1;
@@ -302,12 +302,12 @@ html:has(.ni) body {
 }
 .ni-hero-title {
   font-family: var(--ni-display);
-  font-stretch: 72%;
-  font-weight: 800;
-  font-size: clamp(46px, 7.4vw, 104px);
-  line-height: 0.92;
+  font-stretch: 100%;
+  font-weight: 650;
+  font-size: clamp(40px, 5.5vw, 72px);
+  line-height: 1.08;
   letter-spacing: -0.012em;
-  max-width: 11.5ch;
+  max-width: 15ch;
   margin-bottom: 26px;
   text-wrap: balance;
 }
@@ -426,22 +426,22 @@ html:has(.ni) body {
   font-family: var(--ni-mono);
   font-size: 12.5px;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ni-hot-text);
   margin-bottom: 6px;
 }
 .ni-result-name {
   font-family: var(--ni-display);
-  font-stretch: 68%;
-  font-weight: 850;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: clamp(44px, 6vw, 72px);
-  line-height: 0.9;
-  text-transform: uppercase;
+  line-height: 1.08;
+  text-transform: none;
   letter-spacing: 0.005em;
 }
 .ni-result-full {
   font-family: var(--ni-serif);
-  font-style: italic;
+  font-style: normal;
   font-size: 20px;
   margin-top: 6px;
 }
@@ -483,7 +483,7 @@ html:has(.ni) body {
   font-family: var(--ni-mono);
   font-size: 12px;
   letter-spacing: 0.07em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ni-muted);
   margin-bottom: 3px;
 }
@@ -514,7 +514,7 @@ html:has(.ni) body {
   display: block;
   width: 100%;
   height: auto;
-  max-height: calc(100dvh - 110px);
+  max-height: none;
   overflow: visible;
 }
 .ni-tube-wall {
@@ -544,8 +544,8 @@ html:has(.ni) body {
 .ni-tube-place text {
   font-family: var(--ni-mono);
   font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  text-transform: none;
   fill: var(--ni-muted);
 }
 .ni-tube-leader {
@@ -555,10 +555,10 @@ html:has(.ni) body {
 }
 .ni-tube-name {
   font-family: var(--ni-display);
-  font-stretch: 72%;
-  font-weight: 800;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: 23px;
-  text-transform: uppercase;
+  text-transform: none;
   fill: var(--ni-ink);
 }
 .ni-tube-hint {
@@ -598,7 +598,7 @@ html:has(.ni) body {
   stroke: var(--ni-hot-text);
 }
 .ni-tube-ring.is-on rect {
-  animation: ni-squeeze 1.8s ease-in-out infinite;
+  animation: none;
   transform-box: fill-box;
   transform-origin: center;
 }
@@ -649,16 +649,16 @@ html:has(.ni) body {
   font-family: var(--ni-mono);
   font-size: 11.5px;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ni-muted);
   min-height: 3.6em;
 }
 .ni-five-name {
-  font-stretch: 70%;
-  font-weight: 850;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: 34px;
-  line-height: 0.95;
-  text-transform: uppercase;
+  line-height: 1.08;
+  text-transform: none;
 }
 .ni-five-fails {
   font-family: var(--ni-serif);
@@ -697,10 +697,10 @@ html:has(.ni) body {
   border-left: 1px solid var(--ni-rule);
 }
 .ni-stat-figure {
-  font-stretch: 66%;
-  font-weight: 850;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: clamp(48px, 5.6vw, 76px);
-  line-height: 0.9;
+  line-height: 1.08;
   display: flex;
   align-items: baseline;
   gap: 10px;
@@ -713,7 +713,7 @@ html:has(.ni) body {
   font-size: 14px;
   letter-spacing: 0.06em;
   color: var(--ni-muted);
-  text-transform: uppercase;
+  text-transform: none;
 }
 .ni-stat-hot {
   color: var(--ni-hot-text);
@@ -787,16 +787,16 @@ html:has(.ni) body {
   color: var(--ni-muted);
 }
 .ni-condition-name {
-  font-stretch: 64%;
-  font-weight: 860;
-  font-size: clamp(72px, 12vw, 168px);
-  line-height: 0.82;
-  text-transform: uppercase;
+  font-stretch: 100%;
+  font-weight: 650;
+  font-size: clamp(48px, 8vw, 92px);
+  line-height: 1.08;
+  text-transform: none;
   letter-spacing: -0.005em;
 }
 .ni-condition-full {
   font-family: var(--ni-serif);
-  font-style: italic;
+  font-style: normal;
   font-size: clamp(22px, 2.4vw, 30px);
   margin-top: 14px;
 }
@@ -886,10 +886,10 @@ html:has(.ni) body {
   border-color: var(--ni-ink);
 }
 .ni-neighbour-name {
-  font-stretch: 70%;
-  font-weight: 850;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: 26px;
-  text-transform: uppercase;
+  text-transform: none;
   line-height: 1;
 }
 .ni-neighbour-place {
@@ -935,10 +935,10 @@ html:has(.ni) body {
   max-width: 900px;
 }
 .ni-page-title {
-  font-stretch: 70%;
-  font-weight: 830;
-  font-size: clamp(44px, 6.4vw, 88px);
-  line-height: 0.92;
+  font-stretch: 100%;
+  font-weight: 650;
+  font-size: clamp(38px, 5.2vw, 68px);
+  line-height: 1.08;
   letter-spacing: -0.01em;
   margin-bottom: 22px;
   text-wrap: balance;
@@ -1034,8 +1034,8 @@ html:has(.ni) body {
   stroke-width: 2;
 }
 .ni-tooltip {
-  position: absolute;
-  top: 8px;
+  position: static;
+  margin-top: 16px;
   pointer-events: none;
   background: var(--ni-ink);
   color: var(--ni-paper);
@@ -1082,7 +1082,7 @@ html:has(.ni) body {
   font-family: var(--ni-mono);
   font-size: 12.5px;
   letter-spacing: 0.07em;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--ni-muted);
   padding-bottom: 8px;
 }
@@ -1152,10 +1152,10 @@ html:has(.ni) body {
   border-bottom: 1px solid var(--ni-rule);
 }
 .ni-delay-headline {
-  font-stretch: 70%;
-  font-weight: 850;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: 46px;
-  line-height: 0.95;
+  line-height: 1.08;
   margin-top: 8px;
 }
 .is-unmeasured .ni-delay-headline {
@@ -1170,7 +1170,7 @@ html:has(.ni) body {
 .ni-delay-count {
   font-family: var(--ni-mono);
   font-size: 12px;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.06em;
   color: var(--ni-hot-text);
   margin-top: 12px;
@@ -1204,7 +1204,7 @@ html:has(.ni) body {
   font-size: 13.5px;
   color: var(--ni-ink-2);
   margin-top: 4px;
-  font-style: italic;
+  font-style: normal;
 }
 
 .ni-method .ni-prose {
@@ -1302,9 +1302,9 @@ html:has(.ni) body {
   border-bottom: 2px solid var(--ni-ink);
 }
 .ni-trial-group-head .ni-h2-large {
-  text-transform: uppercase;
-  font-stretch: 68%;
-  font-weight: 850;
+  text-transform: none;
+  font-stretch: 100%;
+  font-weight: 650;
 }
 .ni-trial-empty {
   margin-top: 18px;
@@ -1318,8 +1318,8 @@ html:has(.ni) body {
 }
 .ni-trial-empty-big {
   font-family: var(--ni-display);
-  font-stretch: 72%;
-  font-weight: 800;
+  font-stretch: 100%;
+  font-weight: 650;
   font-size: 34px;
   margin-bottom: 8px;
   color: var(--ni-hot-text);
@@ -1391,7 +1391,7 @@ html:has(.ni) body {
 .ni-trial-facts dt {
   font-family: var(--ni-mono);
   font-size: 11.5px;
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.06em;
   color: var(--ni-muted);
   padding-top: 2px;
@@ -1451,7 +1451,7 @@ html:has(.ni) body {
   }
   .ni-tube.ni-tube-mobile {
     display: block;
-    max-height: 460px;
+    max-height: none;
     margin: 8px auto 20px;
   }
   .ni-stats {
@@ -1504,4 +1504,71 @@ html:has(.ni) body {
   .ni-finder-side {
     display: none;
   }
+}
+
+/* Patient-facing refresh: generous type, quiet surfaces, one anatomy illustration. */
+.ni-wordmark {font-size:26px;letter-spacing:-.035em;padding-left:24px;}
+.ni-wordmark::before {width:14px;height:14px;border:3px solid var(--ni-blue);border-radius:50%;background:var(--ni-surface);}
+.ni-header {background:var(--ni-surface);}
+.ni-nav a {min-height:44px;display:inline-flex;align-items:center;}
+.ni-finder {grid-template-columns:minmax(0,1fr) minmax(280px,360px);}
+.ni-finder-side .ni-sticky {background:#e8f1f8;border-radius:32px;padding:24px 12px;border:1px solid #cfdee8;}
+.ni-hero-title {letter-spacing:-.045em;}
+.ni-h2,.ni-page-title,.ni-condition-name {letter-spacing:-.035em;}
+.ni-eyebrow,.ni-mono-label {font-family:var(--ni-serif);font-weight:650;font-size:14px;}
+.ni-picker {border-top:1px solid var(--ni-rule);}
+.ni-chip {min-height:44px;padding:11px 16px;border-radius:12px;}
+.ni-result-name {font-size:clamp(32px,5vw,50px);}
+.ni-five-card {background:white;border-radius:20px;}
+.ni-five-name {font-size:28px;}
+.ni-five-place {font-family:var(--ni-serif);font-size:14px;}
+.ni-tube-hint {display:none;}
+.ni-tube-name {font-size:24px;}
+.ni-tube-legend {list-style:none;padding:0;margin-top:18px;display:grid;gap:12px;font:16px/1.5 var(--ni-serif);}
+.ni-tube-legend a {font-weight:650;}
+.ni-tube-legend span {display:block;color:var(--ni-muted);}
+.ni-tube-mobile-layout {display:none;}
+.ni-safety {margin-top:28px;border:1px solid #b9ccc9;border-left:4px solid var(--ni-blue);padding:18px 20px;border-radius:12px;background:#eef6f4;font:15px/1.6 var(--ni-serif);}
+.ni-safety p {margin-top:8px;}
+.ni-safety-sources {font-size:13px;}
+.ni-glossary {margin-top:24px;padding:18px 20px;background:white;border:1px solid var(--ni-rule);border-radius:12px;}
+.ni-glossary summary {cursor:pointer;font-weight:650;min-height:30px;}
+.ni-glossary dl {margin-top:18px;}
+.ni-glossary dt {font-weight:650;margin-top:12px;}
+.ni-glossary dd {margin-top:4px;}
+.ni-chart-frame {overflow-x:auto;padding:4px;}
+.ni-chart-frame svg {min-width:760px;touch-action:auto;}
+.ni-chart-small svg {min-width:520px;}
+.ni-chart-small {overflow-x:auto;}
+.ni-axis {font-size:14px;}
+.ni-chart-caption {font-size:15px;}
+.ni-chart-year {display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:18px 0 12px;}
+.ni-chart-year select {font:inherit;padding:10px;border:1px solid var(--ni-rule);border-radius:8px;background:white;}
+.ni-year-values {display:flex;flex-wrap:wrap;gap:12px 24px;font-size:16px;}
+.ni-chart-data {margin-top:20px;}
+.ni-chart-data summary {cursor:pointer;padding:12px 0;font-weight:600;}
+.ni-sources a {overflow-wrap:anywhere;}
+.ni-prose {font-size:18px;line-height:1.75;}
+.ni-prose-section > .ni-h2 {border-top:1px solid var(--ni-rule);padding-top:24px;}
+.ni-delay-headline {font-weight:650;line-height:1.15;}
+.ni-delay-meta,.ni-delay-caveat {font-size:15px;}
+.ni-about a {overflow-wrap:anywhere;}
+@media(max-width:900px){
+ .ni-finder {grid-template-columns:1fr;}
+ .ni-tube-mobile-layout {display:block;margin:24px 0;}
+ .ni-tube-mobile-layout .ni-tube-mobile {height:auto;max-height:none;}
+ .ni-tube-mobile-layout .ni-tube-legend {margin-top:0;}
+ .ni-jumpbar {bottom:max(12px,env(safe-area-inset-bottom));}
+ .ni-footer {padding-bottom:100px;}
+ .ni-tube-mobile-layout svg {max-width:380px;}
+}
+@media(max-width:520px){
+ .ni-header-inner {gap:8px;}
+ .ni-nav {gap:20px;}
+ .ni-hero-title {font-size:42px;max-width:16ch;}
+ .ni-safety {padding:16px;}
+ .ni-chart {padding:16px;}
+ .ni-page-title {font-size:40px;}
+ .ni-condition-name {font-size:52px;overflow-wrap:anywhere;}
+ .ni-ask {grid-template-columns:1fr;}
 }

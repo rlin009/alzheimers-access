@@ -40,7 +40,7 @@ export default function ProfileForm({
     <div className="form-body">
       {notice && <p className="notice">{notice}</p>}
       <form onSubmit={submit} aria-busy={status === "submitting"}>
-        {[fields.slice(0, 4), fields.slice(4)].map((group, index) => (
+        {[fields.filter(f => f.key === "location" || f.key === "ageBand"), fields.slice(4)].map((group, index) => (
           <fieldset key={index}>
             <legend>{index === 0 ? "Your situation" : "Taking part"}</legend>
             {group.map((field) => (

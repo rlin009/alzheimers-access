@@ -57,8 +57,7 @@ export default function AboutPage() {
             Every factual sentence on a condition page links to its source: a clinical
             guideline, a systematic review, a study, or Laryngopedia, the reference site
             run by the laryngologist who named R-CPD. If a sentence could not be
-            traced to a source, it was cut. The site will not build if a page cites a
-            source that is not in its source list.
+            traced to a source, it was cut. The site checks that each citation has a source entry. That check does not establish that a source supports every claim.
           </p>
           <p>
             The everyday phrases come from published patient surveys and interview
@@ -74,11 +73,13 @@ export default function AboutPage() {
 
           <h2 className="ni-h2">Who made it</h2>
           <p>
-            Free the Burp was built by a high school student as part of the Whetstone capstone
+            Free the Burp was built by Riteesha, a high school student, as part of the Whetstone capstone
             fellowship, alongside Alzheimer&rsquo;s Access, a project that reads Alzheimer&rsquo;s
             trial listings for families. Both projects ask the same question from two
             directions: whether medical information actually reaches the person it is for.
           </p>
+          <p>Independent clinical review has not been verified. This is a student research project, not a clinical service.</p>
+          <p>Corrections and privacy questions: <a href="mailto:riteesha.lingechetty@gmail.com">riteesha.lingechetty@gmail.com</a>. Please do not send medical records.</p>
           <p className="ni-muted">
             Information here was last checked in October 2026. Medicine changes. If
             something looks out of date, a doctor&rsquo;s advice comes first.

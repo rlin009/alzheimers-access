@@ -12,7 +12,7 @@ export default function Home() {
     {
       Icon: NotePencilIcon,
       title: "1. Share what you can",
-      text: "Six questions. All optional.",
+      text: "Four questions. All optional.",
     },
     {
       Icon: ListBulletsIcon,

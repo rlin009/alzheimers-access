@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 export default async function StartPage({
   searchParams,
 }: {
-  searchParams: Promise<{ id?: string }>;
+  searchParams: Promise<{ id?: string; deleted?: string }>;
 }) {
-  const { id } = await searchParams;
+  const { id, deleted } = await searchParams;
   let initial = emptyForm;
-  let notice: string | undefined;
+  let notice: string | undefined = deleted === "1" ? "Your saved answers were deleted. That results link no longer works." : undefined;
   let loadedId: string | undefined;
   if (id) {
     try {

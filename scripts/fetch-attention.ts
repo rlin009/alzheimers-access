@@ -16,6 +16,8 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 // A-CPD search now leaves those out. Only PubMed-indexed papers are counted
 // (SRC:MED), which drops conference abstract books.
 
+// Broader inability-to-belch terms also return postoperative gas-bloat studies.
+// Keep the count explicitly scoped to modern names; discuss older reports separately.
 const RCPD = '"retrograde cricopharyngeus" OR "retrograde cricopharyngeal"';
 const TERM_SETS = [
   { condition: "R-CPD", query: `(${RCPD})` },
@@ -25,7 +27,7 @@ const TERM_SETS = [
   },
   { condition: "Achalasia", query: '("esophageal achalasia" OR "achalasia cardia")' },
   { condition: "Zenker's", query: '("Zenker diverticulum" OR "Zenker\'s diverticulum")' },
-  { condition: "Spasm", query: '("diffuse esophageal spasm" OR "jackhammer esophagus")' },
+  { condition: "Spasm", query: '("diffuse esophageal spasm" OR "distal esophageal spasm" OR "jackhammer esophagus" OR "hypercontractile esophagus")' },
 ] as const;
 
 const START_YEAR = 1990;

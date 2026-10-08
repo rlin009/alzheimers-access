@@ -9,17 +9,16 @@ export default function Privacy() {
         <p>You can choose what to share.</p>
       </PageHeading>
       <article className="prose">
+        <section><h2>Who runs this site</h2><p>Alzheimer’s Access is a student project created by Riteesha for the Whetstone capstone fellowship. For corrections or privacy questions, email <a href="mailto:riteesha.lingechetty@gmail.com">riteesha.lingechetty@gmail.com</a>. Please do not send medical records.</p></section>
         <section>
           <h2>What you can share</h2>
           <p>
-            All six questions are optional: approximate location, relationship,
-            diagnosis stage, age band, study-partner availability, and
+            All four questions are optional: approximate location, age band, study-partner availability, and
             willingness to travel.
           </p>
           <p>
             We use age, location, study-partner availability, and travel
-            preference to sort trial listings. Relationship and diagnosis stage
-            are saved with your answers but do not currently change that sort.
+            preference to sort trial listings. We no longer ask for or save relationship and diagnosis stage because they do not change the sort. Older saved searches may still contain those answers.
           </p>
         </section>
         <section>
@@ -59,8 +58,7 @@ export default function Privacy() {
           <h2>Your choices</h2>
           <p>
             You can leave any question blank. Read this page before deciding
-            what feels safe to share. No answers are sent until you press Submit
-            or Update results.
+            what feels safe to share. No answers are sent until you press Submit or Update results. Saved answers are retained until you delete them; there is currently no automatic expiry. Open your results link and choose “Delete these saved answers” to remove that set. This does not remove separate sets saved under other results links. Provider backups may retain copies under their own retention policies.
           </p>
         </section>
         <section>

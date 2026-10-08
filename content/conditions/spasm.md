@@ -27,15 +27,15 @@ In one review of distal esophageal spasm, 55% of patients had trouble swallowing
 ## How it gets confirmed
 
 - **Heart tests first**, when chest pain is a symptom [@patel2022].
-- **Upper endoscopy**, to rule out a blockage or inflammation, such as eosinophilic esophagitis [@patel2022].
-- **High-resolution manometry.** This is the test that names it. Distal esophageal spasm is diagnosed when at least 20% of test swallows come too early, and hypercontractile esophagus when at least 20% are far too strong [@chicago4].
+- **Upper endoscopy**, a camera examination of the food pipe, to rule out a blockage or inflammation, such as eosinophilic esophagitis [@patel2022].
+- **High-resolution manometry.** A thin tube measures pressure while you swallow. Doctors use the results alongside your symptoms. Distal esophageal spasm is diagnosed when at least 20% of test swallows come too early, and hypercontractile esophagus when at least 20% are far too strong [@chicago4].
 - **Barium swallow.** It sometimes shows a corkscrew shape, but it is not enough on its own [@patel2022].
 
-Opioid painkillers can cause the same pattern on manometry, so testing again off them is ideal where it is safe [@patel2022]. The person to ask for is a gastroenterologist, and the test to ask about by name is high-resolution manometry.
+Opioid painkillers can cause the same pattern on manometry, so a clinician may discuss changing them before repeating the test. Do not stop a prescribed painkiller on your own [@patel2022]. The person to ask for is a gastroenterologist, and the test to ask about by name is high-resolution manometry.
 
 ## How it gets treated
 
-- **Waiting.** For mild symptoms, watching is reasonable. In one long-term study, symptoms improved on their own over 3 to 10 years [@patel2022].
+- **Monitoring with a clinician.** After assessment, a clinician may recommend watching mild symptoms. In one long-term study, symptoms improved on their own over 3 to 10 years [@patel2022].
 - **Treating reflux.** A 6 to 8 week trial of acid medicine if reflux may be the trigger [@patel2022].
 - **Muscle relaxants.** Calcium channel blockers, nitrates or sildenafil. Side effects such as headache and dizziness limit them [@patel2022].
 - **Low-dose antidepressants.** When pain is the main problem, these can calm the sensitivity of the esophagus rather than the squeezing itself. The evidence comes mostly from small studies [@patel2022].
@@ -46,4 +46,4 @@ Opioid painkillers can cause the same pattern on manometry, so testing again off
 
 - **POEM works for most of the few who need it.** In a 2024 meta-analysis of 11 studies with 271 patients, 97.8% of people with distal esophageal spasm did well (95% CI 90.9 to 100), compared with 81.2% of people with hypercontractile esophagus (95% CI 73.5 to 88.8). About 19% developed new heartburn afterwards [@puri2024].
 - **Jackhammer esophagus is harder.** In a pooled analysis, 82% did well after POEM (95% CI 75 to 90) and 63% with medicines (95% CI 47 to 79) [@wahba2020]. In a longer follow-up of 42 patients after POEM, 64% were still doing well at two years [@albers2024].
-- **How sure we can be.** Every one of these studies is small and observational. There are no randomized trials, and because the outlook without treatment is often good, experts keep procedures for people who do not improve otherwise [@patel2022].
+- **How sure we can be.** The POEM evidence above comes mainly from small observational studies. In a randomized study of 23 people with hypercontractile esophageal disorders, Botox did not improve symptoms more than a sham procedure at three months. Treatment benefits remain uncertain. Experts reserve procedures for people who do not improve with other care [@mion2019; @patel2022].

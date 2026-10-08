@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Tube from "../../_components/tube";
+import SafetyNote from "../../_components/safety-note";
+import { TRIALS, longDate } from "@/lib/nameit/data";
 import { Blocks } from "../../_components/rich";
 import { BY_SLUG, CONDITIONS, isSlug } from "@/lib/nameit/conditions";
 import { getConditionPage } from "@/lib/nameit/content";
@@ -79,6 +81,8 @@ export default async function ConditionPage({ params }: { params: Promise<{ slug
             </div>
           </dl>
 
+          <SafetyNote />
+          <details className="ni-glossary"><summary>What do the test names and numbers mean?</summary><dl><dt>Manometry</dt><dd>A thin tube measures pressure as you swallow.</dd><dt>Endoscopy</dt><dd>A small camera examines the food pipe.</dd><dt>Videofluoroscopy</dt><dd>A moving X-ray taken while you swallow.</dd><dt>95% confidence interval (CI)</dt><dd>A statistical range showing uncertainty around a study estimate. It is not a promise about an individual person.</dd><dt>Median and IQR</dt><dd>The median is the middle value. The interquartile range (IQR) contains the middle half of the results.</dd><dt>Odds ratio</dt><dd>A comparison of odds between two groups. It is not the same as a difference in percentage points.</dd></dl></details>
           {page.sections.map((s) => (
             <section key={s.id} id={s.id} className="ni-prose-section" aria-labelledby={`${s.id}-h`}>
               <h2 id={`${s.id}-h`} className="ni-h2">
@@ -92,19 +96,18 @@ export default async function ConditionPage({ params }: { params: Promise<{ slug
 
           <section className="ni-prose-section" aria-labelledby="trials-h">
             <h2 id="trials-h" className="ni-h2">
-              Studies recruiting now
+              Studies to ask about
             </h2>
             <div className="ni-prose">
               {trials.length === 0 ? (
                 <p>
-                  No study registered on ClinicalTrials.gov is recruiting people with{" "}
-                  {c.name} right now.{" "}
+                  Our ClinicalTrials.gov search found no studies listed as recruiting or not yet recruiting for {c.name} on {longDate(TRIALS.fetched)}. Other studies may exist.{" "}
                   <Link href="/free-the-burp/trials">See the trials for the other four conditions</Link>.
                 </p>
               ) : (
                 <p>
-                  {trials.length} {trials.length === 1 ? "study is" : "studies are"} recruiting or
-                  about to recruit people with {c.name}.{" "}
+                  {trials.length} {trials.length === 1 ? "study is" : "studies are"} listed as recruiting or
+                  not yet recruiting for {c.name}.{" "}
                   <Link href={`/free-the-burp/trials#${c.slug}`}>See them in plain words</Link>.
                 </p>
               )}

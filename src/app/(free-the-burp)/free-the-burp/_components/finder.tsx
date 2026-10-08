@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import Tube from "./tube";
+import Tube, { TubeLegend } from "./tube";
+import SafetyNote from "./safety-note";
 import type { Condition, Label, Slug } from "@/lib/nameit/conditions";
 import type { Phrase } from "@/lib/nameit/content";
 
@@ -44,12 +45,11 @@ export default function Finder({ phrases, groups, conditions }: Props) {
             You can&rsquo;t look up a word nobody has told&nbsp;you.
           </h1>
           <p className="ni-lede">
-            Start from what you notice, in your own words. Free the Burp shows which
-            conditions those words belong to, how to tell them apart, and the test
-            to ask a doctor for by name.
+            Start from what you notice, in your own words. Explore five conditions people have described with these phrases, and learn what to discuss with a doctor. Many other causes are possible.
           </p>
         </section>
 
+        <SafetyNote />
         <section className="ni-picker" aria-labelledby="picker-title">
           <div className="ni-picker-head">
             <h2 id="picker-title" className="ni-h2">
@@ -112,16 +112,16 @@ export default function Finder({ phrases, groups, conditions }: Props) {
             )}
           </div>
 
-          {results.length > 0 && <Tube active={activeSlugs} id="tube-mobile" className="ni-tube-mobile" />}
+          {results.length > 0 && <div className="ni-tube-mobile-layout"><Tube active={activeSlugs} id="tube-mobile" className="ni-tube-mobile" /><TubeLegend /></div>}
 
           {results.length === 0 ? (
             <p className="ni-results-empty">
               Nothing chosen yet. Pick anything above that sounds like you, and the
-              conditions those words belong to will show up here.
+              conditions associated with those phrases will show up here.
             </p>
           ) : (
             <>
-              <p className="ni-caution">
+              <p className="ni-caution" role="status">
                 This is not a diagnosis. Several of these can only be told apart with
                 a test, and some of these symptoms have other causes. Take the names
                 and the tests to a doctor.
@@ -131,7 +131,7 @@ export default function Finder({ phrases, groups, conditions }: Props) {
                   <li key={c.slug} className="ni-result">
                     <div className="ni-result-top">
                       <p className="ni-result-count">
-                        {matches.length} of your {chosen.length === 1 ? "word" : "words"}
+                        {matches.length} matching {matches.length === 1 ? "phrase" : "phrases"}
                       </p>
                       <h3 className="ni-result-name">{c.name}</h3>
                       <p className="ni-result-full">{c.fullName}</p>
@@ -143,7 +143,7 @@ export default function Finder({ phrases, groups, conditions }: Props) {
                           <span className="ni-why-phrase">&ldquo;{m.phrase}&rdquo;</span>
                           {m.conditions.length > 1 && (
                             <span className="ni-why-note">
-                              Also points to{" "}
+                              Also reported with{" "}
                               {m.conditions
                                 .filter((l) => l !== c.label)
                                 .map((l) => byLabel[l].name)
@@ -187,10 +187,11 @@ export default function Finder({ phrases, groups, conditions }: Props) {
       <aside className="ni-finder-side" aria-label="Where each condition happens">
         <div className="ni-sticky">
           <Tube active={activeSlugs} id="tube-desktop" />
+          <TubeLegend />
           <p className="ni-tube-caption">
             {activeSlugs.length
-              ? "Lit up: where the conditions behind your words happen."
-              : "Each condition sits at a different height on the same tube."}
+              ? "Highlighted: conditions associated with your selected phrases."
+              : "Follow the food pipe from throat to stomach. R-CPD and A-CPD involve the same upper muscle."}
           </p>
         </div>
       </aside>
