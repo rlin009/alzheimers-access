@@ -1,39 +1,40 @@
 /* Free the Burp. Everything is scoped under .ni so nothing leaks into
    Alzheimer's Access, which has its own stylesheet.
 
-   Palette: a clinical off-white with navy ink. The only warm colours are
-   the pressure colours from a manometry plot, used where a muscle stays
-   squeezed shut, and nowhere else. */
+   Shares the main site's cream, indigo, lilac and butter palette. Anatomy
+   pressure colours remain distinct from interface selection colours. */
 
 html:has(.ni) {
-  background: #f6f9fc;
+  background: #fcfaf5;
 }
 html:has(.ni) body {
   margin: 0;
 }
 
 .ni {
-  --ni-paper: #f6f9fc;
+  --ni-paper: #fcfaf5;
   --ni-surface: #ffffff;
-  --ni-ink: #193b4a;
-  --ni-ink-2: #345564;
-  --ni-muted: #526975;
-  --ni-rule: #c9d2d6;
-  --ni-rule-soft: #e1e7e9;
-  --ni-blue: #126b66;
-  --ni-blue-soft: #e1f1ef;
+  --ni-ink: #292d58;
+  --ni-ink-2: #25243a;
+  --ni-muted: #56546b;
+  --ni-rule: #d9d4e4;
+  --ni-rule-soft: #e9e4ee;
+  --ni-blue: #373995;
+  --ni-blue-soft: #f3effa;
+  --ni-lilac: #e6ddf5;
+  --ni-butter: #f4e8b6;
   --ni-p3: #f2b630;
   --ni-p4: #e5532d;
   --ni-hot-text: #b2361a;
-  --ni-lumen: #d9e4f0;
-  --ni-lumen-top: #eef3f8;
+  --ni-lumen: #d8d2ec;
+  --ni-lumen-top: #f3effa;
   --ni-s1: #2a78d6;
   --ni-s2: #eb6834;
   --ni-s3: #1baf7a;
   --ni-s4: #eda100;
   --ni-s5: #e87ba4;
 
-  --ni-display: "Archivo Variable", "Arial Narrow", Arial, sans-serif;
+  --ni-display: "DM Sans Variable", Arial, sans-serif;
   --ni-serif: "DM Sans Variable", Arial, sans-serif;
   --ni-mono: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -44,8 +45,8 @@ html:has(.ni) body {
   background: var(--ni-paper);
   color: var(--ni-ink);
   font-family: var(--ni-serif);
-  font-size: 17px;
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -66,8 +67,8 @@ html:has(.ni) body {
   text-decoration-thickness: 2px;
 }
 .ni :focus-visible {
-  outline: 3px solid var(--ni-blue);
-  outline-offset: 3px;
+  outline: 3px solid #7662aa;
+  outline-offset: 4px;
   border-radius: 4px;
 }
 .ni-main {
@@ -117,9 +118,9 @@ html:has(.ni) body {
 .ni-h2 {
   font-family: var(--ni-display);
   font-stretch: 100%;
-  font-weight: 700;
+  font-weight: 750;
   font-size: clamp(24px, 2.4vw, 30px);
-  line-height: 1.12;
+  line-height: 1.2;
   letter-spacing: -0.01em;
 }
 .ni-h2-large {
@@ -197,7 +198,7 @@ html:has(.ni) body {
 
 /* ---------- header and footer ---------- */
 .ni-header {
-  border-bottom: 1px solid var(--ni-rule);
+  border-bottom: 0;
   background: var(--ni-paper);
 }
 .ni-header-inner {
@@ -205,7 +206,7 @@ html:has(.ni) body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 68px;
+  min-height: 100px;
   flex-wrap: wrap;
 }
 .ni-wordmark {
@@ -243,10 +244,10 @@ html:has(.ni) body {
   flex-wrap: wrap;
 }
 .ni-nav a {
-  color: var(--ni-ink);
+  color: var(--ni-blue);
   text-decoration: none;
-  font-weight: 550;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 18px;
   padding: 6px 0;
 }
 .ni-nav a:hover {
@@ -254,12 +255,13 @@ html:has(.ni) body {
 }
 .ni-footer {
   margin-top: 96px;
-  background: var(--ni-ink);
-  color: #d5dde2;
+  background: var(--ni-paper);
+  color: var(--ni-ink-2);
+  border-top: 1px solid var(--ni-rule);
   padding: 56px 0 64px;
 }
 .ni-footer .ni-wordmark {
-  color: var(--ni-paper) !important;
+  color: var(--ni-ink) !important;
 }
 .ni-footer-inner {
   display: grid;
@@ -282,11 +284,11 @@ html:has(.ni) body {
   gap: 8px;
 }
 .ni-footer .ni-mono-label {
-  color: #9aa8b2;
+  color: var(--ni-muted);
   margin-bottom: 4px;
 }
 .ni-footer a {
-  color: var(--ni-paper);
+  color: var(--ni-blue);
   text-decoration: none;
 }
 .ni-footer a:hover {
@@ -297,17 +299,32 @@ html:has(.ni) body {
 .ni-finder {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
-  gap: clamp(32px, 5vw, 72px);
-  padding-top: clamp(40px, 6vw, 80px);
+  gap: clamp(24px, 3vw, 40px);
+  padding-top: 12px;
+}
+.ni-hero {
+  background: var(--ni-ink);
+  border-radius: 24px;
+  padding: clamp(24px, 3vw, 40px);
+}
+.ni-hero .ni-eyebrow {
+  color: var(--ni-lilac);
+}
+.ni-hero .ni-hero-title,
+.ni-hero .ni-lede {
+  color: #fff;
+}
+.ni-hero .ni-lede {
+  font-size: clamp(18px, 1.5vw, 20px);
 }
 .ni-hero-title {
   font-family: var(--ni-display);
   font-stretch: 100%;
-  font-weight: 650;
-  font-size: clamp(40px, 5.5vw, 72px);
-  line-height: 1.08;
+  font-weight: 750;
+  font-size: clamp(36px, 3.7vw, 52px);
+  line-height: 1.12;
   letter-spacing: -0.012em;
-  max-width: 15ch;
+  max-width: 20ch;
   margin-bottom: 26px;
   text-wrap: balance;
 }
@@ -384,7 +401,7 @@ html:has(.ni) body {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--ni-p4);
+  background: var(--ni-butter);
   margin-right: 8px;
   vertical-align: 1px;
 }
@@ -427,7 +444,7 @@ html:has(.ni) body {
   font-size: 12.5px;
   letter-spacing: 0.06em;
   text-transform: none;
-  color: var(--ni-hot-text);
+  color: var(--ni-blue);
   margin-bottom: 6px;
 }
 .ni-result-name {
@@ -542,8 +559,8 @@ html:has(.ni) body {
   stroke-linecap: round;
 }
 .ni-tube-place text {
-  font-family: var(--ni-mono);
-  font-size: 12px;
+  font-family: var(--ni-serif);
+  font-size: 13px;
   letter-spacing: 0.025em;
   text-transform: none;
   fill: var(--ni-muted);
@@ -1506,18 +1523,21 @@ html:has(.ni) body {
   }
 }
 
-/* Patient-facing refresh: generous type, quiet surfaces, one anatomy illustration. */
-.ni-wordmark {font-size:26px;letter-spacing:-.035em;padding-left:24px;}
+/* Preserve the finder and anatomy layout, using the main site's visual language. */
+.ni-wordmark {font-size:25px;font-weight:800;letter-spacing:-.045em;padding-left:24px;}
 .ni-wordmark::before {width:14px;height:14px;border:3px solid var(--ni-blue);border-radius:50%;background:var(--ni-surface);}
-.ni-header {background:var(--ni-surface);}
+.ni-header {background:var(--ni-paper);}
 .ni-nav a {min-height:44px;display:inline-flex;align-items:center;}
 .ni-finder {grid-template-columns:minmax(0,1fr) minmax(280px,360px);}
-.ni-finder-side .ni-sticky {background:#e8f1f8;border-radius:32px;padding:24px 12px;border:1px solid #cfdee8;}
-.ni-hero-title {letter-spacing:-.045em;}
-.ni-h2,.ni-page-title,.ni-condition-name {letter-spacing:-.035em;}
+.ni-finder-side .ni-sticky {background:var(--ni-lilac);border-radius:24px;padding:24px 16px;border:1px solid var(--ni-rule);}
+.ni-hero-title {letter-spacing:-.025em;}
+.ni-h2,.ni-page-title,.ni-condition-name {letter-spacing:-.025em;}
 .ni-eyebrow,.ni-mono-label {font-family:var(--ni-serif);font-weight:650;font-size:14px;}
 .ni-picker {border-top:1px solid var(--ni-rule);}
 .ni-chip {min-height:44px;padding:11px 16px;border-radius:12px;}
+.ni-chip:hover:not([aria-pressed="true"]) {background:var(--ni-blue-soft);border-color:var(--ni-blue);}
+.ni-button {border-radius:12px;min-height:48px;font-weight:700;}
+.ni-ask dt,.ni-factcard dt,.ni-trial-facts dt {font-family:var(--ni-serif);font-size:14px;letter-spacing:0;}
 .ni-result-name {font-size:clamp(32px,5vw,50px);}
 .ni-five-card {background:white;border-radius:20px;}
 .ni-five-name {font-size:28px;}
@@ -1528,7 +1548,7 @@ html:has(.ni) body {
 .ni-tube-legend a {font-weight:650;}
 .ni-tube-legend span {display:block;color:var(--ni-muted);}
 .ni-tube-mobile-layout {display:none;}
-.ni-safety {margin-top:28px;border:1px solid #b9ccc9;border-left:4px solid var(--ni-blue);padding:18px 20px;border-radius:12px;background:#eef6f4;font:15px/1.6 var(--ni-serif);}
+.ni-safety {margin-top:28px;border:1px solid var(--ni-rule);border-left:4px solid var(--ni-blue);padding:18px 20px;border-radius:12px;background:var(--ni-blue-soft);font:15px/1.6 var(--ni-serif);}
 .ni-safety p {margin-top:8px;}
 .ni-safety-sources {font-size:13px;}
 .ni-glossary {margin-top:24px;padding:18px 20px;background:white;border:1px solid var(--ni-rule);border-radius:12px;}
@@ -1565,7 +1585,8 @@ html:has(.ni) body {
 @media(max-width:520px){
  .ni-header-inner {gap:8px;}
  .ni-nav {gap:20px;}
- .ni-hero-title {font-size:42px;max-width:16ch;}
+ .ni-hero {padding:24px 20px;}
+ .ni-hero-title {font-size:36px;max-width:20ch;}
  .ni-safety {padding:16px;}
  .ni-chart {padding:16px;}
  .ni-page-title {font-size:40px;}
@@ -1577,3 +1598,13 @@ html:has(.ni) body {
 .ni .ni-trial-filters select,.ni .ni-trial-filters button { font:inherit;min-height:46px;padding:10px 14px;border:1px solid var(--ni-rule);border-radius:8px;max-width:100%; }
 .ni .ni-trial-filters button { background:var(--ni-blue);color:white;cursor:pointer; }
 @media(max-width:520px) { .ni .ni-trial-filters label {width:100%;} }
+
+/* The alerts component is shared; limit palette changes to this subsite. */
+.ni .alerts-panel {color:var(--ni-ink-2);}
+.ni .alerts-panel fieldset {border-color:var(--ni-rule);}
+.ni .alerts-panel input:not([type=checkbox]),.ni .alerts-panel select {border-color:#aca8c1;border-radius:12px;}
+.ni .alerts-panel input[type=checkbox] {accent-color:var(--ni-blue);}
+.ni .alerts-panel button {background:var(--ni-ink);border-color:var(--ni-ink);border-radius:12px;}
+.ni .alerts-panel .alerts-secondary {background:var(--ni-surface);color:var(--ni-blue);}
+.ni .alerts-panel .alerts-help {color:var(--ni-muted);}
+.ni .alerts-panel .alerts-status {background:var(--ni-blue-soft);}

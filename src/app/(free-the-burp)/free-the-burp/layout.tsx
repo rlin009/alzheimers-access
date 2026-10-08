@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "@fontsource-variable/archivo/wdth.css";
 import "@fontsource-variable/dm-sans";
 
 import "@fontsource/ibm-plex-mono/400.css";

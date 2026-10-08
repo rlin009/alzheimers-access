@@ -71,3 +71,33 @@ Follow-up polish: none required for visual acceptance. No deployment, commit, or
 ## September 11 follow-up: trial relevance corrected
 
 The pre-existing unrelated-trial release concern described above has been addressed in the updated importer and active catalog. See `docs/trial-relevance-fix.md` and `docs/trial-scope-audit.json` for the applied refresh, recoverable backups, remaining uncertainty handling, and regression checks. Project-wide lint now passes after the importer rewrite. The new catalog filter is implemented locally and has not been deployed to the public site. Actual 200% zoom remains the earlier manual testing item.
+
+## October 8: Free the Burp visual alignment
+
+final result: passed
+
+Scope: align the existing Free the Burp interface with Alzheimer's Access while preserving its content, navigation, symptom picker, results, and five-condition anatomy diagram. The user's two supplied screenshots supersede earlier proposals to restructure the experience. This is a scoped visual acceptance, not a complete accessibility or clinical review.
+
+Reference: the supplied current-site screenshots and a fresh capture of https://alzheimers-access.vercel.app/. Local implementation: http://localhost:3000/free-the-burp. Compared the main-site reference and implemented desktop capture together at 1265 × 713 pixels. Kept the R-CPD page's existing two-column composition intentionally.
+
+Evidence is saved outside the repository under `C:/AA_Whetstone/audits/rcpd-design-research-2026-10-08/`:
+
+- `10-alzheimers-style-reference.jpg`: live main-site desktop reference.
+- `12-restyle-desktop.jpg`: implemented desktop homepage.
+- `13-restyle-picker.jpg`: filtered and selected symptom, result, and highlighted anatomy.
+- `14-restyle-mobile.jpg`: implemented mobile homepage.
+- `15-restyle-condition-mobile.jpg`: mobile R-CPD article.
+
+Desktop captures are 1265 × 713. The requested mobile viewport was 390 × 844; the browser's effective content width was 375 CSS pixels and its captured image was 375 × 812. The measured document width and scroll width both equaled 375, with no horizontal overflow.
+
+Five fidelity surfaces:
+
+- Typography: DM Sans replaces Archivo for display text; headings, navigation, and fact labels share the main site's type family. Technical research labels retain their existing monospace treatment.
+- Layout: the existing finder, diagram, reading order, and article structure remain. Indigo hero padding and rounded corners echo the main site without adopting a different flow.
+- Colors: cream page, indigo text and hero, lavender anatomy panel, and butter selection accent align the sites. Orange anatomy pressure highlights retain their existing meaning.
+- Images and icons: the user's existing interactive anatomy SVG and small wordmark icon remain; no replacement illustration or new generated asset was introduced.
+- Copy: headings, explanations, safety guidance, results, and navigation labels are unchanged.
+
+Verification: symptom search for “burp” returned three phrases; selecting “I can't burp, and I never could” showed its selected state, R-CPD result, and diagram highlight. Clearing selection and search worked. Homepage and condition article were visually inspected on mobile. Browser error logs were empty. `npm run lint`, `npm run build`, and `git diff --check` passed.
+
+No actionable P0–P2 visual findings remain within this restyle's checked scope. Secondary routes inherit the shared stylesheet but were not all visually rechecked in this pass. Shared alert styles are scoped under `.ni` to avoid changing Alzheimer's Access. No deployment or push was performed.
