@@ -43,6 +43,8 @@ export function NiFooter() {
             <p className="ni-mono-label">More</p>
             <Link href="/free-the-burp/evidence">The evidence</Link>
             <Link href="/free-the-burp/trials">Recruiting trials</Link>
+            <Link href="/free-the-burp/alerts">Study email alerts</Link>
+            <Link href="/privacy">Privacy and deletion</Link>
             <Link href="/free-the-burp/about">About and sources</Link>
             <a href="https://noburp.info/" rel="noopener">
               noburp.info clinician directory

@@ -7,7 +7,7 @@ export function createServerSupabaseClient() {
   return createClient(url, key, {
     auth: { persistSession: false, autoRefreshToken: false },
     global: {
-      fetch: (input, init) => fetch(input, { ...init, cache: "no-store" }),
+      fetch: (input, init) => fetch(input, { ...init, cache: "no-store", signal: init?.signal ?? AbortSignal.timeout(15000) }),
     },
   });
 }

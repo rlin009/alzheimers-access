@@ -9,7 +9,10 @@
     "lint": "eslint",
     "test": "tsx --test tests/*.test.ts",
     "trials:audit": "tsx scripts/fetch-trials.ts",
-    "trials:refresh": "tsx scripts/fetch-trials.ts --apply"
+    "trials:refresh": "tsx scripts/fetch-trials.ts --apply",
+    "trials:monitor": "tsx scripts/monitor-trials.ts",
+    "trials:monitor:apply": "tsx scripts/monitor-trials.ts --apply",
+    "trials:registry-check": "tsx scripts/monitor-trials.ts --registry-only"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.116.0",
@@ -26,6 +29,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -3,12 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Tube from "../../_components/tube";
 import SafetyNote from "../../_components/safety-note";
-import { TRIALS, longDate } from "@/lib/nameit/data";
+import { longDate } from "@/lib/nameit/data";
+import { getBurpTrials } from '@/lib/trial-monitor/burp';
+import TrialFreshness from '@/app/components/trial-freshness';
 import { Blocks } from "../../_components/rich";
 import { BY_SLUG, CONDITIONS, isSlug } from "@/lib/nameit/conditions";
 import { getConditionPage } from "@/lib/nameit/content";
 import { formatSource, getSource } from "@/lib/nameit/sources";
-import { trialsFor } from "@/lib/nameit/data";
+export const dynamic = 'force-dynamic';
 
 export function generateStaticParams() {
   return CONDITIONS.map((c) => ({ slug: c.slug }));
@@ -32,7 +34,8 @@ export default async function ConditionPage({ params }: { params: Promise<{ slug
   const c = BY_SLUG[slug];
   const page = await getConditionPage(slug);
   const numbers = Object.fromEntries(page.citeOrder.map((k, i) => [k, i + 1]));
-  const trials = trialsFor(c.label);
+  const TRIALS=await getBurpTrials();
+  const trials = TRIALS.trials.filter(t=>t.conditions.includes(c.label));
 
   return (
     <main id="main" className="ni-main">
@@ -99,6 +102,8 @@ export default async function ConditionPage({ params }: { params: Promise<{ slug
               Studies to ask about
             </h2>
             <div className="ni-prose">
+              <TrialFreshness checkedAt={TRIALS.fetched} automatic={TRIALS.automatic} unavailable={TRIALS.unavailable}/>
+              <p><Link href={`/free-the-burp/alerts?condition=${encodeURIComponent(c.label)}`}>Get email alerts about new potential studies</Link></p>
               {trials.length === 0 ? (
                 <p>
                   Our ClinicalTrials.gov search found no studies listed as recruiting or not yet recruiting for {c.name} on {longDate(TRIALS.fetched)}. Other studies may exist.{" "}
@@ -108,7 +113,7 @@ export default async function ConditionPage({ params }: { params: Promise<{ slug
                 <p>
                   {trials.length} {trials.length === 1 ? "study is" : "studies are"} listed as recruiting or
                   not yet recruiting for {c.name}.{" "}
-                  <Link href={`/free-the-burp/trials#${c.slug}`}>See them in plain words</Link>.
+                  <Link href={`/free-the-burp/trials#${c.slug}`}>See the studies and follow updates</Link>.
                 </p>
               )}
             </div>

@@ -7,6 +7,7 @@ export default function Header() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
   const links = [
+    {href:'/trial-alerts',label:'Trial alerts',current:path==='/trial-alerts'},
     {
       href: "/start",
       label: "Clinical trials",

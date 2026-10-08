@@ -2,10 +2,13 @@ import Link from "next/link";
 import Finder from "./_components/finder";
 import { CONDITIONS } from "@/lib/nameit/conditions";
 import { getPhrases, PHRASE_GROUPS } from "@/lib/nameit/content";
-import { ATTENTION, DELAY, TRIALS, longDate } from "@/lib/nameit/data";
+import { ATTENTION, DELAY, longDate } from "@/lib/nameit/data";
+import { getBurpTrials } from '@/lib/trial-monitor/burp';
+export const dynamic = 'force-dynamic';
 import { Sparkline } from "./_components/attention-chart";
 
 export default async function FreeTheBurpHome() {
+  const TRIALS=await getBurpTrials();
   const phrases = await getPhrases();
   const achalasia = ATTENTION.allTime["Achalasia"];
   const rcpd = ATTENTION.allTime["R-CPD"];

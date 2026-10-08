@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import catalog from '../data/trial-catalog.json';
 import { loadCatalogTrials, type TrialCatalog } from './trial-catalog';
+import type { Snapshot } from './trial-monitor/model';
 
 /* -------------------------------------------------------------------------
  * Types
@@ -42,6 +43,7 @@ export interface TrialCriteria {
 
 /** One row of the `trials` table, with its criteria row nested in. */
 export interface Trial {
+  last_updated?: string | null;
   /** This IS the trial's primary key — the `trials` table has no separate
    * `id` column, only `nct_id` (e.g. "NCT01234567"). */
   nct_id: string;
@@ -99,6 +101,8 @@ export interface CannotTellTrial {
 }
 
 export interface TriageResult {
+  checkedAt?: string;
+  automatic?: boolean;
   worthAsking: WorthAskingTrial[];
   probablyNot: ProbablyNotTrial[];
   cannotTell: CannotTellTrial[];
@@ -418,7 +422,7 @@ type TriageOutcome =
   | { bucket: 'cannotTell' }
   | { bucket: 'worthAsking'; caveats: string[] };
 
-function triageOneTrial(trial: Trial, profile: FamilyProfile): TriageOutcome {
+export function triageOneTrial(trial: Trial, profile: FamilyProfile): TriageOutcome {
   const criteria = getCriteria(trial);
 
   // Every trial starts in "worth asking about"; each rule below can only
@@ -461,9 +465,12 @@ function triageOneTrial(trial: Trial, profile: FamilyProfile): TriageOutcome {
 export async function triageTrialsForFamily(
   profile: FamilyProfile,
   supabase: SupabaseClient,
+  snapshot?: Snapshot | null,
 ): Promise<TriageResult> {
   const reviewedCatalog: TrialCatalog = catalog;
-  const trials = await loadCatalogTrials(supabase, reviewedCatalog);
+  const current = snapshot?.trials.filter(t=>t.conditions.includes('Alzheimer’s / dementia') && t.scope !== 'exclude');
+  const trials = current ? current.map(t=>t.trial) : await loadCatalogTrials(supabase, reviewedCatalog);
+  const decisions = current ? Object.fromEntries(current.map(t=>[t.id,{decision:t.scope}])) : reviewedCatalog.entries;
 
   const worthAsking: WorthAskingTrial[] = [];
   const probablyNot: ProbablyNotTrial[] = [];
@@ -475,7 +482,7 @@ export async function triageTrialsForFamily(
     // placed in any bucket.
     if (normalizeStatus(trial.status) !== 'RECRUITING') continue;
 
-    if (reviewedCatalog.entries[trial.nct_id]?.decision === 'review') {
+    if (decisions[trial.nct_id]?.decision === 'review') {
       cannotTell.push({ trial, note: 'This listing mentions dementia or related research, but we could not confirm how directly the study relates to it. Ask the coordinator what the study is for.' });
       continue;
     }
@@ -491,5 +498,5 @@ export async function triageTrialsForFamily(
     }
   }
 
-  return { worthAsking, probablyNot, cannotTell };
+  return { worthAsking, probablyNot, cannotTell, checkedAt:snapshot?.checkedAt ?? catalog.updatedAt, automatic:!!snapshot };
 }

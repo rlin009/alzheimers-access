@@ -47,8 +47,7 @@ export default function AboutPage() {
               Use that.
             </li>
             <li>
-              <strong>It does not store anything about you.</strong> The phrases you pick
-              stay in your browser and disappear when you leave the page.
+              <strong>Phrase choices stay in your browser.</strong> They disappear when you leave the page. If you separately sign up for study alerts, we store your email, alert preferences and followed studies with your consent. <Link href="/privacy">Read about alert data and deletion</Link>.
             </li>
           </ul>
 
@@ -68,7 +67,7 @@ export default function AboutPage() {
           <p>
             The paper counts and diagnosis times are explained, with their limits, on the{" "}
             <Link href="/free-the-burp/evidence">evidence page</Link>. The trials list is pulled
-            from ClinicalTrials.gov and each study is described in one plain sentence.
+            from ClinicalTrials.gov. Automatically refreshed descriptions use the registry’s own words and may include technical terms.
           </p>
 
           <h2 className="ni-h2">Who made it</h2>

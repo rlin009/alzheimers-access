@@ -8,6 +8,7 @@ import {
 } from "../../components/icons";
 import { displayAnswer, fields, type FormState } from "@/lib/profile";
 export type TrialView = {
+  updated?: string | null;
   id: string;
   title: string;
   site: string;
@@ -20,7 +21,7 @@ export type GroupView = {
   trials: TrialView[];
   defaultOpen: boolean;
 };
-function TrialGroup({ group, query }: { group: GroupView; query: string }) {
+function TrialGroup({ group, query, profileId }: { group: GroupView; query: string; profileId: string }) {
   const [limit, setLimit] = useState(3);
   const matches = group.trials.filter((trial) =>
     (trial.title + " " + trial.site)
@@ -42,6 +43,7 @@ function TrialGroup({ group, query }: { group: GroupView; query: string }) {
             {matches.slice(0, limit).map((trial) => (
               <li className="trial-card" key={trial.id}>
                 <h3>{trial.title}</h3>
+                <p className="trial-site">Registry last updated: {trial.updated || 'Not provided'}</p>
                 <p className="trial-site">
                   <MapPinIcon size={22} aria-hidden />
                   <span>
@@ -72,6 +74,7 @@ function TrialGroup({ group, query }: { group: GroupView; query: string }) {
                   View on ClinicalTrials.gov{" "}
                   <ArrowUpRightIcon size={22} aria-hidden />
                 </a>
+                <p><Link href={`/trial-alerts?profile=${encodeURIComponent(profileId)}&trial=${trial.id}`}>Follow this study by email</Link></p>
               </li>
             ))}
           </ul>
@@ -123,6 +126,7 @@ export default function ResultsList({
   return (
     <>
       <div className="results-toolbar">
+        <Link href={`/trial-alerts?profile=${encodeURIComponent(profileId)}`}>Get alerts for new potential matches</Link>
         <div className="answers-controls">
           <strong>Your answers</strong>
           <Link href={"/start?id=" + encodeURIComponent(profileId)}>
@@ -195,7 +199,7 @@ export default function ResultsList({
         </p>
       )}
       {groups.map((group) => (
-        <TrialGroup key={group.id + query} group={group} query={query} />
+        <TrialGroup key={group.id + query} group={group} query={query} profileId={profileId} />
       ))}
       <details className="disclosure preparation">
         <summary>
