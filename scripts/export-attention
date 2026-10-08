@@ -1,0 +1,41 @@
+import "dotenv/config";
+import { createClient } from "@supabase/supabase-js";
+import * as fs from "fs";
+import * as path from "path";
+
+const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY!;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+async function exportAllRows() {
+  // Fetch up to 1000 rows (bypasses the default 100-row limit)
+  const { data, error } = await supabase
+    .from("attention")
+    .select("condition, pub_year, paper_count")
+    .order("pub_year", { ascending: true })
+    .order("condition", { ascending: true })
+    .range(0, 1000);
+
+  if (error) {
+    console.error("Supabase query error:", error);
+    return;
+  }
+
+  console.log(`Fetched total rows: ${data.length}`);
+
+  const header = "condition,pub_year,paper_count";
+  const rows = data.map((r) => `"${r.condition}",${r.pub_year},${r.paper_count}`);
+
+  const docsDir = path.resolve(process.cwd(), "docs");
+  if (!fs.existsSync(docsDir)) {
+    fs.mkdirSync(docsDir, { recursive: true });
+  }
+
+  const csvPath = path.join(docsDir, "attention.csv");
+  fs.writeFileSync(csvPath, [header, ...rows].join("\n"), "utf-8");
+
+  console.log(`Successfully saved all ${data.length} rows to ${csvPath}!`);
+}
+
+exportAllRows();
