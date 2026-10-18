@@ -3,6 +3,7 @@ import "@fontsource-variable/dm-sans";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import "../globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: { default: "Alzheimer's Access", template: "%s | Alzheimer's Access" },
@@ -19,6 +20,7 @@ export default function AlzLayout({ children }: { children: React.ReactNode }) {
       <Header />
       {children}
       <Footer />
+      <GoogleAnalytics gaId="G-RKWJ0B2JHX" />
     </>
   );
 }
