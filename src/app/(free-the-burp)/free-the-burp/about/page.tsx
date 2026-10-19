@@ -70,15 +70,7 @@ export default function AboutPage() {
             from ClinicalTrials.gov. Automatically refreshed descriptions use the registry’s own words and may include technical terms.
           </p>
 
-          <h2 className="ni-h2">Who made it</h2>
-          <p>
-            Free the Burp was built by Riteesha, a high school student, as part of the Whetstone capstone
-            fellowship, alongside Alzheimer&rsquo;s Access, a project that reads Alzheimer&rsquo;s
-            trial listings for families. Both projects ask the same question from two
-            directions: whether medical information actually reaches the person it is for.
-          </p>
           <p>Independent clinical review has not been verified. This is a student research project, not a clinical service.</p>
-          <p>Corrections and privacy questions: <a href="mailto:riteesha.lingechetty@gmail.com">riteesha.lingechetty@gmail.com</a>. Please do not send medical records.</p>
           <p className="ni-muted">
             Information here was last checked in October 2026. Medicine changes. If
             something looks out of date, a doctor&rsquo;s advice comes first.
