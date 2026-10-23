@@ -5,9 +5,12 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
   const hostname = request.headers.get('host') || '';
 
-  // If someone comes in from freetheburp.com hitting the root homepage
-  if (hostname.includes('freetheburp.com') && url.pathname === '/') {
-    // Rewrite their request internally to show the free-the-burp page
+  // This catches freetheburp.com OR any vercel branch preview URL matching this deployment!
+  const isFreeTheBurpDomain = hostname.includes('freetheburp.com');
+  const isVercelPreview = hostname.includes('cursor-export-attention-chart') || hostname.includes('vercel.app');
+
+  // If they hit the root homepage on your custom domain OR your preview environment
+  if ((isFreeTheBurpDomain || isVercelPreview) && url.pathname === '/') {
     url.pathname = '/free-the-burp';
     return NextResponse.rewrite(url);
   }
