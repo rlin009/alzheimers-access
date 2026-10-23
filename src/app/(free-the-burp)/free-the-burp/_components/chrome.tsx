@@ -29,6 +29,9 @@ export function NiFooter() {
             medical advice and it cannot tell you what you have. Take the names and
             the tests to a doctor.
           </p>
+          <p className="ni-copyright" style={{ marginTop: '1rem', fontSize: '0.85rem', opacity: 0.8 }}>
+            &copy; 2026 Free the Burp. All rights reserved.
+          </p>
         </div>
         <div className="ni-footer-cols">
           <nav aria-label="Conditions">
