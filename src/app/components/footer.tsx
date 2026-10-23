@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="site-footer">
@@ -10,6 +11,9 @@ export default function Footer() {
           <Link href="/how-it-works">How this works</Link>
           <Link href="/privacy">Privacy</Link>
         </nav>
+        <p className="copyright">
+          &copy; 2026 Alzheimer&apos;s Access. All rights reserved.
+        </p>
       </div>
     </footer>
   );
