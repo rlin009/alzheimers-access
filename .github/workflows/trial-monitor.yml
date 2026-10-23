@@ -1,0 +1,43 @@
+name: Daily trial checks
+on:
+  schedule:
+    - cron: '23 11 * * *'
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: Publish the complete snapshot and deliver opted-in alerts
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: trial-monitor-production
+  cancel-in-progress: false
+jobs:
+  monitor:
+    if: vars.TRIAL_MONITOR_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Check and publish trials
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          TRIAL_ALERT_SECRET: ${{ secrets.TRIAL_ALERT_SECRET }}
+          TRIAL_ALERT_FROM: ${{ vars.TRIAL_ALERT_FROM }}
+          TRIAL_ALERT_SITE_URL: ${{ vars.TRIAL_ALERT_SITE_URL }}
+          TRIAL_ALERTS_ENABLED: ${{ vars.TRIAL_ALERTS_ENABLED }}
+          APPLY: ${{ github.event_name == 'schedule' || inputs.apply }}
+        run: |
+          if [ "$APPLY" = "true" ]; then
+            npx tsx scripts/monitor-trials.ts --apply
+          else
+            npx tsx scripts/monitor-trials.ts
+          fi

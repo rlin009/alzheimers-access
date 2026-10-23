@@ -1,0 +1,843 @@
+{
+  "fetched": "2026-10-08",
+  "source": "ClinicalTrials.gov API v2, statuses RECRUITING and NOT_YET_RECRUITING",
+  "excluded": [
+    {
+      "nctId": "NCT00260585",
+      "reason": "Esophageal cancer risk registry; achalasia is only one of many qualifying conditions."
+    },
+    {
+      "nctId": "NCT01793168",
+      "reason": "Registry open to any rare disease, not specific to these conditions."
+    },
+    {
+      "nctId": "NCT06721520",
+      "reason": "About stomach drainage during esophagus removal surgery, not about these conditions."
+    },
+    {
+      "nctId": "NCT04522193",
+      "reason": "About dumping syndrome in children born with esophageal atresia."
+    }
+  ],
+  "trials": [
+    {
+      "nctId": "NCT02518542",
+      "title": "Per Oral Endoscopic Myotomy (POEM) and Prolonged Dilatation (PRD) for Achalasia",
+      "summary": "Follows people with achalasia and related problems treated with POEM, prolonged balloon dilation or keyhole surgery, to compare how each works.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 400,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Medical University of Vienna",
+      "siteCount": 1,
+      "sites": [
+        "Vienna, Austria"
+      ],
+      "countries": [
+        "Austria"
+      ],
+      "lastUpdate": "2015-08-10",
+      "url": "https://clinicaltrials.gov/study/NCT02518542"
+    },
+    {
+      "nctId": "NCT03187925",
+      "title": "Cricopharyngeal Dysfunction and Esophageal Diverticulum",
+      "summary": "Follows people treated for a Zenker's pouch or a tight cricopharyngeus, either through the neck or through the mouth, including people who are not having surgery.",
+      "conditions": [
+        "Zenker's",
+        "A-CPD"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 500,
+      "minAge": "18 Years",
+      "maxAge": "100 Years",
+      "sponsor": "University of Cincinnati",
+      "siteCount": 1,
+      "sites": [
+        "Cincinnati, Ohio, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2023-09-13",
+      "url": "https://clinicaltrials.gov/study/NCT03187925"
+    },
+    {
+      "nctId": "NCT03948438",
+      "title": "Endoscopic Treatment for Zenker's Diverticulum",
+      "summary": "Records how people do after a flexible endoscopic cut of the wall between a Zenker's pouch and the esophagus.",
+      "conditions": [
+        "Zenker's"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 400,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Istituto Clinico Humanitas",
+      "siteCount": 1,
+      "sites": [
+        "Rozzano, Italy"
+      ],
+      "countries": [
+        "Italy"
+      ],
+      "lastUpdate": "2022-09-21",
+      "url": "https://clinicaltrials.gov/study/NCT03948438"
+    },
+    {
+      "nctId": "NCT04117100",
+      "title": "Advanced Endo-therapeutic Procedure : Registry-based Observational Study",
+      "summary": "A registry of advanced endoscopic procedures at one Montreal hospital, including treatment of Zenker's pouches.",
+      "conditions": [
+        "Zenker's"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 500,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Centre hospitalier de l'Université de Montréal (CHUM)",
+      "siteCount": 1,
+      "sites": [
+        "Montreal, Canada"
+      ],
+      "countries": [
+        "Canada"
+      ],
+      "lastUpdate": "2026-08-11",
+      "url": "https://clinicaltrials.gov/study/NCT04117100"
+    },
+    {
+      "nctId": "NCT04640753",
+      "title": "Peroral Endoscopic Myotomy for the Treatment of Achalasia",
+      "summary": "A registry of people with achalasia treated with POEM at one Dallas hospital.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 200,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Methodist Health System",
+      "siteCount": 1,
+      "sites": [
+        "Dallas, Texas, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-06-10",
+      "url": "https://clinicaltrials.gov/study/NCT04640753"
+    },
+    {
+      "nctId": "NCT04641702",
+      "title": "Comprehensive Esophageal Diagnostics Study",
+      "summary": "Takes small muscle samples and FLIP measurements in people with achalasia and related problems, to see how scarring in the muscle relates to how the sphincter behaves.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE4"
+      ],
+      "enrollment": 80,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Emory University",
+      "siteCount": 2,
+      "sites": [
+        "Atlanta, Georgia, United States",
+        "Atlanta, Georgia, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-09-16",
+      "url": "https://clinicaltrials.gov/study/NCT04641702"
+    },
+    {
+      "nctId": "NCT04695600",
+      "title": "Onabotulinum Toxin A (Botox) in the Treatment of Pharyngo-esophageal Dysphagia",
+      "summary": "Tests Botox injected into the upper sphincter against a placebo for swallowing trouble caused by a tight cricopharyngeus, mostly after stroke and other nerve conditions.",
+      "conditions": [
+        "A-CPD"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE2",
+        "PHASE3"
+      ],
+      "enrollment": 100,
+      "minAge": "14 Years",
+      "maxAge": null,
+      "sponsor": "All India Institute of Medical Sciences",
+      "siteCount": 1,
+      "sites": [
+        "New Delhi, India"
+      ],
+      "countries": [
+        "India"
+      ],
+      "lastUpdate": "2026-07-07",
+      "url": "https://clinicaltrials.gov/study/NCT04695600"
+    },
+    {
+      "nctId": "NCT05550194",
+      "title": "VZV in the Enteric Nervous System: Pathogenesis and Consequences",
+      "summary": "Tests whether an antiviral drug and the shingles vaccine help people whose achalasia is linked to an ongoing chickenpox virus infection in the nerves of the esophagus.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE4"
+      ],
+      "enrollment": 40,
+      "minAge": "18 Years",
+      "maxAge": "75 Years",
+      "sponsor": "Vanderbilt University Medical Center",
+      "siteCount": 1,
+      "sites": [
+        "Nashville, Tennessee, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-10-05",
+      "url": "https://clinicaltrials.gov/study/NCT05550194"
+    },
+    {
+      "nctId": "NCT05899842",
+      "title": "Routine Versus Symptomatic Protein Pump Inhibitor Therapy for Prevention of Gastroesophageal Reflux After Per Oral Endoscopic Myotomy for Esophageal Achalasia",
+      "summary": "Compares taking acid medicine every day after POEM with taking it only when symptoms appear, to see which better prevents reflux.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 132,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Centre Hospitalier Universitaire de Nīmes",
+      "siteCount": 4,
+      "sites": [
+        "Marseille, France",
+        "Montpellier, France",
+        "Montpellier, France",
+        "Nîmes, France"
+      ],
+      "countries": [
+        "France"
+      ],
+      "lastUpdate": "2026-02-10",
+      "url": "https://clinicaltrials.gov/study/NCT05899842"
+    },
+    {
+      "nctId": "NCT05905016",
+      "title": "Prospective Evaluation of the Clinical Utility of Peroral Endoscopic Myotomy for Gastrointestinal Motility Disorders",
+      "summary": "Records outcomes for everyone treated with POEM at one Orlando hospital, including achalasia, spasm and Zenker's.",
+      "conditions": [
+        "Achalasia",
+        "Spasm",
+        "Zenker's"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 600,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "AdventHealth",
+      "siteCount": 1,
+      "sites": [
+        "Orlando, Florida, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-02-02",
+      "url": "https://clinicaltrials.gov/study/NCT05905016"
+    },
+    {
+      "nctId": "NCT06027190",
+      "title": "Randomized Controlled Study of Optical 3D Navigated Repetitive Transcranial Magnetic Stimulation for Achalasia.",
+      "summary": "Tests magnetic stimulation of the brain, with no surgery, as a treatment for achalasia, against a sham version.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 112,
+      "minAge": "18 Years",
+      "maxAge": "75 Years",
+      "sponsor": "Zhang Nina",
+      "siteCount": 1,
+      "sites": [
+        "Nanjing, China"
+      ],
+      "countries": [
+        "China"
+      ],
+      "lastUpdate": "2023-09-21",
+      "url": "https://clinicaltrials.gov/study/NCT06027190"
+    },
+    {
+      "nctId": "NCT06042127",
+      "title": "POEM-F for Achalasia International Study",
+      "summary": "Compares standard POEM with POEM plus a wrap made from the inside, to see if the wrap reduces reflux afterwards.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 81,
+      "minAge": "18 Years",
+      "maxAge": "65 Years",
+      "sponsor": "Chinese University of Hong Kong",
+      "siteCount": 7,
+      "sites": [
+        "Baltimore, Maryland, United States",
+        "Guangzhou, China",
+        "Hong Kong, Hong Kong",
+        "Chandigarh, India",
+        "Hyderabad, India",
+        "Mumbai, India"
+      ],
+      "countries": [
+        "China",
+        "Hong Kong",
+        "India",
+        "United States"
+      ],
+      "lastUpdate": "2024-12-03",
+      "url": "https://clinicaltrials.gov/study/NCT06042127"
+    },
+    {
+      "nctId": "NCT06189859",
+      "title": "Electrosurgical Modes for Endoscopic Submucosal Dissection in Peroral Endoscopic Esophageal Myotomy",
+      "summary": "Compares two electrical settings used during POEM to see which is safer and quicker.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE3"
+      ],
+      "enrollment": 52,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Cairo University",
+      "siteCount": 1,
+      "sites": [
+        "Cairo, Egypt"
+      ],
+      "countries": [
+        "Egypt"
+      ],
+      "lastUpdate": "2025-05-13",
+      "url": "https://clinicaltrials.gov/study/NCT06189859"
+    },
+    {
+      "nctId": "NCT06230536",
+      "title": "MARIMPACH : Contribution of High-resolution Manometry With Impedancemetry for the Evaluation of Esophageal Clearance in Achalasia",
+      "summary": "Compares a pressure-and-flow test with a timed barium X-ray for measuring how well the esophagus empties after achalasia treatment.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 104,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "University Hospital, Bordeaux",
+      "siteCount": 1,
+      "sites": [
+        "Pessac, France"
+      ],
+      "countries": [
+        "France"
+      ],
+      "lastUpdate": "2024-07-26",
+      "url": "https://clinicaltrials.gov/study/NCT06230536"
+    },
+    {
+      "nctId": "NCT06405412",
+      "title": "Effects of Malnutrition on Respiratory and Renal Functions in Patients Undergoing Peroral Endoscopic Myotomy (POEM)",
+      "summary": "Looks at how poor nutrition affects breathing and kidney function during anesthesia for POEM.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 60,
+      "minAge": "18 Years",
+      "maxAge": "80 Years",
+      "sponsor": "Umraniye Education and Research Hospital",
+      "siteCount": 1,
+      "sites": [
+        "Istanbul, Turkey (Türkiye)"
+      ],
+      "countries": [
+        "Turkey (Türkiye)"
+      ],
+      "lastUpdate": "2025-11-19",
+      "url": "https://clinicaltrials.gov/study/NCT06405412"
+    },
+    {
+      "nctId": "NCT06594718",
+      "title": "Endoscopic Treatment of Zenker's Diverticulum (ZENKTUN)",
+      "summary": "Compares Z-POEM with other endoscopic treatments for Zenker's pouches across French centres, looking at how often symptoms come back after a year.",
+      "conditions": [
+        "Zenker's"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 128,
+      "minAge": "18 Years",
+      "maxAge": "90 Years",
+      "sponsor": "Société Française d'Endoscopie Digestive",
+      "siteCount": 0,
+      "sites": [],
+      "countries": [],
+      "lastUpdate": "2024-09-19",
+      "url": "https://clinicaltrials.gov/study/NCT06594718"
+    },
+    {
+      "nctId": "NCT06870630",
+      "title": "Standard Versus Oesophago-gastric Junction Complex Myotomy for Treatment naïve Type 2 Achalasia Patients",
+      "summary": "Compares a shorter, more targeted POEM cut with the standard cut in people with type II achalasia who have not been treated before.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 158,
+      "minAge": "18 Years",
+      "maxAge": "75 Years",
+      "sponsor": "Asian Institute of Gastroenterology, India",
+      "siteCount": 1,
+      "sites": [
+        "Hyderabad, India"
+      ],
+      "countries": [
+        "India"
+      ],
+      "lastUpdate": "2025-06-10",
+      "url": "https://clinicaltrials.gov/study/NCT06870630"
+    },
+    {
+      "nctId": "NCT06883175",
+      "title": "Evolution of the Chicago Classification: Bridging Physiology and Mechanics",
+      "summary": "Uses pressure tests, FLIP and a gut-motility drug to understand how the esophagus moves in people with swallowing trouble, including achalasia.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 575,
+      "minAge": "18 Years",
+      "maxAge": "85 Years",
+      "sponsor": "Northwestern University",
+      "siteCount": 1,
+      "sites": [
+        "Chicago, Illinois, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-09-23",
+      "url": "https://clinicaltrials.gov/study/NCT06883175"
+    },
+    {
+      "nctId": "NCT07167355",
+      "title": "Comparison of Balloon Dilatation and Per Oral Endoscopic Myotomy in Children With Achalasia Cardia",
+      "summary": "Compares balloon dilation with POEM in children aged 3 to 17 with achalasia.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 70,
+      "minAge": "3 Years",
+      "maxAge": "17 Years",
+      "sponsor": "Asian Institute of Gastroenterology, India",
+      "siteCount": 0,
+      "sites": [],
+      "countries": [],
+      "lastUpdate": "2025-09-11",
+      "url": "https://clinicaltrials.gov/study/NCT07167355"
+    },
+    {
+      "nctId": "NCT07178821",
+      "title": "Sling-Fiber Preservation POEM vs. Conventional POEM for Reducing Post-POEM GERD",
+      "summary": "Compares standard POEM with a version that spares some muscle fibres at the stomach, to see if it causes less reflux.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 120,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "University of California, Irvine",
+      "siteCount": 1,
+      "sites": [
+        "Orange, California, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2025-10-22",
+      "url": "https://clinicaltrials.gov/study/NCT07178821"
+    },
+    {
+      "nctId": "NCT07181070",
+      "title": "The Use of Indocyanine Green Fluorescence (ICG) During Laparoscopic Heller- Dor",
+      "summary": "Tests whether a fluorescent dye during Heller myotomy helps surgeons spot small tears in the lining.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 70,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Federico II University",
+      "siteCount": 1,
+      "sites": [
+        "Naples, Italy"
+      ],
+      "countries": [
+        "Italy"
+      ],
+      "lastUpdate": "2025-09-23",
+      "url": "https://clinicaltrials.gov/study/NCT07181070"
+    },
+    {
+      "nctId": "NCT07287787",
+      "title": "Comparative Study of Per-oral Endoscopic Myotomy (POEM) in Treatment - naïve Achalasia Patients Versus Patients With Previous Pneumatic Dilation",
+      "summary": "Compares how POEM works in people with achalasia who have never been treated and people who have already had balloon dilation.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 32,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Assiut University",
+      "siteCount": 0,
+      "sites": [],
+      "countries": [],
+      "lastUpdate": "2025-12-17",
+      "url": "https://clinicaltrials.gov/study/NCT07287787"
+    },
+    {
+      "nctId": "NCT07293650",
+      "title": "PREcision MEDicine In Achalasia (PREMEDIA)",
+      "summary": "A large US trial testing whether a shorter, tailored POEM cut works as well as the standard cut for achalasia types I and II, with less reflux.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE3"
+      ],
+      "enrollment": 372,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Northwestern University",
+      "siteCount": 16,
+      "sites": [
+        "Scottsdale, Arizona, United States",
+        "La Jolla, California, United States",
+        "Denver, Colorado, United States",
+        "Gainesville, Florida, United States",
+        "Orlando, Florida, United States",
+        "Atlanta, Georgia, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-08-28",
+      "url": "https://clinicaltrials.gov/study/NCT07293650"
+    },
+    {
+      "nctId": "NCT07293689",
+      "title": "PREcision MEDicine In Achalasia (PREMEDIA) - Cohort",
+      "summary": "A US study following people with type III achalasia, jackhammer esophagus and related spastic problems, to see whether testing before POEM helps doctors choose how long to cut.",
+      "conditions": [
+        "Achalasia",
+        "Spasm"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 200,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Northwestern University",
+      "siteCount": 16,
+      "sites": [
+        "Scottsdale, Arizona, United States",
+        "La Jolla, California, United States",
+        "Denver, Colorado, United States",
+        "Gainesville, Florida, United States",
+        "Orlando, Florida, United States",
+        "Atlanta, Georgia, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-08-28",
+      "url": "https://clinicaltrials.gov/study/NCT07293689"
+    },
+    {
+      "nctId": "NCT07325071",
+      "title": "Comparison of Conventional and Short Submucosal Tunnel Techniques in Type II Achalasia",
+      "summary": "Compares the standard POEM tunnel with two shorter versions in people with type II achalasia.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 636,
+      "minAge": "19 Years",
+      "maxAge": "75 Years",
+      "sponsor": "Asian Institute of Gastroenterology, India",
+      "siteCount": 0,
+      "sites": [],
+      "countries": [],
+      "lastUpdate": "2026-01-08",
+      "url": "https://clinicaltrials.gov/study/NCT07325071"
+    },
+    {
+      "nctId": "NCT07334639",
+      "title": "Metabolic Changes Associated With Weight Gain After Treatment of Achalasia",
+      "summary": "Measures metabolic changes, such as blood sugar and cholesterol, in people who regain weight after achalasia treatment.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 30,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Assaf-Harofeh Medical Center",
+      "siteCount": 2,
+      "sites": [
+        "Jerusalem, Israel",
+        "Ẕerifin, Israel"
+      ],
+      "countries": [
+        "Israel"
+      ],
+      "lastUpdate": "2026-01-13",
+      "url": "https://clinicaltrials.gov/study/NCT07334639"
+    },
+    {
+      "nctId": "NCT07406945",
+      "title": "Safety and Efficacy of a Novel SpydrBlade Flexible Bipolar in POEM",
+      "summary": "Tests a new cutting device for POEM.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 73,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Chinese University of Hong Kong",
+      "siteCount": 2,
+      "sites": [
+        "Guayaquil, Ecuador",
+        "Hong Kong, Hong Kong"
+      ],
+      "countries": [
+        "Ecuador",
+        "Hong Kong"
+      ],
+      "lastUpdate": "2026-02-12",
+      "url": "https://clinicaltrials.gov/study/NCT07406945"
+    },
+    {
+      "nctId": "NCT07425977",
+      "title": "Transverse vs Longitudinal Mucosal Incision During POEM",
+      "summary": "Compares two ways of making the first opening in the lining during POEM.",
+      "conditions": [
+        "Achalasia",
+        "Spasm"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [
+        "PHASE3"
+      ],
+      "enrollment": 140,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Universidad Nacional de Colombia",
+      "siteCount": 1,
+      "sites": [
+        "Bogotá, Colombia"
+      ],
+      "countries": [
+        "Colombia"
+      ],
+      "lastUpdate": "2026-02-24",
+      "url": "https://clinicaltrials.gov/study/NCT07425977"
+    },
+    {
+      "nctId": "NCT07496840",
+      "title": "Clinical Outcomes, Safety, and Effectiveness of Speedboat UltraSlim™ in Per-Oral Endoscopic Myotomy (POEM)",
+      "summary": "Records outcomes of POEM done with a particular surgical device at one Houston hospital.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 40,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "Baylor College of Medicine",
+      "siteCount": 1,
+      "sites": [
+        "Houston, Texas, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-06-17",
+      "url": "https://clinicaltrials.gov/study/NCT07496840"
+    },
+    {
+      "nctId": "NCT07506746",
+      "title": "PRospective Registry of Esophageal Motility",
+      "summary": "A large Italian registry of people having esophageal pressure tests, including people with achalasia.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "OBSERVATIONAL",
+      "phases": [],
+      "enrollment": 10000,
+      "minAge": "18 Years",
+      "maxAge": null,
+      "sponsor": "IRCCS San Raffaele",
+      "siteCount": 1,
+      "sites": [
+        "Milan, Italy"
+      ],
+      "countries": [
+        "Italy"
+      ],
+      "lastUpdate": "2026-04-02",
+      "url": "https://clinicaltrials.gov/study/NCT07506746"
+    },
+    {
+      "nctId": "NCT07686471",
+      "title": "Short Versus Long Submucosal Tunneling in Per-oral Endoscopic Myotomy (POEM) for Type II Achalasia.",
+      "summary": "Compares short and long tunnels during POEM in people with type II achalasia.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "NOT_YET_RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 50,
+      "minAge": null,
+      "maxAge": null,
+      "sponsor": "Assiut University",
+      "siteCount": 1,
+      "sites": [
+        "Asyut, Egypt"
+      ],
+      "countries": [
+        "Egypt"
+      ],
+      "lastUpdate": "2026-07-07",
+      "url": "https://clinicaltrials.gov/study/NCT07686471"
+    },
+    {
+      "nctId": "NCT07780981",
+      "title": "Impact of Body Positioning on EndoFLIP Measurements: A Comparative Study of Supine and Left Lateral Decubitus Positions",
+      "summary": "Checks whether lying on your back or your side changes FLIP measurements, in children and young adults aged 5 to 21.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 25,
+      "minAge": "5 Years",
+      "maxAge": "21 Years",
+      "sponsor": "Johns Hopkins University",
+      "siteCount": 1,
+      "sites": [
+        "Baltimore, Maryland, United States"
+      ],
+      "countries": [
+        "United States"
+      ],
+      "lastUpdate": "2026-08-24",
+      "url": "https://clinicaltrials.gov/study/NCT07780981"
+    },
+    {
+      "nctId": "NCT07814027",
+      "title": "POEM Versus Laparoscopic Heller Myotomy With Dor Fundoplication for Esophageal Achalasia",
+      "summary": "Compares POEM with Heller myotomy plus a Dor wrap for achalasia.",
+      "conditions": [
+        "Achalasia"
+      ],
+      "status": "RECRUITING",
+      "studyType": "INTERVENTIONAL",
+      "phases": [],
+      "enrollment": 220,
+      "minAge": "18 Years",
+      "maxAge": "75 Years",
+      "sponsor": "Minia University",
+      "siteCount": 1,
+      "sites": [
+        "Minya, Egypt"
+      ],
+      "countries": [
+        "Egypt"
+      ],
+      "lastUpdate": "2026-09-22",
+      "url": "https://clinicaltrials.gov/study/NCT07814027"
+    }
+  ]
+}

@@ -1210,3 +1210,6 @@ a {
     display: block;
   }
 }
+
+.trial-group > summary h2 { margin: 0; font: inherit; }
+.answer-review input[type="checkbox"] { width: auto; margin-right: 8px; }
